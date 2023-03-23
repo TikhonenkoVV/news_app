@@ -1,0 +1,211 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Medium.eot");
+  src: local(""), url("../fonts/Manrope-Medium.eot?#iefix") format("embedded-opentype"), url("../fonts/Manrope-Medium.woff2") format("woff2"), url("../fonts/Manrope-Medium.woff") format("woff"), url("../fonts/Manrope-Medium.ttf") format("truetype"), url("../fonts/Manrope-Medium.svg#Manrope-Medium") format("svg");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Bold.eot");
+  src: local(""), url("../fonts/Manrope-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/Manrope-Bold.woff2") format("woff2"), url("../fonts/Manrope-Bold.woff") format("woff"), url("../fonts/Manrope-Bold.ttf") format("truetype"), url("../fonts/Manrope-Bold.svg#Manrope-Bold") format("svg");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Regular.eot");
+  src: local(""), url("../fonts/Manrope-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/Manrope-Regular.woff2") format("woff2"), url("../fonts/Manrope-Regular.woff") format("woff"), url("../fonts/Manrope-Regular.ttf") format("truetype"), url("../fonts/Manrope-Regular.svg#Manrope-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-Regular.eot");
+  src: local(""), url("../fonts/Poppins-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/Poppins-Regular.woff2") format("woff2"), url("../fonts/Poppins-Regular.woff") format("woff"), url("../fonts/Poppins-Regular.ttf") format("truetype"), url("../fonts/Poppins-Regular.svg#Poppins-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Regular.eot");
+  src: local(""), url("../fonts/Roboto-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto-Regular.woff") format("woff"), url("../fonts/Roboto-Regular.ttf") format("truetype"), url("../fonts/Roboto-Regular.svg#Roboto-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --colorBackground: #f4f4f4;
+  --colorTextDark: #111321;
+  --colorTextLight: #f4f4f4;
+  --toglerMainColor: #4440f6;
+  --toglerMinorColor: #fff;
+  --toglerIconSunColor: #4b48db;
+  --toglerIconMoonColor: #5f6775;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  color: var(--colorTextDark);
+  background-color: var(--colorBackground);
+  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  height: auto;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  font-family: "Manrope", sans-serif;
+}
+
+body.dark {
+  --colorBackground: #2e2e2e;
+  --colorTextDark: #f4f4f4;
+  --colorTextLight: #f4f4f4;
+  --toglerMainColor: #fff;
+  --toglerMinorColor: #4440f6;
+  --toglerIconSunColor: #5f6775;
+  --toglerIconMoonColor: #4b48db;
+}
+
+.container {
+  padding: 0 16px;
+}
+@media screen and (min-width: 320px) {
+  .container {
+    width: 320px;
+    margin: 0 auto;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .container {
+    width: 1280px;
+  }
+}
+
+.theme {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 8px;
+}
+@media screen and (min-width: 1280px) {
+  .theme {
+    gap: 12px;
+  }
+}
+
+.theme__caption {
+  display: none;
+  -webkit-transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+@media screen and (min-width: 1280px) {
+  .theme__caption {
+    display: block;
+  }
+}
+
+.theme__caption--light {
+  color: var(--toglerIconSunColor);
+}
+
+.theme__caption--dark {
+  color: var(--toglerIconMoonColor);
+}
+
+@media screen and (min-width: 1280px) {
+  .theme__icon {
+    display: none;
+  }
+}
+
+.theme__icon--sun {
+  fill: var(--toglerIconSunColor);
+}
+
+.theme__icon--moon {
+  fill: var(--toglerIconMoonColor);
+}
+
+.theme__togler {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  border: 1px solid var(--toglerMainColor);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 1px;
+  background-color: var(--toglerMinorColor);
+}
+
+.theme__lever {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 1px;
+  left: 1px;
+  border-radius: 50%;
+  background-color: var(--toglerMainColor);
+  -webkit-transition: -webkit-transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: -webkit-transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark .theme__lever {
+  -webkit-transform: translateX(20px);
+          transform: translateX(20px);
+}
+
+footer {
+  height: 120px;
+  background-color: #7a7a7a;
+}
+@media screen and (min-width: 768px) {
+  footer {
+    height: 146px;
+  }
+}/*# sourceMappingURL=index.css.map */
