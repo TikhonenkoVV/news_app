@@ -1,0 +1,115 @@
+import { refs } from './refs';
+
+import { fetchPopularArticles } from './fetch';
+
+async function allData() {
+    try {
+        const { data } = await fetchPopularArticles();
+        console.log(`data`, data);
+        const { results, num_results } = data;
+
+        const users = results.map(
+            (
+                { published_date, section, abstract, media, title },
+                index,
+                arr
+            ) => {
+                return {
+                    url: data.results[0].media[0]['media-metadata'][2].url,
+                    title,
+                    section,
+                    abstract,
+                    published_date,
+                };
+            }
+        );
+        console.log(`newsArr`, users);
+        renderGallery(users);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+allData();
+
+function renderGallery(users) {
+    const gallaryMarkup = users
+        .map(
+            ({
+                url,
+                title,
+                section,
+                abstract,
+                published_date,
+            }) => `<div class="news__item">
+            <div class="news__img">
+              <img src="${url}" alt="${title}" loading="lazy"/>
+            </div>
+            <div class="info">
+              <p class="info__title">${title}</p>
+              <p class="info__abstract">${abstract}</p>
+              <p class="info__published-date">${published_date}</p>
+              <button class="info__btn">Add to favorite</button>
+            </div></div>`
+        )
+        .join('');
+
+    // galleryContainer.innerHTML = gallaryMarkup;
+    refs.newsContainer.insertAdjacentHTML('beforeend', gallaryMarkup);
+}
+
+// const tempArr = results.map(
+//     ({ published_date, section, abstract, media, title }) => {
+//         return {
+//             url: [index].media[0]["media-metadata"][2].url,
+//             title,
+//             section,
+//             abstract,
+//             published_date,
+//         };
+//     }
+// );
+// const bookGenres = book['genres'];
+
+// const users = results.map(
+//     ({ published_date, section, abstract, media, title }, index, arr) => {
+//         const image = data.results[0].media[0]['media-metadata'][2].url;
+//         const test = JSON.stringify(image);
+//         console.log(`image`, test);
+//         return {
+//             temp: index,
+//             url: test,
+//             title,
+//             section,
+//             abstract,
+//             published_date,
+//         };
+//     }
+// );
+
+// const { published_date, section, abstract, media, title } = results[8];
+
+// console.log(`results8`, results[8]);
+
+// console.log(`img`, media[0]['media-metadata'][2].url);
+// console.log(`title`, title);
+// console.log(`section`, section);
+// console.log(`abstract`, abstract);
+// console.log(`published_date`, published_date);
+// const user = {
+//     url: media[0]['media-metadata'][2].url,
+//     title,
+//     section,
+//     abstract,
+//     published_date,
+// };
+// console.log(`user`, user);
+
+// массив
+//     .map((element, index, array) => {
+//         // Тіло колбек-функції
+//         if (index === 2) {
+// <li class="weather"></li>;
+//         }
+//     })
+//     .join('');
