@@ -42,7 +42,6 @@ function getCoordinates() {
 
 function renderBanner({ temp, weather, city, icon, date, description }) {
     console.log(temp, weather, city, icon, date, description);
-    console.log(getDayOfWeek(date));
     console.log(getCurrentDate(date));
 }
 
@@ -61,13 +60,10 @@ function getCurrentDate(date) {
         'Nov',
         'Dec',
     ];
+    const weekday = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
+    const dayOfWeek = weekday[date.getDay()];
     const currentMonth = months[date.getMonth()];
     const currentYear = date.getFullYear();
     const currentDay = date.getDate();
-    return `${currentDay} ${currentMonth} ${currentYear}`;
-}
-
-function getDayOfWeek(date) {
-    const weekday = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
-    return weekday[date.getDay()];
+    return `${dayOfWeek}<br>${currentDay} ${currentMonth} ${currentYear}`;
 }
