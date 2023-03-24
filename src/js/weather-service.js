@@ -1,8 +1,8 @@
 import axios from 'axios';
+import { WEATHER_API_KEY } from './key';
 
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
 const GEO_API_URL = 'http://api.openweathermap.org/geo/1.0/reverse';
-const API_KEY = '5a21f5498e56154d1b701d9d37670e49';
 
 export class WeatherService {
     constructor(lat, lon) {
@@ -17,7 +17,7 @@ export class WeatherService {
                     lat: this.latitude,
                     lon: this.longitude,
                     units: 'metric',
-                    appid: API_KEY,
+                    appid: WEATHER_API_KEY,
                 },
             }),
             axios.get(GEO_API_URL, {
@@ -25,11 +25,20 @@ export class WeatherService {
                     lat: this.latitude,
                     lon: this.longitude,
                     limit: 1,
-                    appid: API_KEY,
+                    appid: WEATHER_API_KEY,
                 },
             }),
         ];
-        return await axios.all(requests);
+        const [weather, city] = await axios.all(requests);
+        console.log(weather);
+        return {
+            temp: weather.data.main.temp,
+            weather: weather.data.weather[0].main,
+            city: city.data[0].name,
+            icon: this.getIconUrl(weather.data.weather[0].icon),
+            date: new Date(weather.data.dt * 1000),
+            description: weather.data.weather[0].description,
+        };
     }
 
     getIconUrl(icon) {

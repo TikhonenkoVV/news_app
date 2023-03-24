@@ -3,26 +3,19 @@ import { WeatherService } from './weather-service';
 const NY_LAT = 40.73061;
 const NY_LON = -73.935242;
 
-getCoordinates().then(async ({ latitude, longitude }) => {
+onBannerLoad();
+
+async function onBannerLoad() {
+    const { latitude, longitude } = await getCoordinates();
     let weatherData = {};
+    const weatherService = new WeatherService(latitude, longitude);
     try {
-        weatherData = await getWeatherData(latitude, longitude);
+        weatherData = await weatherService.getCurrentWeather();
     } catch (error) {
         console.log(error);
         return;
     }
     renderBanner(weatherData);
-});
-
-async function getWeatherData(latitude, longitude) {
-    const weatherService = new WeatherService(latitude, longitude);
-    const [weather, city] = await weatherService.getCurrentWeather();
-    return {
-        temp: weather.data.main.temp,
-        weather: weather.data.weather[0].main,
-        city: city.data[0].name,
-        icon: weatherService.getIconUrl(weather.data.weather[0].icon),
-    };
 }
 
 function getCoordinates() {
@@ -41,11 +34,10 @@ function getCoordinates() {
     });
 }
 
-function renderBanner({ temp, weather, city, icon }) {
-    console.log(temp, weather, city, icon);
-    const today = new Date();
-    console.log(getCurrentDate(today));
-    console.log(getDayOfWeek(today));
+function renderBanner({ temp, weather, city, icon, date, description }) {
+    console.log(temp, weather, city, icon, date, description);
+    console.log(getDayOfWeek(date));
+    console.log(getCurrentDate(date));
 }
 
 function getCurrentDate(date) {
