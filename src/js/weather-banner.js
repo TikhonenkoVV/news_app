@@ -19,6 +19,11 @@ async function onBannerLoad() {
 }
 
 function getCoordinates() {
+    const options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
+    };
     return new Promise(resolve => {
         navigator.geolocation.getCurrentPosition(
             ({ coords }) => {
@@ -29,7 +34,8 @@ function getCoordinates() {
             },
             error => {
                 resolve({ latitude: NY_LAT, longitude: NY_LON });
-            }
+            },
+            options
         );
     });
 }
