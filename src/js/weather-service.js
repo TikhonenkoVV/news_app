@@ -30,7 +30,7 @@ export class WeatherService {
             }),
         ];
         const [weather, city] = await axios.all(requests);
-        console.log(weather);
+
         return {
             temp: weather.data.main.temp,
             weather: weather.data.weather[0].main,
