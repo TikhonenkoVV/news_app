@@ -10,16 +10,17 @@ async function allData() {
 
         const users = results.map(
             (
-                { published_date, section, abstract, media, title },
+                { published_date, section, abstract, media, title, url },
                 index,
                 arr
             ) => {
                 return {
-                    url: data.results[0].media[0]['media-metadata'][2].url,
+                    imgUrl: data.results[0].media[0]['media-metadata'][2].url,
                     title,
                     section,
                     abstract,
                     published_date,
+                    url,
                 };
             }
         );
@@ -36,20 +37,26 @@ function renderGallery(users) {
     const gallaryMarkup = users
         .map(
             ({
-                url,
+                imgUrl,
                 title,
                 section,
                 abstract,
                 published_date,
+                url,
             }) => `<div class="news__item">
+            <p class="news__section">${section}</p>
             <div class="news__img">
-              <img src="${url}" alt="${title}" loading="lazy"/>
+              <img src="${imgUrl}" alt="${title}" loading="lazy"/>
+              <button class="news__btn">Add to favorite<svg class="news__btn-icon" width="20" height="20">
+                  <use href="./images/sprite.svg#icon-heart-border"></use>
+                </svg></button>
             </div>
             <div class="info">
               <p class="info__title">${title}</p>
               <p class="info__abstract">${abstract}</p>
               <p class="info__published-date">${published_date}</p>
-              <button class="info__btn">Add to favorite</button>
+              <a href="${url}" target="_blank"
+                  rel="noopener noreferrer nofollow" class="info__link">Read more</a>
             </div></div>`
         )
         .join('');
