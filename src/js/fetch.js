@@ -50,7 +50,7 @@ export const fetchCategoryArticles = async (PAGE_VALUE, sectionName) => {
                 },
             }
         );
-        return response.data;
+        return response;
     } catch (error) {
         console.log(error);
     }
