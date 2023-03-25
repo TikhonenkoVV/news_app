@@ -1,0 +1,133 @@
+.weather {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 469px;
+    padding: 32px 36px 84px;
+
+    font-weight: 400;
+
+    background-color: $colorAccent;
+    border-radius: 4px;
+    font-family: $fontFamilyBanner;
+    color: $colorTextWhite;
+
+    @include for-size(tablet-only) {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: calc((100% - 30px) / 2);
+    }
+
+    @include for-size(tablet) {
+        height: 675px;
+        padding: 40px 32px 130px;
+    }
+
+    @include for-size(desktop) {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: calc((100% - 64px) / 3);
+        padding: 40px 53px 130px;
+    }
+
+    &__wripper {
+        display: flex;
+        align-items: center;
+        gap: 1px;
+
+        @include for-size(tablet) {
+            gap: 8px;
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        padding-left: 11px;
+        border-left: 1px solid $colorTextWhite;
+
+        @include for-size(tablet) {
+            padding-left: 8px;
+        }
+    }
+
+    &__temperature {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2px;
+        font-size: 55px;
+        line-height: calc(64 / 55);
+
+        @include for-size(tablet) {
+            font-size: 64px;
+            line-height: calc(75 / 64);
+        }
+    }
+
+    &__type {
+        font-size: 24px;
+        line-height: calc(28 / 24);
+
+        @include for-size(tablet) {
+            font-size: 36px;
+            line-height: calc(42 / 36);
+        }
+    }
+
+    &__location {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 8px;
+        background-color: $colorLocationBackground;
+        border-radius: 10px;
+        font-size: 14px;
+        line-height: calc(16 / 14);
+
+        @include for-size(tablet) {
+            gap: 8px;
+            font-size: 20px;
+            line-height: calc(23 / 20);
+        }
+    }
+
+    &__icon {
+        fill: $colorTextWhite;
+        @include for-size(tablet) {
+            width: 27px;
+            height: 27px;
+        }
+    }
+
+    &__city {
+        max-width: 83px;
+        word-break: break-all;
+
+        @include for-size(tablet) {
+            max-width: 118px;
+        }
+    }
+
+    &__image {
+        width: 128;
+        @include for-size(tablet) {
+            width: 165px;
+        }
+    }
+
+    &__date {
+        text-align: center;
+        font-size: 28px;
+        line-height: calc(33 / 28);
+
+        @include for-size(tablet) {
+            font-size: 36px;
+            line-height: calc(42 / 36);
+        }
+    }
+}

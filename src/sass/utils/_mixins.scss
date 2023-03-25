@@ -58,6 +58,7 @@ $desktop: 1280px;
 }
 
 @mixin flex($dirrection: '', $justify: '', $align: '', $wrap: '', $gap: '') {
+    display: flex;
     @if $dirrection != '' {
         flex-direction: $dirrection;
     }
@@ -69,8 +70,5 @@ $desktop: 1280px;
     }
     @if $wrap != '' {
         flex-wrap: $wrap;
-    }
-    @if $letter-spacing != '' {
-        letter-spacing: $letter-spacing;
     }
 }
