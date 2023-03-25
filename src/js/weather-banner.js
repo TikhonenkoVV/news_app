@@ -49,44 +49,24 @@ function renderBanner({ temp, weather, city, icon, date, description }) {
     // console.log(getCurrentDate(date));
 
     refs.weatherBanner.innerHTML = `<div class="weather__wripper">
-                        <p class="weather__temperature">
-                            <span class="weather__number">${Math.round(
-                                temp
-                            )}</span>
-                            <span>&deg;</span>
-                        </p>
-                        <div class="weather__info">
-                            <p class="weather__type">${weather}</p>
-                            <p class="weather__location">
-                                <svg
-                                    class="weather__icon"
-                                    width="18"
-                                    height="18"
-                                >
-                                    <use
-                                        href="./images/sprite.svg#icon-location"
-                                    ></use>
-                                </svg>
-                                <span class="weather__city"
-                                    >${city}</span
-                                >
-                            </p>
-                        </div>
-                    </div>
-
-                    <img
-                        class="weather__image"
-                        src="${icon}"
-                        alt="${description}"
-                        width="128"
-                        height="128"
-                    />
-
-                    <div class="weather__date">
-                        <p>
-                           ${getCurrentDate(date)}
-                        </p>
-                    </div>`;
+            <p class="weather__temperature">
+                <span class="weather__number">
+                ${Math.round(temp)}
+                </span>
+                <span>&deg;</span>
+            </p>
+            <div class="weather__info">
+                <p class="weather__type">${weather}</p>
+                <p class="weather__location">
+                    <svg class="weather__icon" width="18" height="18">
+                        <use href="#icon-location"></use>
+                    </svg>
+                    <span class="weather__city">${city}</span>
+                </p>
+            </div>
+        </div>
+        <img class="weather__image" src="${icon}" alt="${description}" width="128" height="128"/>
+        <p class="weather__date">${getCurrentDate(date)}</p>`;
 }
 
 function getCurrentDate(date) {
