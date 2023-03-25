@@ -61,7 +61,7 @@ function renderGallery(users) {
               <img src="${imgUrl}" alt="${title}" loading="lazy"/>
               <button type="button" class="news__btn">Add to favorite
               <svg class="news__btn-icon" width="20" height="20">
-                <use href="./images/sprite.svg#icon-heart-border"></use>
+                <use href="#icon-heart-border"></use>
                 </svg></button></div>
             <div class="info">
               <p class="info__title">${title}</p>
