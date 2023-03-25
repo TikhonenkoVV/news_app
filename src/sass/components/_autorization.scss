@@ -3,19 +3,24 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1);
-    max-width: 320px;
+    width: 320px;
+    height: 100%;
     padding: 20px;
     text-align: center;
-    border-radius: 4px;
     background-color: var(--colorBackground);
     transition: background-color $baseTransition, color $baseTransition;
     transition: transform $baseTransition;
-    @include for-size(desktop) {
-        max-width: 528px;
+    @include for-size(tablet) {
+        border-radius: 5px;
+        height: auto;
     }
 }
 
 .authorization__title {
+    margin-bottom: 16px;
+}
+
+.authorization__caption {
     margin-bottom: 16px;
 }
 
@@ -24,8 +29,21 @@
 }
 
 .authorization__box button {
+    background: none;
     flex-basis: 50%;
     height: 40px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: 1px solid grey;
+}
+
+.authorization__box button.current {
+    color: $colorAccent;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+    border-right: 1px solid grey;
+    border-bottom: none;
 }
 
 .authorization__form {
@@ -38,10 +56,18 @@
 .authorization__field {
     display: flex;
     flex-direction: column;
+    gap: 8px;
     margin-bottom: 16px;
 }
 
+.authorization__field input {
+    border-radius: 16px;
+    text-align: center;
+    padding: 5px 10px;
+}
+
 .authorization__checkbox {
+    display: block;
     margin-bottom: 16px;
 }
 
