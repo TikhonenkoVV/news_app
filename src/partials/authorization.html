@@ -1,0 +1,58 @@
+<div class="backdrop is-hidden">
+    <div class="modal">
+        <div class="authorization">
+            <h2 class="authorization__title">Welcome!</h2>
+            <p class="authorization__caption">
+                To access favorites and read please register or log in
+            </p>
+            <div class="authorization__box">
+                <button
+                    class="authorization__btn authorization__btn--reg current"
+                    type="button"
+                >
+                    Register
+                </button>
+                <button
+                    class="authorization__btn authorization__btn--log"
+                    type="button"
+                >
+                    Log in
+                </button>
+            </div>
+            <form class="authorization__form">
+                <label class="authorization__field">
+                    E-mail:
+                    <input type="email" name="email" />
+                </label>
+                <label class="authorization__field">
+                    Password:
+                    <input type="password" name="password" />
+                </label>
+                <label
+                    class="authorization__field authorization__field--confirm"
+                >
+                    Confirm password:
+                    <input type="password" name="password" />
+                </label>
+                <label
+                    class="authorization__checkbox authorization__checkbox--message"
+                >
+                    <input type="checkbox" />
+                    Don't show this message again
+                </label>
+                <label
+                    class="authorization__checkbox authorization__checkbox--geolocation"
+                >
+                    <input type="checkbox" />
+                    Use your geolocation
+                </label>
+                <div class="authorization__button-box">
+                    <button type="button">Cancel</button>
+                    <button class="authorization__submit" type="submit">
+                        Register
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
