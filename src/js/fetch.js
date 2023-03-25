@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const BASE_URL = 'https://api.nytimes.com/svc';
-const API_KEY = 'SCxavyfJkUFZE36gt0rf42IRKuZf7UMc';
+const API_KEY = '';
 
 export const fetchPopularArticles = async () => {
     try {
