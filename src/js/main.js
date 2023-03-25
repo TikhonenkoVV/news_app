@@ -14,8 +14,13 @@ async function allData() {
                 index,
                 arr
             ) => {
+                let imgUrl = '';
+                const arrImg = media[0];
+                if (arrImg !== undefined) {
+                    imgUrl = arrImg['media-metadata'][2].url;
+                }
                 return {
-                    imgUrl: data.results[0].media[0]['media-metadata'][2].url,
+                    imgUrl,
                     title,
                     section,
                     abstract,
@@ -78,22 +83,33 @@ function renderGallery(users) {
     refs.newsContainer.insertAdjacentHTML('beforeend', gallaryMarkup);
 }
 
-`<div class="news__item">
-            <p class="news__section">${section}</p>
-            <div class="news__img">
-              <img src="${imgUrl}" alt="${title}" loading="lazy"/>
-              <button class="news__btn">Add to favorite
-              <svg class="news__btn-icon" width="20" height="20">
-                <use href="./images/sprite.svg#icon-heart-border"></use>
-                </svg></button></div>
-            <div class="info">
-              <p class="info__title">${title}</p>
-              <p class="info__abstract">${abstract}</p>
-              <p class="info__published-date">${published_date}</p>
-              <a href="${url}" target="_blank"
-                rel="noopener noreferrer nofollow"
-                 class="info__link">Read more</a>
-            </div></div>`;
+// const users1 = results.map(
+//     ({ published_date, section, abstract, media, title }) => {
+//         let url = '';
+//         const arr = media[0];
+//         if (arr !== undefined) {
+//             url = arr['media-metadata'][2].url;
+//         }
+//         return { url, section };
+//     }
+// );
+
+// `<div class="news__item">
+//             <p class="news__section">${section}</p>
+//             <div class="news__img">
+//               <img src="${imgUrl}" alt="${title}" loading="lazy"/>
+//               <button class="news__btn">Add to favorite
+//               <svg class="news__btn-icon" width="20" height="20">
+//                 <use href="./images/sprite.svg#icon-heart-border"></use>
+//                 </svg></button></div>
+//             <div class="info">
+//               <p class="info__title">${title}</p>
+//               <p class="info__abstract">${abstract}</p>
+//               <p class="info__published-date">${published_date}</p>
+//               <a href="${url}" target="_blank"
+//                 rel="noopener noreferrer nofollow"
+//                  class="info__link">Read more</a>
+//             </div></div>`;
 
 // const tempArr = results.map(
 //     ({ published_date, section, abstract, media, title }) => {
