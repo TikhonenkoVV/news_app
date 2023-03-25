@@ -1,0 +1,146 @@
+.grid-box {
+    position: relative;
+}
+
+.news {
+    @include for-size(tablet) {
+        display: grid;
+        grid-gap: 30px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include for-size(desktop) {
+        grid-gap: 32px;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.news__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.news__item {
+    height: 675px;
+}
+
+.grid-box:not(.banner-hidden) .news__item:nth-child(2) {
+    @include for-size(tablet-only) {
+        grid-column-start: 1;
+    }
+}
+
+.grid-box:not(.banner-hidden) .news__item:nth-child(3) {
+    @include for-size(desktop) {
+        grid-column-start: 1;
+    }
+}
+
+.banner-hidden .weather {
+    display: none;
+}
+
+.weather {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 469px;
+    padding: 32px 36px 84px;
+    background-color: $colorAccent;
+    border-radius: 4px;
+    font-family: $fontFamilyBanner;
+    color: $colorTextWhite;
+
+    @include for-size(tablet-only) {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: calc((100% - 30px) / 2);
+    }
+
+    @include for-size(tablet) {
+        height: 675px;
+        padding: 40px 32px 130px;
+    }
+
+    @include for-size(desktop) {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: calc((100% - 64px) / 3);
+        padding: 40px 53px 130px;
+    }
+
+    &__wripper {
+        display: flex;
+        align-items: center;
+        gap: 1px;
+
+        @include for-size(tablet) {
+            gap: 8px;
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        padding-left: 11px;
+        border-left: 1px solid $colorTextWhite;
+
+        @include for-size(tablet) {
+            padding-left: 8px;
+        }
+    }
+
+    &__temperature {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2px;
+        font-weight: 400;
+        font-size: 55px;
+        line-height: calc(64 / 55);
+
+        @include for-size(tablet) {
+            font-size: 64px;
+            line-height: calc(75 / 64);
+        }
+    }
+
+    &__type {
+        font-weight: 400;
+        font-size: 24px;
+        line-height: calc(28 / 24);
+
+        @include for-size(tablet) {
+            font-size: 36px;
+            line-height: calc(42 / 36);
+        }
+    }
+
+    &__location {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 8px;
+        background-color: $colorLocationBackground;
+        border-radius: 10px;
+
+        @include for-size(tablet) {
+            gap: 8px;
+        }
+    }
+
+    &__icon {
+        fill: $colorTextWhite;
+    }
+
+    &__city {
+        inline-size: 83px;
+        word-break: break-all;
+    }
+}

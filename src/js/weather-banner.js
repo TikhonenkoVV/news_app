@@ -48,7 +48,7 @@ function renderBanner({ temp, weather, city, icon, date, description }) {
     // console.log(temp, weather, city, icon, date, description);
     // console.log(getCurrentDate(date));
     const markup = `<div class="weather__wripper">
-                <p class="weather__temperature">${temp} &deg;</p>
+                <p class="weather__temperature">${Math.round(temp)} &deg;</p>
                 <p class="weather__type">${weather}</p>
                 <p class="weather__location">${city}</p>
               </div>
