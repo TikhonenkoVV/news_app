@@ -4,17 +4,20 @@ export const onToglerClick = e => {
     const isDarkTheme = document.body.classList.contains('dark');
     setTheme(isDarkTheme);
     if (isDarkTheme) {
+        console.log('nsjka');
         changeRefStyle(
             inputRef,
             { option: 'backgroundColor', value: '#2e2e2e' },
-            { option: 'borderColor', value: '#FFFFFF' }
+            { option: 'borderColor', value: '#FFFFFF' },
+            { option: 'color', value: '#FFFFFF' }
         );
         return;
     }
     changeRefStyle(
         inputRef,
         { option: 'backgroundColor', value: '#FFFFFF' },
-        { option: 'borderColor', value: '#2e2e2e' }
+        { option: 'borderColor', value: '#2e2e2e' },
+        { option: 'color', value: 'black' }
     );
 };
 
