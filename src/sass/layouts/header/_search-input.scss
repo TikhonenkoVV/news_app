@@ -1,0 +1,120 @@
+// .box {
+//     display: flex;
+// }
+.search-input {
+    cursor: pointer;
+    border: none;
+    background: var(--colorBackground);
+
+    @include for-size(tablet) {
+        display: none;
+    }
+}
+
+.search-container {
+    width: 50px;
+    margin: 0 auto;
+
+    &:focus-within .header__input-search {
+        width: 173px;
+        margin: 0;
+        border: 1px solid #111321;
+        opacity: 1;
+        pointer-events: auto;
+        transition: all 0.3s ease;
+    }
+    @include for-size(tablet) {
+        .header__input-search {
+            width: 213px;
+            margin: 0;
+            border: 1px solid #111321;
+            opacity: 1;
+            pointer-events: auto;
+            transition: none;
+        }
+    }
+    @include for-size(desktop) {
+        .header__input-search {
+            width: 288px;
+            margin: 0;
+            border: 1px solid #111321;
+            opacity: 1;
+            pointer-events: auto;
+            transition: none;
+        }
+    }
+
+    &:focus-within .search-button {
+        bottom: -5px;
+        right: 178px;
+        transition: all 0.3s ease;
+    }
+    @include for-size(tablet) {
+        .search-button {
+            bottom: -5px;
+            right: 178px;
+        }
+    }
+}
+
+.header__input-search {
+    position: absolute;
+    top: 3px;
+    right: 38px;
+    width: 0;
+    padding: 5px 0;
+    padding-left: 48px;
+    margin: 0;
+    box-sizing: border-box;
+    border: 1px solid #111321;
+    border-radius: 50px;
+    font-size: 12px;
+    // transition: all 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+
+    @include for-size(tablet) {
+        top: -12px;
+        transition: none;
+        left: -50px;
+    }
+
+    &:focus,
+    &:active {
+        outline: none;
+    }
+
+    &::placeholder {
+        font-size: 12px;
+        line-height: 1.75;
+        letter-spacing: 0.02em;
+    }
+}
+
+.search-button {
+    position: absolute;
+    top: 3px;
+    right: 38px;
+    cursor: pointer;
+    // transition: all 0.3s ease;
+    padding: 0;
+    z-index: 10;
+    border: none;
+    background: none;
+    @include for-size(tablet) {
+        top: -9px;
+        left: -35px;
+        transition: none;
+    }
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.search {
+    position: relative;
+    display: flex;
+    gap: 14px;
+}

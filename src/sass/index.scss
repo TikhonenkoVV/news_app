@@ -5,6 +5,10 @@
 @import './base/base';
 @import './base/theme';
 @import './components/container';
-@import './layouts/header';
+@import './layouts/header/header';
+@import './layouts/header/burger-btn';
+@import './layouts/header/search-input';
+@import './layouts/header/mobile-menu';
+@import './components/togler-mobile';
 @import './components/togler';
 @import './layouts/footer';
