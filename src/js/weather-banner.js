@@ -47,7 +47,9 @@ function getCoordinates() {
 function renderBanner({ temp, weather, city, icon, date, description }) {
     // console.log(temp, weather, city, icon, date, description);
     // console.log(getCurrentDate(date));
-
+    if (!refs.weatherBanner) {
+        return;
+    }
     refs.weatherBanner.innerHTML = `<div class="weather__wripper">
             <p class="weather__temperature">
                 <span class="weather__number">
