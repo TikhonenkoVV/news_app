@@ -11,8 +11,33 @@
 .pagination__prev-page,
 .pagination__next-page {
     cursor: pointer;
-    background-color: transparent;
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 28px;
+
+    @media screen and (min-width: 768px) {
+        & {
+            width: 82px;
+            height: 31px;
+        }
+    }
+
+    border: 1px solid var(--toglerMainColor);
+    background-color: var(--colorBackground);
+    color: var(--colorTextDark);
+    font-family: $fontFamilyMain;
+    font-family: Manrope;
+    font-weight: 500;
+    line-height: 1.36;
+
+    &:hover,
+    &:focus {
+        background-color: var(--toglerMainColor);
+        color: var(--colorBackground); 
+    }
 }
 
 .pagination__prev-page {
@@ -26,13 +51,13 @@
 }
 
 .pagination___item {
-    width: 33px;
-    height: 31px;
+    width: 28px;
+    height: 28px;
 
-    @media screen and (max-width: 767px) {
+    @media screen and (min-width: 768px) {
         & {
-            width: 28px;
-            height: 28px;
+            width: 33px;
+            height: 31px;
         }
     }
 
@@ -41,6 +66,7 @@
     border-radius: 2px;
     overflow: hidden;
     border: 1px solid var(--toglerMainColor);
+    background-color: var(--colorBackground);
     margin-right: 10px;
 
     &:hover,
@@ -80,4 +106,17 @@
     border: none;
     width: 24px;
     pointer-events: none;
+}
+
+.pagination__icon {
+    fill: currentColor;
+    width: 18px;
+    height: 18px;
+
+    @media screen and (min-width: 768px) {
+        & {
+            width: 24px;
+            height: 24px;
+        }
+    }
 }

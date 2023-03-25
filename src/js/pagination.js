@@ -7,6 +7,21 @@ import {
 const pg = document.getElementById('pagination');
 const btnNextPg = document.querySelector('.pagination__next-page');
 const btnPrevPg = document.querySelector('.pagination__prev-page');
+let newsPerPage;
+
+function widthChangeCallback() {
+    if(window.innerWidth < 768) {
+        newsPerPage = 4;
+     } else if (window.innerWidth >= 768 && window.innerWidth < 1280) {
+        newsPerPage = 7;
+     }
+     else {
+        newsPerPage = 8;
+     }
+  }
+window.addEventListener('resize', widthChangeCallback);
+widthChangeCallback();
+
 
 async function fetchData(newsPerPage) {
     const fetchedData = await fetchPopularArticles();
@@ -146,5 +161,4 @@ function renderMarkup(newsArray) {
     console.log(newsArray);
 }
 
-// HERE IN BRACKETS PLEASE PROVIDE A NUMBER OF NEWS PER PAGE
-fetchData(2);
+fetchData(newsPerPage);
