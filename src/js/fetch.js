@@ -1,21 +1,23 @@
-import axios from "axios";
+import axios from 'axios';
 
 const BASE_URL = 'https://api.nytimes.com/svc';
 const API_KEY = '';
 
 export const fetchPopularArticles = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/mostpopular/v2/viewed/1.json?`, 
-      { params: {
-            'api-key': API_KEY,
-        }
-      });
-
+        const response = await axios.get(
+            `${BASE_URL}/mostpopular/v2/viewed/1.json?`,
+            {
+                params: {
+                    'api-key': API_KEY,
+                },
+            }
+        );
     return response.data;
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
-  }
+};
 
 export const fetchSearchArticles = async (PAGE_VALUE, searchTermin) => {
     try {
@@ -29,9 +31,9 @@ export const fetchSearchArticles = async (PAGE_VALUE, searchTermin) => {
       });
     return response.data;
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
-  }
+};
 
 export const fetchCategoryArticles = async (PAGE_VALUE, sectionName) => {
     try {
@@ -44,6 +46,6 @@ export const fetchCategoryArticles = async (PAGE_VALUE, sectionName) => {
       });
     return response.data;
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
-  }
+};
