@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const BASE_URL = 'https://api.nytimes.com/svc';
-const API_KEY = '9N64GHLPz8NYmN1YLSHix7rssCU9yIvT';
+const API_KEY = 'e3QVyAs0wF8oNwOW75RSlccT9UsAdwt7';
 
 export const fetchPopularArticles = async () => {
     try {
@@ -38,19 +38,17 @@ export const fetchSearchArticles = async (PAGE_VALUE, searchTermin) => {
     }
 };
 
-export const fetchCategoryArticles = async (PAGE_VALUE, sectionName) => {
+export const fetchCategoryArticles = async () => {
     try {
-        const response = await axios.get(
-            `${BASE_URL}/news/v3/content/all/${sectionName}.json`,
+        const { data } = await axios.get(
+            `${BASE_URL}/news/v3/content/section-list.json`,
             {
                 params: {
                     'api-key': API_KEY,
-                    limit: 40,
-                    offset: PAGE_VALUE,
                 },
             }
         );
-        return response.data;
+        return data;
     } catch (error) {
         console.log(error);
     }

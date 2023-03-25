@@ -5,7 +5,7 @@ import { fetchPopularArticles } from './fetch';
 async function allData() {
     try {
         const data = await fetchPopularArticles();
-        console.log(`data`, data);
+        // console.log(`data`, data);
         const { results, num_results } = data;
 
         const users = results.map(
@@ -29,7 +29,7 @@ async function allData() {
                 };
             }
         );
-        console.log(`newsArr`, users);
+        // console.log(`newsArr`, users);
         renderGallery(users);
     } catch (error) {
         console.log(error);
