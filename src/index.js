@@ -8,6 +8,7 @@ import {
 // console.log(fetchSearchArticles(2, 'china'));
 // console.log(fetchCategoryArticles(5, 'arts'));
 import { refs } from './js/refs';
-import { onToglerClick } from './js/togler';
+import { onToglerClick, checkCurrentTheme } from './js/togler';
+checkCurrentTheme();
 refs.togler.addEventListener('click', onToglerClick);
 refs.mobileToggler.addEventListener('click', onToglerClick);

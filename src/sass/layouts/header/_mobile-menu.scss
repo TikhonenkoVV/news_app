@@ -80,15 +80,31 @@
     letter-spacing: 0.02em;
 }
 .mobile-menu__link--active {
-    color: var(--colorBackground);
+    color: var(--colorTextLight);
 }
-.mobile-menu__item-svg {
-    border: 1px solid var(--toglerMinorColor);
+// .mobile-menu__item-svg {
+//     border: 1px solid var(--colorTextLight);
+//     border-radius: 50%;
+// }
+
+.mobile-menu__item-svg--active {
+    border: 1px solid var(--colorTextLight);
     border-radius: 50%;
 }
 .mobile-menu__item-next {
     padding-right: 16px;
 }
+
+// .mobile-menu__item-next-svg {
+//     display: none;
+// }
+// .mobile-menu__item
+//     .mobile-menu__item-next-svg.mobile-menu__item-next-svg--active {
+//     fill: var(--colorTextLight);
+// }
 .mobile-menu__item-next-svg {
-    fill: var(--colorBackground);
+    display: none;
+}
+.mobile-menu__item-next-svg--active {
+    fill: var(--colorTextLight);
 }
