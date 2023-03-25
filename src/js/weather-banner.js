@@ -3,6 +3,10 @@ import { WeatherService } from './weather-service';
 const NY_LAT = 40.73061;
 const NY_LON = -73.935242;
 
+const refs = {
+    weatherBanner: document.querySelector('[data-weather-banner]'),
+};
+
 onBannerLoad();
 
 async function onBannerLoad() {
@@ -41,8 +45,23 @@ function getCoordinates() {
 }
 
 function renderBanner({ temp, weather, city, icon, date, description }) {
-    console.log(temp, weather, city, icon, date, description);
-    console.log(getCurrentDate(date));
+    // console.log(temp, weather, city, icon, date, description);
+    // console.log(getCurrentDate(date));
+    const markup = `<div class="weather__wripper">
+                <p class="weather__temperature">${temp} &deg;</p>
+                <p class="weather__type">${weather}</p>
+                <p class="weather__location">${city}</p>
+              </div>
+                <img class="weather__image"
+                  src="${icon}"
+                  alt="${description}"
+                  width="128"
+                  height="121"
+                />
+              <div class="weather__date">
+                <p>${getCurrentDate(date)}</p>
+              </div>`;
+    refs.weatherBanner.innerHTML = markup;
 }
 
 function getCurrentDate(date) {
