@@ -38,6 +38,13 @@
         background-color: var(--toglerMainColor);
         color: var(--colorBackground); 
     }
+
+    &[disabled] {
+        background-color: lightgray;
+        color: darkgrey;
+        pointer-events: none;
+        border: none;
+    }
 }
 
 .pagination__prev-page {

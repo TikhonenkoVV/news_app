@@ -10,18 +10,16 @@ const btnPrevPg = document.querySelector('.pagination__prev-page');
 let newsPerPage;
 
 function widthChangeCallback() {
-    if(window.innerWidth < 768) {
+    if (window.innerWidth < 768) {
         newsPerPage = 4;
-     } else if (window.innerWidth >= 768 && window.innerWidth < 1280) {
+    } else if (window.innerWidth >= 768 && window.innerWidth < 1280) {
         newsPerPage = 7;
-     }
-     else {
+    } else {
         newsPerPage = 8;
-     }
-  }
+    }
+}
 window.addEventListener('resize', widthChangeCallback);
 widthChangeCallback();
-
 
 async function fetchData(newsPerPage) {
     const fetchedData = await fetchPopularArticles();
@@ -37,13 +35,11 @@ async function fetchData(newsPerPage) {
 
     pg.addEventListener('click', e => {
         const ele = e.target;
-
         if (ele.dataset.page) {
             const pageNumber = parseInt(e.target.dataset.page, 10);
 
             valuePage.curPage = pageNumber;
             pagination(valuePage);
-            // console.log(valuePage);
             handleButtonLeft(valuePage);
             handleButtonRight(valuePage);
         }
@@ -53,13 +49,15 @@ async function fetchData(newsPerPage) {
         .querySelector('.pagination__container')
         .addEventListener('click', function (e) {
             handleButton(e.target, valuePage);
+            
+            if (e.target.nodeName === 'LI' || e.target.nodeName === 'BUTTON') {
+                let pageNumber = valuePage.curPage;
+                const start = (pageNumber - 1) * newsPerPage;
+                const end = start + newsPerPage;
+                const array = newsArray.slice(start, end);
 
-            let pageNumber = valuePage.curPage;
-            const start = (pageNumber - 1) * newsPerPage;
-            const end = start + newsPerPage;
-            const array = newsArray.slice(start, end);
-
-            renderMarkup(array);
+                renderMarkup(array);
+            }
         });
 }
 
@@ -67,7 +65,7 @@ function pagination(valuePage) {
     const { totalPages, curPage, numLinksTwoSide: delta } = valuePage;
 
     const range = delta + 4; // use for handle visible number of links left side
-    
+
     let render = '';
     let renderTwoSide = '';
     let dot = `<li class="pagination___item pagination___item--dots"><a class="pagination___link">...</a></li>`;
