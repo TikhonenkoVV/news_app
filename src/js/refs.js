@@ -11,4 +11,5 @@ export const refs = {
         '.authorization__checkbox--geolocation'
     ),
     confirmPass: document.querySelector('.authorization__field--confirm'),
+    newsContainer: document.querySelector('.news'),
 };

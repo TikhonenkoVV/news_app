@@ -13,8 +13,7 @@ export const fetchPopularArticles = async () => {
                 },
             }
         );
-
-        return response;
+        return response.data;
     } catch (error) {
         console.log(error);
     }
@@ -33,7 +32,7 @@ export const fetchSearchArticles = async (PAGE_VALUE, searchTermin) => {
                 },
             }
         );
-        return response;
+        return response.data;
     } catch (error) {
         console.log(error);
     }
@@ -51,7 +50,7 @@ export const fetchCategoryArticles = async (PAGE_VALUE, sectionName) => {
                 },
             }
         );
-        return response;
+        return response.data;
     } catch (error) {
         console.log(error);
     }
