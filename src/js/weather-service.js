@@ -2,7 +2,7 @@ import axios from 'axios';
 import { WEATHER_API_KEY } from './key';
 
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
-const GEO_API_URL = 'http://api.openweathermap.org/geo/1.0/reverse';
+const GEO_API_URL = 'https://api.openweathermap.org/geo/1.0/reverse';
 
 export class WeatherService {
     constructor(lat, lon) {
