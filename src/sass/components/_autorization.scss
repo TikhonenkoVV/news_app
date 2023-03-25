@@ -1,0 +1,73 @@
+.authorization {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    max-width: 320px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 4px;
+    background-color: var(--colorBackground);
+    transition: background-color $baseTransition, color $baseTransition;
+    transition: transform $baseTransition;
+    @include for-size(desktop) {
+        max-width: 528px;
+    }
+}
+
+.authorization__title {
+    margin-bottom: 16px;
+}
+
+.authorization__box {
+    display: flex;
+}
+
+.authorization__box button {
+    flex-basis: 50%;
+    height: 40px;
+}
+
+.authorization__form {
+    padding: 10px;
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+    border-bottom: 1px solid grey;
+}
+
+.authorization__field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.authorization__checkbox {
+    margin-bottom: 16px;
+}
+
+.authorization__button-box {
+    display: flex;
+    gap: 16px;
+}
+
+.authorization__button-box button {
+    flex-basis: calc((100% - 16px) / 2);
+    border: none;
+    border-radius: 4px;
+    background-color: $colorAccent;
+    color: #fff;
+    height: 40px;
+}
+// .modal__btn {
+//     @extend %btn-close;
+//     top: 8px;
+//     right: 8px;
+//     padding: 5px;
+//     width: 30px;
+//     height: 30px;
+//     border: 1px solid rgba(0, 0, 0, 0.1);
+//     border-radius: 50%;
+//     &:hover {
+//         fill: $designcolor;
+//     }
+// }
