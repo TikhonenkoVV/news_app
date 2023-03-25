@@ -59,19 +59,26 @@ const createBtnsMarkupDesktop = results => {
         .join('');
 
     // повертаємо маркап кнопок та дропдауна
-    return buttonsMarkup, dropdownMarkup;
+    categoriesBtns.insertAdjacentHTML('beforeend', buttonsMarkup);
+    categoriesDropdown.insertAdjacentHTML(
+        'beforeend',
+        ` <div class="home__dropdown-menu">
+        ${dropdownMarkup}
+      </div>`
+    );
 };
 
-const renderMarkupIfDesktop = results => {
-    const { buttonsMarkup, dropdownMarkup } = createBtnsMarkupDesktop(results);
+// const renderMarkupIfDesktop = results => {
+//     const { buttonsMarkup, dropdownMarkup } = createBtnsMarkupDesktop(results);
 
-    categoriesBtns.insertAdjacentHTML();
-};
+//     categoriesBtns.insertAdjacentHTML('beforeend', buttonsMarkup);
+//     categoriesDropdown.insertAdjacentHTML('beforeend', dropdownMarkup);
+// };
 
 const renderMarkup = () => {
     if (window.innerWidth >= 1280) {
         fetchCategoryArticles().then(({ results }) =>
-            renderMarkupIfDesktop(results)
+            createBtnsMarkupDesktop(results)
         );
     } else if (window.innerWidth >= 768 && window.innerWidth < 1280) {
         fetchCategoryArticles().then(({ results }) =>

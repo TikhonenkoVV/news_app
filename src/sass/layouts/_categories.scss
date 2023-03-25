@@ -1,5 +1,9 @@
-.home__category {
+.container__categories
+{
     position: relative;
+}
+
+.home__category {
     margin-top: 28px;
     margin-bottom: 60px;
 }
@@ -79,12 +83,12 @@
     fill: var(--colorTextDark);
 }
 
-.home__category-button-icon--open
-{
+// .home__category-button-icon--open
+// {
 
-}
+// }
 
-.home__category-button-icon--close
-{
+// .home__category-button-icon--close
+// {
 
-}
+// }
