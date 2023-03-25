@@ -13,8 +13,7 @@ export const fetchPopularArticles = async () => {
                 },
             }
         );
-
-        return response;
+    return response.data;
     } catch (error) {
         console.log(error);
     }
@@ -22,18 +21,15 @@ export const fetchPopularArticles = async () => {
 
 export const fetchSearchArticles = async (PAGE_VALUE, searchTermin) => {
     try {
-        const response = await axios.get(
-            `${BASE_URL}/search/v2/articlesearch.json`,
-            {
-                params: {
-                    'api-key': API_KEY,
-                    page: PAGE_VALUE,
-                    q: searchTermin,
-                    sort: 'relevance',
-                },
-            }
-        );
-        return response;
+      const response = await axios.get(`${BASE_URL}/search/v2/articlesearch.json`,
+      { params: {
+            'api-key': API_KEY,
+            'page': PAGE_VALUE,
+            'q': searchTermin,
+            'sort': 'relevance',
+        }
+      });
+    return response.data;
     } catch (error) {
         console.log(error);
     }
@@ -41,17 +37,14 @@ export const fetchSearchArticles = async (PAGE_VALUE, searchTermin) => {
 
 export const fetchCategoryArticles = async (PAGE_VALUE, sectionName) => {
     try {
-        const response = await axios.get(
-            `${BASE_URL}/news/v3/content/all/${sectionName}.json`,
-            {
-                params: {
-                    'api-key': API_KEY,
-                    limit: 40,
-                    offset: PAGE_VALUE,
-                },
-            }
-        );
-        return response;
+      const response = await axios.get(`${BASE_URL}/news/v3/content/all/${sectionName}.json`, 
+      { params: {
+            'api-key': API_KEY,
+            'limit': 40,
+            'offset': PAGE_VALUE,
+        }
+      });
+    return response.data;
     } catch (error) {
         console.log(error);
     }
