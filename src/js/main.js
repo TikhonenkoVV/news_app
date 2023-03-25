@@ -4,7 +4,7 @@ import { fetchPopularArticles } from './fetch';
 
 async function allData() {
     try {
-        const { data } = await fetchPopularArticles();
+        const data = await fetchPopularArticles();
         console.log(`data`, data);
         const { results, num_results } = data;
 
