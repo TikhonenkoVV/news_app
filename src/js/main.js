@@ -9,11 +9,7 @@ async function allData() {
         const { results, num_results } = data;
 
         const users = results.map(
-            (
-                { published_date, section, abstract, media, title, url },
-                index,
-                arr
-            ) => {
+            ({ published_date, section, abstract, media, title, url }) => {
                 let imgUrl = '';
                 const arrImg = media[0];
                 if (arrImg !== undefined) {
