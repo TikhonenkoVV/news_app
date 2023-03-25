@@ -254,6 +254,7 @@ footer {
   justify-content: space-between;
   height: 469px;
   padding: 32px 36px 84px;
+  font-weight: 400;
   background-color: #4440f6;
   border-radius: 4px;
   font-family: "Roboto", sans-serif;
@@ -308,7 +309,6 @@ footer {
   justify-content: center;
   align-items: center;
   gap: 2px;
-  font-weight: 400;
   font-size: 55px;
   line-height: 1.1636363636;
 }
@@ -319,7 +319,6 @@ footer {
   }
 }
 .weather__type {
-  font-weight: 400;
   font-size: 24px;
   line-height: 1.1666666667;
 }
@@ -336,16 +335,50 @@ footer {
   padding: 8px;
   background-color: rgba(254, 254, 255, 0.3);
   border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.1428571429;
 }
 @media screen and (min-width: 768px) {
   .weather__location {
     gap: 8px;
+    font-size: 20px;
+    line-height: 1.15;
   }
 }
 .weather__icon {
   fill: #ffffff;
 }
+@media screen and (min-width: 768px) {
+  .weather__icon {
+    width: 27px;
+    height: 27px;
+  }
+}
 .weather__city {
-  inline-size: 83px;
+  max-width: 83px;
   word-break: break-all;
+}
+@media screen and (min-width: 768px) {
+  .weather__city {
+    max-width: 118px;
+  }
+}
+.weather__image {
+  width: 128;
+}
+@media screen and (min-width: 768px) {
+  .weather__image {
+    width: 165px;
+  }
+}
+.weather__date {
+  text-align: center;
+  font-size: 28px;
+  line-height: 1.1785714286;
+}
+@media screen and (min-width: 768px) {
+  .weather__date {
+    font-size: 36px;
+    line-height: 1.1666666667;
+  }
 }/*# sourceMappingURL=index.css.map */

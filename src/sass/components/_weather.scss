@@ -50,6 +50,9 @@
 
     height: 469px;
     padding: 32px 36px 84px;
+
+    font-weight: 400;
+
     background-color: $colorAccent;
     border-radius: 4px;
     font-family: $fontFamilyBanner;
@@ -101,7 +104,6 @@
         justify-content: center;
         align-items: center;
         gap: 2px;
-        font-weight: 400;
         font-size: 55px;
         line-height: calc(64 / 55);
 
@@ -112,7 +114,6 @@
     }
 
     &__type {
-        font-weight: 400;
         font-size: 24px;
         line-height: calc(28 / 24);
 
@@ -129,18 +130,48 @@
         padding: 8px;
         background-color: $colorLocationBackground;
         border-radius: 10px;
+        font-size: 14px;
+        line-height: calc(16 / 14);
 
         @include for-size(tablet) {
             gap: 8px;
+            font-size: 20px;
+            line-height: calc(23 / 20);
         }
     }
 
     &__icon {
         fill: $colorTextWhite;
+        @include for-size(tablet) {
+            width: 27px;
+            height: 27px;
+        }
     }
 
     &__city {
-        inline-size: 83px;
+        max-width: 83px;
         word-break: break-all;
+
+        @include for-size(tablet) {
+            max-width: 118px;
+        }
+    }
+
+    &__image {
+        width: 128;
+        @include for-size(tablet) {
+            width: 165px;
+        }
+    }
+
+    &__date {
+        text-align: center;
+        font-size: 28px;
+        line-height: calc(33 / 28);
+
+        @include for-size(tablet) {
+            font-size: 36px;
+            line-height: calc(42 / 36);
+        }
     }
 }
