@@ -11,11 +11,15 @@ async function allData() {
         const users = results.map(
             ({ published_date, section, abstract, media, title, url }) => {
                 let imgUrl = '';
+                let favorite = '';
+                let readMore = '';
                 const arrImg = media[0];
                 if (arrImg !== undefined) {
                     imgUrl = arrImg['media-metadata'][2].url;
                 }
                 return {
+                    favorite,
+                    readMore,
                     imgUrl,
                     title,
                     section,
