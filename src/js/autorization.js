@@ -50,15 +50,17 @@ export const onAuthorizationSubmit = e => {
         save(USER_KEY, email.value);
         allData();
     } else {
-        if (
-            parceData.hasOwnProperty(email.value) &&
-            parceData[email.value].pass === password.value
-        ) {
-            refs.authorizationModal.classList.add('is-hidden');
-            enableBodyScroll(document.body);
-            save(USER_KEY, email.value);
-            userLogin = email.value;
-            allData();
-        } else alert('Invalid login or password');
+        if (parceData) {
+            if (
+                parceData.hasOwnProperty(email.value) &&
+                parceData[email.value].pass === password.value
+            ) {
+                refs.authorizationModal.classList.add('is-hidden');
+                enableBodyScroll(document.body);
+                save(USER_KEY, email.value);
+                userLogin = email.value;
+                allData();
+            } else alert('Invalid login or password');
+        } else save(AUTORIZED_USER_KEY, {});
     }
 };
