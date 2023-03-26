@@ -1,27 +1,18 @@
-import { refs } from './refs';
-import { load } from './storage';
-
-import { fetchPopularArticles } from './fetch';
-import { normalize } from './normalize';
-
-export async function allData() {
-    try {
-        const data = await fetchPopularArticles();
-        const { results, num_results } = data;
-
-        normalize(results);
-
-        renderGallery(load('bite-search'));
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-export function renderGallery(users) {
-    const gallaryMarkup = users
+import { refs } from '../refs';
+import { BASE_IMG_URL } from '../utils/constants';
+import noPoster from '../../images/no_poster.jpg';
+export function renderSearchedNews(news) {
+    const markup = news
         .map(
             (
-                { imgUrl, title, section, abstract, published_date, url },
+                {
+                    multimedia,
+                    headline: { main },
+                    section_name,
+                    abstract,
+                    pub_date,
+                    web_url,
+                },
                 index
             ) => {
                 if (window.matchMedia('(min-width: 1280px)').matches) {
@@ -39,18 +30,22 @@ export function renderGallery(users) {
                 }
 
                 return `<div class="news__item">
-            <p class="news__section">${section}</p>
+            <p class="news__section">${section_name}</p>
             <div class="news__img">
-              <img src="${imgUrl}" alt="${title}" loading="lazy"/>
+              <img src="${
+                  multimedia?.[0]?.url
+                      ? BASE_IMG_URL + multimedia?.[0]?.url
+                      : noPoster
+              }" alt="${main}" loading="lazy"/>
               <button type="button" class="news__btn">Add to favorite
               <svg class="news__btn-icon" width="20" height="20">
                 <use href="#icon-heart-border"></use>
                 </svg></button></div>
             <div class="info">
-              <p class="info__title">${title}</p>
+              <p class="info__title">${main}</p>
               <p class="info__abstract">${abstract}</p>
-              <p class="info__published-date">${published_date}</p>
-              <a href="${url}" target="_blank"
+              <p class="info__published-date">${pub_date.split('T')[0]}</p>
+              <a href="${web_url}" target="_blank"
                 rel="noopener noreferrer nofollow"
                  class="info__link">Read more</a>
             </div></div>`;
@@ -58,5 +53,5 @@ export function renderGallery(users) {
         )
         .join('');
 
-    refs.newsContainer.insertAdjacentHTML('beforeend', gallaryMarkup);
+    refs.newsContainer.innerHTML = markup;
 }

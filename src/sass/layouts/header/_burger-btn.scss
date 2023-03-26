@@ -1,0 +1,12 @@
+.burger-menu {
+    @include for-size(tablet) {
+        display: none;
+    }
+
+    cursor: pointer;
+    border: none;
+    background: var(--colorBackground);
+}
+.burger-menu__svg {
+    fill: var(--colorTextDark);
+}
