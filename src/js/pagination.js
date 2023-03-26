@@ -5,10 +5,12 @@ import {
 } from './fetch';
 
 const pg = document.getElementById('pagination');
+const pgContainer = document.querySelector('.pagination__container');
 const btnNextPg = document.querySelector('.pagination__next-page');
 const btnPrevPg = document.querySelector('.pagination__prev-page');
-let newsPerPage;
+let newsPerPage; // this is an array with results from server
 
+// function that calculates number of news per page due too screen size
 function widthChangeCallback() {
     if (window.innerWidth < 768) {
         newsPerPage = 4;
@@ -21,8 +23,11 @@ function widthChangeCallback() {
 window.addEventListener('resize', widthChangeCallback);
 widthChangeCallback();
 
-async function fetchData(newsPerPage) {
+async function fetchDataForPagination(newsPerPage) {
+    // I was testing for Popular, we can do the same for CategoriesSearch
     const fetchedData = await fetchPopularArticles();
+
+    // this is an array with results from server
     const newsArray = fetchedData.results;
 
     const valuePage = {
@@ -45,20 +50,18 @@ async function fetchData(newsPerPage) {
         }
     });
 
-    document
-        .querySelector('.pagination__container')
-        .addEventListener('click', function (e) {
-            handleButton(e.target, valuePage);
-            
-            if (e.target.nodeName === 'LI' || e.target.nodeName === 'BUTTON') {
-                let pageNumber = valuePage.curPage;
-                const start = (pageNumber - 1) * newsPerPage;
-                const end = start + newsPerPage;
-                const array = newsArray.slice(start, end);
+    pgContainer.addEventListener('click', e => {
+        handleButton(e.target, valuePage);
 
-                renderMarkup(array);
-            }
-        });
+        if (e.target.nodeName === 'LI' || e.target.nodeName === 'BUTTON') {
+            let pageNumber = valuePage.curPage;
+            const start = (pageNumber - 1) * newsPerPage;
+            const end = start + newsPerPage;
+            const array = newsArray.slice(start, end);
+
+            renderMarkup(array);
+        }
+    });
 }
 
 function pagination(valuePage) {
@@ -156,7 +159,10 @@ function renderPage(index, active = '') {
 
 // HERE PLEASE ADD MARKUP RENDERING
 function renderMarkup(newsArray) {
+    //log of results from which we render markup
     console.log(newsArray);
 }
 
-fetchData(newsPerPage);
+// This is a call of the main function
+// We don't need to pass any argument, newsPerPage is calculated automatically according to the size of screen
+fetchDataForPagination(newsPerPage);
