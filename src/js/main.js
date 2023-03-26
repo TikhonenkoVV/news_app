@@ -36,7 +36,7 @@ async function allData() {
 
 allData();
 
-function renderGallery(users) {
+export function renderGallery(users) {
     const gallaryMarkup = users
         .map(
             (
