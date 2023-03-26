@@ -7,15 +7,11 @@ import {
 import { renderGallery } from './main';
 import { refs } from './refs';
 
-window.addEventListener('resize', widthChangeCallback);
-
-function setNumberOfNewsPerPage() {
-    let newsPerPage = widthChangeCallback();
-    return newsPerPage;
-};
+let numberOfPages;
+window.onresize = setNumberOfPages();
 
 export function createPagination(newsArray) {
-    let newsPerPage = setNumberOfNewsPerPage();
+    let newsPerPage = numberOfPages;
 
     const valuePage = {
         curPage: 1,
@@ -144,7 +140,7 @@ function renderPage(index, active = '') {
 </li>`;
 }
 
-function widthChangeCallback() {
+function setNumberOfPages() {
     if (window.innerWidth < 768) {
         newsPerPage = 4;
     } else if (window.innerWidth >= 768 && window.innerWidth < 1280) {
@@ -153,5 +149,5 @@ function widthChangeCallback() {
         newsPerPage = 8;
     }
 
-    return newsPerPage;
+    numberOfPages = newsPerPage;
 }
