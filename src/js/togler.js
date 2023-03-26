@@ -4,7 +4,6 @@ export const onToglerClick = e => {
     const isDarkTheme = document.body.classList.contains('dark');
     setTheme(isDarkTheme);
     if (isDarkTheme) {
-        console.log('nsjka');
         changeRefStyle(
             inputRef,
             { option: 'backgroundColor', value: '#2e2e2e' },
