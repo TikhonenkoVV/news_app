@@ -16,6 +16,7 @@ import {
     onAuthorizationSubmit,
     onAuthorizationCancel,
 } from './js/autorization';
+import { allData } from './js/main.js';
 
 checkCurrentTheme();
 refs.mobileToggler.addEventListener('click', onToglerClick);
@@ -27,3 +28,7 @@ refs.authorizationCancel.addEventListener('click', onAuthorizationCancel);
 refs.authorizationForm.addEventListener('submit', onAuthorizationSubmit);
 
 verifyUser();
+
+// window.onresize = function(e) {
+//     console.log(e);
+// };

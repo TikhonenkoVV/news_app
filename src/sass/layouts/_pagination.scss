@@ -36,7 +36,7 @@
     &:hover,
     &:focus {
         background-color: var(--toglerMainColor);
-        color: var(--colorBackground); 
+        color: var(--colorBackground);
     }
 
     &[disabled] {
@@ -84,10 +84,20 @@
     &:hover a {
         color: var(--colorBackground);
     }
+
+    &:first-child {
+        @media screen and (max-width: 767px) {
+            margin-right: 4px;
+        }
+    }
 }
 
 .pagination___item.active {
     background-color: var(--toglerMainColor);
+
+    @media screen and (max-width: 767px) {
+        margin-right: 4px;
+    }
 }
 
 .pagination___item.active a {
@@ -111,8 +121,12 @@
 
 .pagination___item--dots {
     border: none;
-    width: 24px;
+    width: 12px;
     pointer-events: none;
+
+    @media screen and (max-width: 767px) {
+        margin-right: 4px;
+    }
 }
 
 .pagination__icon {

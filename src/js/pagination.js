@@ -1,21 +1,14 @@
-import {
-    fetchPopularArticles,
-    fetchSearchArticles,
-    fetchCategoryArticles,
-} from './fetch';
-
 import { renderGallery } from './main';
 import { refs } from './refs';
 
-let numberOfPages;
+let newsPerPage;
 window.onresize = setNumberOfPages();
 
 export function createPagination(newsArray) {
-    let newsPerPage = numberOfPages;
-
     const valuePage = {
         curPage: 1,
         numLinksTwoSide: 1,
+        // totalPages: 20,
         totalPages: Math.ceil(newsArray.length / newsPerPage),
     };
 
@@ -38,10 +31,18 @@ export function createPagination(newsArray) {
 
         if (e.target.nodeName === 'LI' || e.target.nodeName === 'BUTTON') {
             let pageNumber = valuePage.curPage;
-            const start = (pageNumber - 1) * newsPerPage;
-            const end = start + newsPerPage;
-            const array = newsArray.slice(start, end);
+            let array = [];
+            if (pageNumber === 1) {
+                const start = (pageNumber - 1) * newsPerPage;
+                const end = start + newsPerPage;
+                array = newsArray.slice(start, end);
+            } else {
+                const start = (pageNumber - 1) * (newsPerPage + 1) - 1;
+                const end = start + (newsPerPage + 1);
+                array = newsArray.slice(start, end);
+            }
 
+            console.log(array);
             renderGallery(array);
         }
     });
@@ -62,39 +63,76 @@ function pagination(valuePage) {
     const numberTruncateRight = curPage + delta;
 
     let active = '';
-    for (let pos = 1; pos <= totalPages; pos++) {
-        active = pos === curPage ? 'active' : '';
-        // truncate
-        if (totalPages >= 2 * range - 1) {
-            if (
-                numberTruncateLeft > 3 &&
-                numberTruncateRight < totalPages - 3 + 1
-            ) {
-                // truncate 2 side
-                if (pos >= numberTruncateLeft && pos <= numberTruncateRight) {
-                    //mobile
-                    renderTwoSide += renderPage(pos, active);
+
+    if (window.matchMedia('(max-width: 767px)').matches) {
+        for (let pos = 1; pos <= totalPages; pos++) {
+            active = pos === curPage ? 'active' : '';
+            // truncate
+            if (totalPages >= 2 * range - 1) {
+                if (
+                    numberTruncateLeft > 3 &&
+                    numberTruncateRight < totalPages - 3 + 1
+                ) {
+                    // truncate 2 side
+                    if (pos > numberTruncateLeft && pos < numberTruncateRight) {
+                        renderTwoSide += renderPage(pos, active);
+                    }
+                } else {
+                    // truncate left side or right side
+                    if (
+                        (curPage < range && pos <= range) ||
+                        (curPage > totalPages - range &&
+                            pos >= totalPages - range + 1) ||
+                        pos === totalPages ||
+                        pos === 1
+                    ) {
+                        render += renderPage(pos, active);
+                    } else {
+                        countTruncate++;
+                        if (countTruncate === 1) render += dot;
+                    }
                 }
             } else {
-                // truncate left side or right side
-                if (
-                    (curPage < range && pos <= range) ||
-                    (curPage > totalPages - range &&
-                        pos >= totalPages - range + 1) ||
-                    pos === totalPages ||
-                    pos === 1
-                ) {
-                    render += renderPage(pos, active);
-                } else {
-                    countTruncate++;
-                    if (countTruncate === 1) render += dot;
-                }
+                // not truncate
+                render += renderPage(pos, active);
             }
-        } else {
-            // not truncate
-            render += renderPage(pos, active);
         }
-    }
+    } else if (window.matchMedia('(min-width: 768px)').matches) {
+        for (let pos = 1; pos <= totalPages; pos++) {
+            active = pos === curPage ? 'active' : '';
+            // truncate
+            if (totalPages >= 2 * range - 1) {
+                if (
+                    numberTruncateLeft > 3 &&
+                    numberTruncateRight < totalPages - 3 + 1
+                ) {
+                    // truncate 2 side
+                    if (pos >= numberTruncateLeft && pos <= numberTruncateRight) {
+                        //mobile
+                        renderTwoSide += renderPage(pos, active);
+                    }
+                } else {
+                    // truncate left side or right side
+                    if (
+                        (curPage < range && pos <= range) ||
+                        (curPage > totalPages - range &&
+                            pos >= totalPages - range + 1) ||
+                        pos === totalPages ||
+                        pos === 1
+                    ) {
+                        render += renderPage(pos, active);
+                    } else {
+                        countTruncate++;
+                        if (countTruncate === 1) render += dot;
+                    }
+                }
+            } else {
+                // not truncate
+                render += renderPage(pos, active);
+            }
+        }
+    };
+
 
     if (renderTwoSide) {
         renderTwoSide =
@@ -148,6 +186,4 @@ function setNumberOfPages() {
     } else {
         newsPerPage = 8;
     }
-
-    numberOfPages = newsPerPage;
 }
