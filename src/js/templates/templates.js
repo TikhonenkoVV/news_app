@@ -1,24 +1,6 @@
-import { refs } from './refs';
-import { load } from './storage';
-
-import { fetchPopularArticles } from './fetch';
-import { normalize } from './normalize';
-
-export async function allData() {
-    try {
-        const data = await fetchPopularArticles();
-        const { results, num_results } = data;
-
-        normalize(results);
-
-        renderGallery(load('bite-search'));
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-export function renderGallery(users) {
-    const gallaryMarkup = users
+import { refs } from '../refs';
+export function renderSearchedNews(news) {
+    const markup = news
         .map(
             (
                 { imgUrl, title, section, abstract, published_date, url },
@@ -49,7 +31,9 @@ export function renderGallery(users) {
             <div class="info">
               <p class="info__title">${title}</p>
               <p class="info__abstract">${abstract}</p>
-              <p class="info__published-date">${published_date}</p>
+              <p class="info__published-date">${
+                  published_date.split('T')[0]
+              }</p>
               <a href="${url}" target="_blank"
                 rel="noopener noreferrer nofollow"
                  class="info__link">Read more</a>
@@ -58,5 +42,5 @@ export function renderGallery(users) {
         )
         .join('');
 
-    refs.newsContainer.insertAdjacentHTML('beforeend', gallaryMarkup);
+    refs.newsContainer.innerHTML = markup;
 }
