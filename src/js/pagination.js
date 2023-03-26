@@ -8,7 +8,6 @@ export function createPagination(newsArray) {
     const valuePage = {
         curPage: 1,
         numLinksTwoSide: 1,
-        // totalPages: 20,
         totalPages: Math.ceil(newsArray.length / newsPerPage),
     };
 
@@ -90,8 +89,7 @@ function pagination(valuePage) {
                             pos >= totalPages - range + 1) ||
                         pos === totalPages ||
                         pos === 1
-                    ) 
-                    {
+                    ) {
                         render += renderPage(pos, active);
                     } else {
                         countTruncate++;

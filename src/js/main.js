@@ -13,7 +13,7 @@ export async function allData() {
         normalize(results);
 
         renderGallery(load('bite-search'));
-        // need to call createPagination func here and pass the object array from local storage as argument;
+        // need to call createPagination func and pass the object array from local storage as argument;
         createPagination(load('bite-search'));
         
     } catch (error) {
