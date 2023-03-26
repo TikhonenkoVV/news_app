@@ -26,6 +26,7 @@ export const onClickBtns = async e => {
             }
         );
         const { results } = data;
+        console.log(results);
         const users = results.map(
             ({ published_date, section, abstract, multimedia, title, url }) => {
                 let favorite = '';
@@ -38,7 +39,7 @@ export const onClickBtns = async e => {
                     title,
                     section,
                     abstract,
-                    published_date,
+                    published_date: published_date.toLocaleString(),
                     url,
                 };
             }
