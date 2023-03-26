@@ -19,35 +19,25 @@
                     Log in
                 </button>
             </div>
-            <form class="authorization__form">
+            <form class="authorization__form" autocomplete="off">
                 <label class="authorization__field">
                     E-mail:
-                    <input type="email" name="email" />
+                    <input name="email" type="email" name="email" />
                 </label>
                 <label class="authorization__field">
                     Password:
-                    <input type="password" name="password" />
+                    <input name="password" type="password" name="password" />
                 </label>
                 <label
                     class="authorization__field authorization__field--confirm"
                 >
                     Confirm password:
-                    <input type="password" name="password" />
-                </label>
-                <label
-                    class="authorization__checkbox authorization__checkbox--message"
-                >
-                    <input type="checkbox" />
-                    Don't show this message again
-                </label>
-                <label
-                    class="authorization__checkbox authorization__checkbox--geolocation"
-                >
-                    <input type="checkbox" />
-                    Use your geolocation
+                    <input name="confirm" type="password" name="password" />
                 </label>
                 <div class="authorization__button-box">
-                    <button type="button">Cancel</button>
+                    <button class="authorization__cancel" type="button">
+                        Cancel
+                    </button>
                     <button class="authorization__submit" type="submit">
                         Register
                     </button>
