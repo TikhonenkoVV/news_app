@@ -51,7 +51,12 @@ export function createPagination(newsArray) {
 function pagination(valuePage) {
     const { totalPages, curPage, numLinksTwoSide: delta } = valuePage;
 
-    const range = delta + 4; // use for handle visible number of links left side
+    let range;
+    if (window.matchMedia('(max-width: 767px)').matches) {
+        range = 2; // use for handle visible number of links left side
+    } else if (window.matchMedia('(min-width: 768px)').matches) {
+        range = delta + 4;
+    }
 
     let render = '';
     let renderTwoSide = '';
@@ -70,8 +75,8 @@ function pagination(valuePage) {
             // truncate
             if (totalPages >= 2 * range - 1) {
                 if (
-                    numberTruncateLeft > 3 &&
-                    numberTruncateRight < totalPages - 3 + 1
+                    numberTruncateLeft > 1 &&
+                    numberTruncateRight < totalPages
                 ) {
                     // truncate 2 side
                     if (pos > numberTruncateLeft && pos < numberTruncateRight) {
@@ -80,12 +85,13 @@ function pagination(valuePage) {
                 } else {
                     // truncate left side or right side
                     if (
-                        (curPage < range && pos <= range) ||
+                        (curPage <= range && pos <= range) ||
                         (curPage > totalPages - range &&
                             pos >= totalPages - range + 1) ||
                         pos === totalPages ||
                         pos === 1
-                    ) {
+                    ) 
+                    {
                         render += renderPage(pos, active);
                     } else {
                         countTruncate++;
@@ -107,7 +113,10 @@ function pagination(valuePage) {
                     numberTruncateRight < totalPages - 3 + 1
                 ) {
                     // truncate 2 side
-                    if (pos >= numberTruncateLeft && pos <= numberTruncateRight) {
+                    if (
+                        pos >= numberTruncateLeft &&
+                        pos <= numberTruncateRight
+                    ) {
                         //mobile
                         renderTwoSide += renderPage(pos, active);
                     }
@@ -131,8 +140,7 @@ function pagination(valuePage) {
                 render += renderPage(pos, active);
             }
         }
-    };
-
+    }
 
     if (renderTwoSide) {
         renderTwoSide =
