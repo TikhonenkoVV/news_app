@@ -1,7 +1,6 @@
 import { refs } from './refs';
 import { load, save } from './storage';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import { renderGallery } from './main';
 
 import { allData } from './main';
 

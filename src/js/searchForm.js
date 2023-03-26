@@ -26,12 +26,8 @@ async function handleSubmit(e) {
             Notify.failure('No news founded');
             return;
         }
-        // add
 
         normalize(docs);
-        // renderGallery(load('bite-search'));
-
-        // and add
 
         renderSearchedNews(load('bite-search'));
     } catch (err) {

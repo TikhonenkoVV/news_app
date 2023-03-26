@@ -9,7 +9,7 @@ refs.categoryButton.addEventListener('click', event => {
 });
 
 document.body.addEventListener('click', event => {
-    event.preventDefault();
+    // event.preventDefault();
     const isClickInside = refs.categoriesDropdown.contains(event.target);
     const isClickOnButton = refs.categoryButton.contains(event.target);
     if (!isClickInside && !isClickOnButton) {
@@ -75,28 +75,28 @@ const createBtnsMarkupDesktop = results => {
 
 let timeout;
 
-export function handleScreenSizeChange() {
+export const handleScreenSizeChange = async () => {
     const screenWidth = window.innerWidth;
     if (screenWidth < 768) {
         // mobile
         refs.categoriesBtns.innerHTML = '';
-        fetchCategoryArticles().then(({ results }) => {
+        await fetchCategoryArticles().then(({ results }) => {
             renderMarkupMobile(results);
         });
     } else if (screenWidth < 1280) {
         // tablet
         refs.categoriesBtns.innerHTML = '';
-        fetchCategoryArticles().then(({ results }) => {
+        await fetchCategoryArticles().then(({ results }) => {
             createBtnsMarkupTablet(results);
         });
     } else {
         // desktop
         refs.categoriesBtns.innerHTML = '';
-        fetchCategoryArticles().then(({ results }) => {
+        await fetchCategoryArticles().then(({ results }) => {
             createBtnsMarkupDesktop(results);
         });
     }
-}
+};
 
 window.addEventListener('resize', () => {
     clearTimeout(timeout);
