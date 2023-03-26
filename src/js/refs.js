@@ -19,4 +19,8 @@ export const refs = {
     categoryButton: document.querySelector('.home__category-button'),
     openIcon: document.querySelector('.home__category-button-icon--open'),
     closeIcon: document.querySelector('.home__category-button-icon--close'),
+    pg: document.getElementById('pagination'),
+    pgContainer: document.querySelector('.pagination__container'),
+    btnNextPg: document.querySelector('.pagination__next-page'),
+    btnPrevPg: document.querySelector('.pagination__prev-page'),
 };
