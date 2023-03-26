@@ -4,13 +4,26 @@ const categoriesBtns = document.querySelector('.home__category');
 const categoriesDropdown = document.querySelector('.home__dropdown-menu');
 
 const categoryButton = document.querySelector('.home__category-button');
+const iconCloseOpen = document.querySelector('.home__category-button-icon');
 const openIcon = document.querySelector('.home__category-button-icon--open');
 const closeIcon = document.querySelector('.home__category-button-icon--close');
 
-categoryButton.addEventListener('click', () => {
+categoryButton.addEventListener('click', event => {
+    event.preventDefault();
     openIcon.classList.toggle('hidden');
     closeIcon.classList.toggle('hidden');
     categoriesDropdown.classList.toggle('hidden');
+});
+
+document.body.addEventListener('click', event => {
+    event.preventDefault();
+    const isClickInside = categoriesDropdown.contains(event.target);
+    const isClickOnButton = categoryButton.contains(event.target);
+    if (!isClickInside && !isClickOnButton) {
+        categoriesDropdown.classList.add('hidden');
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+    }
 });
 
 const createBtnsMarkupMobile = results => {
@@ -67,86 +80,75 @@ const createBtnsMarkupDesktop = results => {
     categoriesDropdown.innerHTML = dropdownMarkup;
 };
 
-let timeout;
+// let timeout;
 
-window.addEventListener('resize', () => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-        const screenWidth = window.innerWidth;
-        if (screenWidth < 768) {
-            // mobile
-            console.log('<768px');
-            categoriesBtns.innerHTML = '';
-            fetchCategoryArticles().then(({ results }) => {
-                renderMarkupMobile(results);
-            });
-        } else if (screenWidth < 1280) {
-            // tablet
-            console.log('>768px');
-            categoriesBtns.innerHTML = '';
-            fetchCategoryArticles().then(({ results }) => {
-                createBtnsMarkupTablet(results);
-            });
-        } else {
-            // desktop
-            console.log('>1280px');
-            categoriesBtns.innerHTML = '';
-            fetchCategoryArticles().then(({ results }) => {
-                createBtnsMarkupDesktop(results);
-            });
-        }
-    }, 500);
-});
+// let icons = openIcon.cloneNode(true);
 
-// if (matchMedia) {
-//     const screenMobile = window.matchMedia('(min-width:320px)');
-//     screenMobile.addListener(changesMobile);
-//     changesMobile(screenMobile);
-// }
-
-// function changesMobile(screenMobile) {
-//     if (screenMobile.matches) {
-//         console.log('<768px');
+// function handleScreenSizeChange() {
+//     const screenWidth = window.innerWidth;
+//     if (screenWidth < 768) {
+//         // mobile
 //         categoriesBtns.innerHTML = '';
 //         fetchCategoryArticles().then(({ results }) => {
 //             renderMarkupMobile(results);
 //         });
-//     }
-// }
-
-// if (matchMedia) {
-//     const screenTablet = window.matchMedia('(min-width:768px)');
-//     screenTablet.addListener(changesTablet);
-//     changesTablet(screenTablet);
-// }
-
-// function changesTablet(screenTablet) {
-//     if (screenTablet.matches) {
-//         console.log('>768px');
+//         categoryButton.textContent = 'Categories';
+//         categoryButton.removeChild(icons);
+//         if (mobileIcon.parentNode !== categoryButton) {
+//             categoryButton.appendChild(icons);
+//         }
+//     } else if (screenWidth < 1280) {
+//         // tablet
 //         categoriesBtns.innerHTML = '';
 //         fetchCategoryArticles().then(({ results }) => {
 //             createBtnsMarkupTablet(results);
 //         });
-//     }
-// }
-
-// if (matchMedia) {
-//     const screenDesktop = window.matchMedia('(min-width:1280px)');
-//     screenDesktop.addListener(changesDesktop);
-//     changesDesktop(screenDesktop);
-// }
-
-// function changesDesktop(screenDesktop) {
-//     if (screenDesktop.matches) {
-//         console.log('>1280px');
+//         categoryButton.textContent = 'Other';
+//         categoryButton.removeChild(icons);
+//         if (mobileIcon.parentNode !== categoryButton) {
+//             categoryButton.appendChild(icons);
+//         }
+//     } else {
+//         // desktop
 //         categoriesBtns.innerHTML = '';
 //         fetchCategoryArticles().then(({ results }) => {
 //             createBtnsMarkupDesktop(results);
 //         });
-//     } else {
-//         categoriesBtns.innerHTML = '';
-//         fetchCategoryArticles().then(({ results }) => {
-//             createBtnsMarkupTablet(results);
-//         });
+//         categoryButton.textContent = 'Other';
+//         categoryButton.removeChild(icons);
+//         if (desktopIcon.parentNode !== categoryButton) {
+//             categoryButton.appendChild(icons);
+//         }
 //     }
 // }
+
+function handleScreenSizeChange() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 768) {
+        // mobile
+        categoriesBtns.innerHTML = '';
+        fetchCategoryArticles().then(({ results }) => {
+            renderMarkupMobile(results);
+        });
+    } else if (screenWidth < 1280) {
+        // tablet
+        categoriesBtns.innerHTML = '';
+        fetchCategoryArticles().then(({ results }) => {
+            createBtnsMarkupTablet(results);
+        });
+    } else {
+        // desktop
+        categoriesBtns.innerHTML = '';
+        fetchCategoryArticles().then(({ results }) => {
+            createBtnsMarkupDesktop(results);
+        });
+    }
+}
+
+window.addEventListener('resize', () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(handleScreenSizeChange, 500);
+});
+
+// викликаємо при завантаженні сторінки
+handleScreenSizeChange();

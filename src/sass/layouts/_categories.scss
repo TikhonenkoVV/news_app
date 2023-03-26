@@ -88,11 +88,11 @@
 
     @include for-size(tablet) {
         top: 0;
-        left: 58.2%;
+        left: 58.5%;
     }
 
     @include for-size(desktop) {
-        left: 52.3%;
+        left: 52.8%;
     }
 
     .home__dropdown-menu {
@@ -110,6 +110,11 @@
         @include for-size(tablet) {
             max-width: 168px;
         }
+
+        &::-webkit-scrollbar {
+            width: 0px;
+            background-color: transparent;
+        }
 }
 }
 
@@ -126,6 +131,7 @@
         background: transparent;
     }
 }
+
 
 .home__category-button-icon{
     fill: $colorAccent;
