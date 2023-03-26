@@ -1,6 +1,7 @@
 import { refs } from './refs';
 import { load, save } from './storage';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import { renderGallery } from './main';
 
 import { allData } from './main';
 
@@ -15,12 +16,12 @@ export const verifyUser = () => {
         disableBodyScroll(document.body);
     } else {
         refs.authorizationModal.classList.add('is-hidden');
+        allData();
     }
 };
 
 export const onAuthorizationCancel = () => {
     refs.authorizationModal.classList.add('is-hidden');
-    allData();
     enableBodyScroll(document.body);
 };
 

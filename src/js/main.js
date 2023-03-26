@@ -17,7 +17,7 @@ export async function allData() {
     }
 }
 
-function renderGallery(users) {
+export function renderGallery(users) {
     const gallaryMarkup = users
         .map(
             (
