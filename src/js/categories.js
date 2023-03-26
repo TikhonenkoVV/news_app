@@ -1,28 +1,21 @@
 import { fetchCategoryArticles } from './fetch';
+import { refs } from './refs';
 
-const categoriesBtns = document.querySelector('.home__category');
-const categoriesDropdown = document.querySelector('.home__dropdown-menu');
-
-const categoryButton = document.querySelector('.home__category-button');
-const iconCloseOpen = document.querySelector('.home__category-button-icon');
-const openIcon = document.querySelector('.home__category-button-icon--open');
-const closeIcon = document.querySelector('.home__category-button-icon--close');
-
-categoryButton.addEventListener('click', event => {
+refs.categoryButton.addEventListener('click', event => {
     event.preventDefault();
-    openIcon.classList.toggle('hidden');
-    closeIcon.classList.toggle('hidden');
-    categoriesDropdown.classList.toggle('hidden');
+    refs.openIcon.classList.toggle('hidden');
+    refs.closeIcon.classList.toggle('hidden');
+    refs.categoriesDropdown.classList.toggle('hidden');
 });
 
 document.body.addEventListener('click', event => {
     event.preventDefault();
-    const isClickInside = categoriesDropdown.contains(event.target);
-    const isClickOnButton = categoryButton.contains(event.target);
+    const isClickInside = refs.categoriesDropdown.contains(event.target);
+    const isClickOnButton = refs.categoryButton.contains(event.target);
     if (!isClickInside && !isClickOnButton) {
-        categoriesDropdown.classList.add('hidden');
-        openIcon.classList.remove('hidden');
-        closeIcon.classList.add('hidden');
+        refs.categoriesDropdown.classList.add('hidden');
+        refs.openIcon.classList.remove('hidden');
+        refs.closeIcon.classList.add('hidden');
     }
 });
 
@@ -35,7 +28,7 @@ const createBtnsMarkupMobile = results => {
 };
 
 const renderMarkupMobile = results => {
-    categoriesDropdown.innerHTML = createBtnsMarkupMobile(results);
+    refs.categoriesDropdown.innerHTML = createBtnsMarkupMobile(results);
 };
 
 const createBtnsMarkupTablet = results => {
@@ -55,8 +48,8 @@ const createBtnsMarkupTablet = results => {
         })
         .join('');
 
-    categoriesBtns.innerHTML = buttonsMarkup;
-    categoriesDropdown.innerHTML = dropdownMarkup;
+    refs.categoriesBtns.innerHTML = buttonsMarkup;
+    refs.categoriesDropdown.innerHTML = dropdownMarkup;
 };
 
 const createBtnsMarkupDesktop = results => {
@@ -76,69 +69,29 @@ const createBtnsMarkupDesktop = results => {
         })
         .join('');
 
-    categoriesBtns.innerHTML = buttonsMarkup;
-    categoriesDropdown.innerHTML = dropdownMarkup;
+    refs.categoriesBtns.innerHTML = buttonsMarkup;
+    refs.categoriesDropdown.innerHTML = dropdownMarkup;
 };
 
-// let timeout;
+let timeout;
 
-// let icons = openIcon.cloneNode(true);
-
-// function handleScreenSizeChange() {
-//     const screenWidth = window.innerWidth;
-//     if (screenWidth < 768) {
-//         // mobile
-//         categoriesBtns.innerHTML = '';
-//         fetchCategoryArticles().then(({ results }) => {
-//             renderMarkupMobile(results);
-//         });
-//         categoryButton.textContent = 'Categories';
-//         categoryButton.removeChild(icons);
-//         if (mobileIcon.parentNode !== categoryButton) {
-//             categoryButton.appendChild(icons);
-//         }
-//     } else if (screenWidth < 1280) {
-//         // tablet
-//         categoriesBtns.innerHTML = '';
-//         fetchCategoryArticles().then(({ results }) => {
-//             createBtnsMarkupTablet(results);
-//         });
-//         categoryButton.textContent = 'Other';
-//         categoryButton.removeChild(icons);
-//         if (mobileIcon.parentNode !== categoryButton) {
-//             categoryButton.appendChild(icons);
-//         }
-//     } else {
-//         // desktop
-//         categoriesBtns.innerHTML = '';
-//         fetchCategoryArticles().then(({ results }) => {
-//             createBtnsMarkupDesktop(results);
-//         });
-//         categoryButton.textContent = 'Other';
-//         categoryButton.removeChild(icons);
-//         if (desktopIcon.parentNode !== categoryButton) {
-//             categoryButton.appendChild(icons);
-//         }
-//     }
-// }
-
-function handleScreenSizeChange() {
+export function handleScreenSizeChange() {
     const screenWidth = window.innerWidth;
     if (screenWidth < 768) {
         // mobile
-        categoriesBtns.innerHTML = '';
+        refs.categoriesBtns.innerHTML = '';
         fetchCategoryArticles().then(({ results }) => {
             renderMarkupMobile(results);
         });
     } else if (screenWidth < 1280) {
         // tablet
-        categoriesBtns.innerHTML = '';
+        refs.categoriesBtns.innerHTML = '';
         fetchCategoryArticles().then(({ results }) => {
             createBtnsMarkupTablet(results);
         });
     } else {
         // desktop
-        categoriesBtns.innerHTML = '';
+        refs.categoriesBtns.innerHTML = '';
         fetchCategoryArticles().then(({ results }) => {
             createBtnsMarkupDesktop(results);
         });

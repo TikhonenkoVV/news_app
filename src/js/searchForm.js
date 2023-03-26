@@ -1,6 +1,9 @@
 import { Notify } from 'notiflix';
 import { fetchSearchArticles } from './fetch';
 import { renderSearchedNews } from './templates/templates';
+import { normalize } from './normalize';
+import { renderGallery } from './main';
+import { load } from './storage';
 
 const ref = {
     form: document.querySelector('.search-form'),
@@ -23,7 +26,14 @@ async function handleSubmit(e) {
             Notify.failure('No news founded');
             return;
         }
-        renderSearchedNews(docs);
+        // add
+
+        normalize(docs);
+        // renderGallery(load('bite-search'));
+
+        // and add
+
+        renderSearchedNews(load('bite-search'));
     } catch (err) {
         console.log(err);
     }

@@ -13,8 +13,10 @@ export const refs = {
     ),
     confirmPass: document.querySelector('.authorization__field--confirm'),
     newsContainer: document.querySelector('.news'),
-    pg: document.getElementById('pagination'),
-    pgContainer: document.querySelector('.pagination__container'),
-    btnNextPg: document.querySelector('.pagination__next-page'),
-    btnPrevPg: document.querySelector('.pagination__prev-page'),
+    categoriesBtns: document.querySelector('.home__category'),
+    categoriesDropdown: document.querySelector('.home__dropdown-menu'),
+
+    categoryButton: document.querySelector('.home__category-button'),
+    openIcon: document.querySelector('.home__category-button-icon--open'),
+    closeIcon: document.querySelector('.home__category-button-icon--close'),
 };
