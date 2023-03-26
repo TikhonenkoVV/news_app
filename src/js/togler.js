@@ -7,14 +7,16 @@ export const onToglerClick = e => {
         changeRefStyle(
             inputRef,
             { option: 'backgroundColor', value: '#2e2e2e' },
-            { option: 'borderColor', value: '#FFFFFF' }
+            { option: 'borderColor', value: '#FFFFFF' },
+            { option: 'color', value: 'white' }
         );
         return;
     }
     changeRefStyle(
         inputRef,
         { option: 'backgroundColor', value: '#FFFFFF' },
-        { option: 'borderColor', value: '#2e2e2e' }
+        { option: 'borderColor', value: '#2e2e2e' },
+        { option: 'color', value: 'black' }
     );
 };
 
