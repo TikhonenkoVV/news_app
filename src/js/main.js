@@ -3,6 +3,7 @@ import { load } from './storage';
 
 import { fetchPopularArticles } from './fetch';
 import { normalize } from './normalize';
+import { createPagination } from './pagination';
 
 export async function allData() {
     try {
@@ -12,6 +13,9 @@ export async function allData() {
         normalize(results);
 
         renderGallery(load('bite-search'));
+        // need to call createPagination func and pass the object array from local storage as argument;
+        createPagination(load('bite-search'));
+        
     } catch (error) {
         console.log(error);
     }
@@ -58,5 +62,5 @@ export function renderGallery(users) {
         )
         .join('');
 
-    refs.newsContainer.insertAdjacentHTML('beforeend', gallaryMarkup);
+    refs.newsContainer.innerHTML = gallaryMarkup;
 }
