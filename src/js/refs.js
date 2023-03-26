@@ -1,5 +1,6 @@
 export const refs = {
     togler: document.querySelector('.theme__togler'),
+    mobileToggler: document.querySelector('.theme-mobile__togler'),
     tabs: document.querySelector('.authorization__box'),
     authorizationModal: document.querySelector('.backdrop'),
     authorizationSubmit: document.querySelector('.authorization__submit'),

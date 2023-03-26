@@ -1,16 +1,13 @@
-.theme {
-    display: none;
+.theme-mobile {
+    display: flex;
+    gap: 8px;
+
     @include for-size(tablet) {
-        display: flex;
-        gap: 8px;
-    }
-    @include for-size(desktop) {
-        gap: 12px;
-        display: flex;
+        display: none;
     }
 }
 
-.theme__caption {
+.theme-mobile__caption {
     display: none;
     @include for-size(desktop) {
         display: block;
@@ -18,29 +15,21 @@
     transition: color $baseTransition;
 }
 
-.theme__caption--light {
-    color: var(--toglerIconSunColor);
-}
-
-.theme__caption--dark {
-    color: var(--toglerIconMoonColor);
-}
-
-.theme__icon {
+.theme-mobile__icon {
     @include for-size(desktop) {
         display: none;
     }
 }
 
-.theme__icon--sun {
+.theme-mobile__icon--sun {
     fill: var(--toglerIconSunColor);
 }
 
-.theme__icon--moon {
+.theme-mobile__icon--moon {
     fill: var(--toglerIconMoonColor);
 }
 
-.theme__togler {
+.theme-mobile__togler {
     display: flex;
     align-items: center;
     position: relative;
@@ -51,7 +40,7 @@
     padding: 1px;
     background-color: var(--toglerMinorColor);
 }
-.theme__lever {
+.theme-mobile__lever {
     position: absolute;
     width: 16px;
     height: 16px;
@@ -62,6 +51,6 @@
     transition: transform $baseTransition;
 }
 
-body.dark .theme__lever {
+body.dark .theme-mobile__lever {
     transform: translateX(20px);
 }
