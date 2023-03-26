@@ -6,13 +6,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 24px 0;
+    padding-top: 24px;
+    padding-bottom: 24px;
 
     @include for-size(tablet) {
-        padding: 30px 0;
+        padding-top: 30px;
+        padding-bottom: 30px;
     }
     @include for-size(desktop) {
-        padding: 28px 0;
+        padding-top: 28px;
+        padding-bottom: 28px;
     }
 }
 
