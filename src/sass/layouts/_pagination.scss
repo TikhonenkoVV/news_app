@@ -11,13 +11,13 @@
 .pagination__prev-page,
 .pagination__next-page {
     cursor: pointer;
-    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 72px;
     height: 28px;
     border: 1px solid var(--toglerMainColor);
+    border-radius: 2px;
     background-color: var(--colorBackground);
     color: var(--colorTextDark);
     font-family: $fontFamilyMain;
@@ -40,6 +40,25 @@
         color: darkgrey;
         pointer-events: none;
         border: none;
+
+        body.dark & {
+            background-color: lightgray;
+            color: darkgrey;
+            pointer-events: none;
+            border: none;
+        }
+    }
+
+    body.dark & {
+        background-color: var(--colorTextLight);
+        border: 1px solid var(--toglerMinorColor);
+        color: var(--colorTextDark);
+
+        &:hover,
+        &:focus {
+            background-color: var(--toglerMinorColor);
+            color: var(--colorTextLight);
+        }
     }
 }
 
@@ -72,32 +91,53 @@
     background-color: var(--colorBackground);
     margin-right: 10px;
 
+    body.dark & {
+        background-color: var(--colorTextLight);
+        border: 1px solid var(--toglerMinorColor);
+
+        &:hover,
+        &:focus {
+            background-color: var(--toglerMinorColor);
+        }
+
+        &:hover a,
+        &:focus a {
+            color: var(--colorTextLight);
+        }
+    }
+
     &:hover,
     &:focus {
         background-color: var(--toglerMainColor);
     }
 
-    &:hover a {
+    &:hover a,
+    &:focus a {
         color: var(--colorBackground);
     }
 
-    &:first-child {
-        @include for-size(mobile-only) {
-            margin-right: 4px;
-        }
-    }
+    // &:first-child {
+    //     @include for-size(mobile-only) {
+    //         margin-right: 4px;
+    //     }
+    // }
 }
 
 .pagination___item.active {
     background-color: var(--toglerMainColor);
 
-    @include for-size(mobile-only) {
-        margin-right: 4px;
+    body.dark & {
+        background-color: var(--toglerMinorColor);
+        border: 1px solid var(--toglerMinorColor);
     }
 }
 
 .pagination___item.active a {
     color: var(--colorBackground);
+
+    body.dark & {
+        color: var(--colorTextLight);
+    }
 }
 
 .pagination___link {
@@ -115,15 +155,25 @@
         font-size: 16px;
     }
     pointer-events: none;
+
+    body.dark & {
+        color: var(--colorTextDark);
+    }
 }
 
 .pagination___item--dots {
     border: none;
-    width: 12px;
+    width: 10px;
     pointer-events: none;
+    text-align: center;
 
-    @include for-size(mobile-only) {
-        margin-right: 4px;
+    body.dark & {
+        background-color: transparent;
+        border: none;
+
+        & a {
+            color: var(--colorTextLight);
+        }
     }
 }
 
