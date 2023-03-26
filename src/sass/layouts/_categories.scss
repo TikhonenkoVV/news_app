@@ -1,0 +1,116 @@
+.container__categories
+{
+    position: relative;
+}
+
+.home__category {
+    margin-top: 28px;
+    margin-bottom: 60px;
+    display: flex;
+}
+
+.home__category-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.33;
+    text-align: center;
+    padding: 7.5px 24px;
+    letter-spacing: 0.01em;
+
+    color: var(--colorTextCategoryBtn);
+    background-color: var(--colorCategoriesBackgroundSelect);
+    border: 1px solid var(--colorCategoriesBtnBorder);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out, fill 250ms ease-in-out;
+
+        &:not(:last-child) {
+            margin-right: 16px;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: var(--colorCategoriesBtnBorder);
+            color: $colorTextWhite;
+        }
+
+        &:hover .home__category-button-icon,
+        &:focus .home__category-button-icon{
+            fill: $colorTextWhite;
+        }
+}
+
+.home__dropdown-item{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.33;
+    text-align: center;
+    padding: 7.5px 24px;
+    letter-spacing: 0.01em;
+
+    color: var(--colorTextCategoryBtn);
+    border: none;
+    background-color: var(--colorCategoriesBackgroundSelect);
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        text-decoration-line: underline;
+    }
+}
+
+.home__category-dropdown {
+    position: absolute; 
+    top: 0; 
+    left: 0;
+    z-index: 2; 
+
+    @include for-size(tablet) {
+        top: 0;
+        left: 58.2%;
+    }
+
+    @include for-size(desktop) {
+        left: 52.3%;
+    }
+
+    .home__dropdown-menu {
+        max-height: 380px;
+        max-width: 168px;  
+        background-color: var(--colorCategoriesBackgroundSelect);
+        border-radius: 20px;
+        padding: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        overflow-y: auto;
+    }
+}
+
+.home__dropdown-menu::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    scrollbar-width: 0;
+    scrollbar-color: var(--colorCategoriesBackgroundSelect);
+}
+
+.home__category-button-icon{
+    fill: $colorAccent;
+    transition: fill 250ms ease-in-out
+}
+
+.home__category-button-icon--open {
+}
+
+.home__category-button-icon--close {
+}
+
+.hidden {
+    display: none !important;
+}
