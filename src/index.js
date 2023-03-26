@@ -17,7 +17,6 @@ import {
     onAuthorizationSubmit,
     onAuthorizationCancel,
 } from './js/autorization';
-import { allData } from './js/main.js';
 
 refs.togler.addEventListener('click', onToglerClick);
 refs.tabs.addEventListener('click', onTabsClick);
@@ -41,6 +40,3 @@ refs.authorizationForm.addEventListener('submit', onAuthorizationSubmit);
 
 verifyUser();
 
-// window.onresize = function(e) {
-//     console.log(e);
-// };
