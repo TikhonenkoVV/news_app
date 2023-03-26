@@ -4,26 +4,38 @@ const categoriesBtns = document.querySelector('.home__category');
 const categoriesDropdown = document.querySelector('.home__dropdown-menu');
 
 const categoryButton = document.querySelector('.home__category-button');
+const iconCloseOpen = document.querySelector('.home__category-button-icon');
 const openIcon = document.querySelector('.home__category-button-icon--open');
 const closeIcon = document.querySelector('.home__category-button-icon--close');
 
-categoryButton.addEventListener('click', () => {
+categoryButton.addEventListener('click', event => {
+    event.preventDefault();
     openIcon.classList.toggle('hidden');
     closeIcon.classList.toggle('hidden');
     categoriesDropdown.classList.toggle('hidden');
 });
 
-const cachedResults = {};
+document.body.addEventListener('click', event => {
+    event.preventDefault();
+    const isClickInside = categoriesDropdown.contains(event.target);
+    const isClickOnButton = categoryButton.contains(event.target);
+    if (!isClickInside && !isClickOnButton) {
+        categoriesDropdown.classList.add('hidden');
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+    }
+});
 
 const createBtnsMarkupMobile = results => {
-    categoriesBtns.innerHTML = '';
-
-    const dropdownMarkup = results
+    return results
         .map(({ display_name }) => {
-            return `<button class="home__dropdown-item" type="button">${display_name}</button>`;
+            return `<a href="" class="home__dropdown-menu--item"><button class="home__dropdown-item" type="button">${display_name}</button></a>`;
         })
         .join('');
-    categoriesDropdown.insertAdjacentHTML('beforeend', dropdownMarkup);
+};
+
+const renderMarkupMobile = results => {
+    categoriesDropdown.innerHTML = createBtnsMarkupMobile(results);
 };
 
 const createBtnsMarkupTablet = results => {
@@ -39,12 +51,12 @@ const createBtnsMarkupTablet = results => {
     const dropdownMarkup = results
         .slice(4)
         .map(({ display_name }) => {
-            return `<button class="home__dropdown-item" type="button">${display_name}</button>`;
+            return `<a href="" class="home__dropdown-menu--item"><button class="home__dropdown-item" type="button">${display_name}</button></a>`;
         })
         .join('');
 
     categoriesBtns.innerHTML = buttonsMarkup;
-    categoriesDropdown.insertAdjacentHTML('beforeend', dropdownMarkup);
+    categoriesDropdown.innerHTML = dropdownMarkup;
 };
 
 const createBtnsMarkupDesktop = results => {
@@ -60,43 +72,83 @@ const createBtnsMarkupDesktop = results => {
     const dropdownMarkup = results
         .slice(6) // обмежуємо результат всіма категоріями, що залишилися
         .map(({ display_name }) => {
-            return `<button class="home__dropdown-item" type="button">${display_name}</button>`;
+            return `<a href="" class="home__dropdown-menu--item"><button class="home__dropdown-item" type="button">${display_name}</button></a>`;
         })
         .join('');
 
     categoriesBtns.innerHTML = buttonsMarkup;
-    categoriesDropdown.insertAdjacentHTML('beforeend', dropdownMarkup);
+    categoriesDropdown.innerHTML = dropdownMarkup;
 };
 
-const renderMarkup = () => {
-    if (window.innerWidth >= 1280) {
-        if (cachedResults.desktop) {
-            createBtnsMarkupDesktop(cachedResults.desktop);
-        } else {
-            fetchCategoryArticles().then(({ results }) => {
-                createBtnsMarkupDesktop(results);
-                cachedResults.desktop = results;
-            });
-        }
-    } else if (window.innerWidth >= 768 && window.innerWidth < 1280) {
-        if (cachedResults.tablet) {
-            createBtnsMarkupTablet(cachedResults.tablet);
-        } else {
-            fetchCategoryArticles().then(({ results }) => {
-                createBtnsMarkupTablet(results);
-                cachedResults.tablet = results;
-            });
-        }
+// let timeout;
+
+// let icons = openIcon.cloneNode(true);
+
+// function handleScreenSizeChange() {
+//     const screenWidth = window.innerWidth;
+//     if (screenWidth < 768) {
+//         // mobile
+//         categoriesBtns.innerHTML = '';
+//         fetchCategoryArticles().then(({ results }) => {
+//             renderMarkupMobile(results);
+//         });
+//         categoryButton.textContent = 'Categories';
+//         categoryButton.removeChild(icons);
+//         if (mobileIcon.parentNode !== categoryButton) {
+//             categoryButton.appendChild(icons);
+//         }
+//     } else if (screenWidth < 1280) {
+//         // tablet
+//         categoriesBtns.innerHTML = '';
+//         fetchCategoryArticles().then(({ results }) => {
+//             createBtnsMarkupTablet(results);
+//         });
+//         categoryButton.textContent = 'Other';
+//         categoryButton.removeChild(icons);
+//         if (mobileIcon.parentNode !== categoryButton) {
+//             categoryButton.appendChild(icons);
+//         }
+//     } else {
+//         // desktop
+//         categoriesBtns.innerHTML = '';
+//         fetchCategoryArticles().then(({ results }) => {
+//             createBtnsMarkupDesktop(results);
+//         });
+//         categoryButton.textContent = 'Other';
+//         categoryButton.removeChild(icons);
+//         if (desktopIcon.parentNode !== categoryButton) {
+//             categoryButton.appendChild(icons);
+//         }
+//     }
+// }
+
+function handleScreenSizeChange() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 768) {
+        // mobile
+        categoriesBtns.innerHTML = '';
+        fetchCategoryArticles().then(({ results }) => {
+            renderMarkupMobile(results);
+        });
+    } else if (screenWidth < 1280) {
+        // tablet
+        categoriesBtns.innerHTML = '';
+        fetchCategoryArticles().then(({ results }) => {
+            createBtnsMarkupTablet(results);
+        });
     } else {
-        if (cachedResults.mobile) {
-            createBtnsMarkupMobile(cachedResults.mobile);
-        } else {
-            fetchCategoryArticles().then(({ results }) => {
-                createBtnsMarkupMobile(results);
-                cachedResults.mobile = results;
-            });
-        }
+        // desktop
+        categoriesBtns.innerHTML = '';
+        fetchCategoryArticles().then(({ results }) => {
+            createBtnsMarkupDesktop(results);
+        });
     }
-};
+}
 
-window.addEventListener('load', renderMarkup);
+window.addEventListener('resize', () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(handleScreenSizeChange, 500);
+});
+
+// викликаємо при завантаженні сторінки
+handleScreenSizeChange();
