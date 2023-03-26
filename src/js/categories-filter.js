@@ -30,7 +30,7 @@ export const onClickBtns = async e => {
             ({ published_date, section, abstract, multimedia, title, url }) => {
                 let favorite = '';
                 let readMore = '';
-                let imgUrl = multimedia[0].url;
+                let imgUrl = multimedia[2].url;
                 return {
                     favorite,
                     readMore,
