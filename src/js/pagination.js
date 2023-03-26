@@ -4,31 +4,18 @@ import {
     fetchCategoryArticles,
 } from './fetch';
 
-const pg = document.getElementById('pagination');
-const pgContainer = document.querySelector('.pagination__container');
-const btnNextPg = document.querySelector('.pagination__next-page');
-const btnPrevPg = document.querySelector('.pagination__prev-page');
-let newsPerPage; // this is an array with results from server
+import { renderGallery } from './main';
+import { refs } from './refs';
 
-// function that calculates number of news per page due too screen size
-function widthChangeCallback() {
-    if (window.innerWidth < 768) {
-        newsPerPage = 4;
-    } else if (window.innerWidth >= 768 && window.innerWidth < 1280) {
-        newsPerPage = 7;
-    } else {
-        newsPerPage = 8;
-    }
-}
 window.addEventListener('resize', widthChangeCallback);
-widthChangeCallback();
 
-async function fetchDataForPagination(newsPerPage) {
-    // I was testing for Popular, we can do the same for CategoriesSearch
-    const fetchedData = await fetchPopularArticles();
+function setNumberOfNewsPerPage() {
+    let newsPerPage = widthChangeCallback();
+    return newsPerPage;
+};
 
-    // this is an array with results from server
-    const newsArray = fetchedData.results;
+export function createPagination(newsArray) {
+    let newsPerPage = setNumberOfNewsPerPage();
 
     const valuePage = {
         curPage: 1,
@@ -38,7 +25,7 @@ async function fetchDataForPagination(newsPerPage) {
 
     pagination(valuePage);
 
-    pg.addEventListener('click', e => {
+    refs.pg.addEventListener('click', e => {
         const ele = e.target;
         if (ele.dataset.page) {
             const pageNumber = parseInt(e.target.dataset.page, 10);
@@ -50,7 +37,7 @@ async function fetchDataForPagination(newsPerPage) {
         }
     });
 
-    pgContainer.addEventListener('click', e => {
+    refs.pgContainer.addEventListener('click', e => {
         handleButton(e.target, valuePage);
 
         if (e.target.nodeName === 'LI' || e.target.nodeName === 'BUTTON') {
@@ -59,7 +46,7 @@ async function fetchDataForPagination(newsPerPage) {
             const end = start + newsPerPage;
             const array = newsArray.slice(start, end);
 
-            renderMarkup(array);
+            renderGallery(array);
         }
     });
 }
@@ -116,25 +103,25 @@ function pagination(valuePage) {
     if (renderTwoSide) {
         renderTwoSide =
             renderPage(1) + dot + renderTwoSide + dot + renderPage(totalPages);
-        pg.innerHTML = renderTwoSide;
+        refs.pg.innerHTML = renderTwoSide;
     } else {
-        pg.innerHTML = render;
+        refs.pg.innerHTML = render;
     }
 }
 
 function handleButtonLeft(valuePage) {
     if (valuePage.curPage === 1) {
-        btnPrevPg.disabled = true;
+        refs.btnPrevPg.disabled = true;
     } else {
-        btnPrevPg.disabled = false;
+        refs.btnPrevPg.disabled = false;
     }
 }
 
 function handleButtonRight(valuePage) {
     if (valuePage.curPage === valuePage.totalPages) {
-        btnNextPg.disabled = true;
+        refs.btnNextPg.disabled = true;
     } else {
-        btnNextPg.disabled = false;
+        refs.btnNextPg.disabled = false;
     }
 }
 
@@ -142,11 +129,11 @@ function handleButton(element, valuePage) {
     if (element.classList.contains('pagination__prev-page')) {
         valuePage.curPage--;
         handleButtonLeft(valuePage);
-        btnNextPg.disabled = false;
+        refs.btnNextPg.disabled = false;
     } else if (element.classList.contains('pagination__next-page')) {
         valuePage.curPage++;
         handleButtonRight(valuePage);
-        btnPrevPg.disabled = false;
+        refs.btnPrevPg.disabled = false;
     }
     pagination(valuePage);
 }
@@ -157,12 +144,14 @@ function renderPage(index, active = '') {
 </li>`;
 }
 
-// HERE PLEASE ADD MARKUP RENDERING
-function renderMarkup(newsArray) {
-    //log of results from which we render markup
-    console.log(newsArray);
-}
+function widthChangeCallback() {
+    if (window.innerWidth < 768) {
+        newsPerPage = 4;
+    } else if (window.innerWidth >= 768 && window.innerWidth < 1280) {
+        newsPerPage = 7;
+    } else {
+        newsPerPage = 8;
+    }
 
-// This is a call of the main function
-// We don't need to pass any argument, newsPerPage is calculated automatically according to the size of screen
-fetchDataForPagination(newsPerPage);
+    return newsPerPage;
+}

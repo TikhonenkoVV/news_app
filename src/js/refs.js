@@ -13,4 +13,8 @@ export const refs = {
     ),
     confirmPass: document.querySelector('.authorization__field--confirm'),
     newsContainer: document.querySelector('.news'),
+    pg: document.getElementById('pagination'),
+    pgContainer: document.querySelector('.pagination__container'),
+    btnNextPg: document.querySelector('.pagination__next-page'),
+    btnPrevPg: document.querySelector('.pagination__prev-page'),
 };
