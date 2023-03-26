@@ -18,6 +18,9 @@ export const verifyUser = () => {
         refs.authorizationModal.classList.add('is-hidden');
         allData();
     }
+    if (!load(AUTORIZED_USER_KEY)) {
+        save(AUTORIZED_USER_KEY, { test: { pass: '' } });
+    }
 };
 
 export const onAuthorizationCancel = () => {
@@ -38,6 +41,15 @@ export const onAuthorizationSubmit = e => {
             return;
         }
 
+        if (
+            password.value === '' ||
+            confirm.value === '' ||
+            email.value === ''
+        ) {
+            alert('Fill in all fields');
+            return;
+        }
+
         if (password.value !== confirm.value) {
             alert('Passwords do not match');
             return;
@@ -51,17 +63,15 @@ export const onAuthorizationSubmit = e => {
         save(USER_KEY, email.value);
         allData();
     } else {
-        if (parceData) {
-            if (
-                parceData.hasOwnProperty(email.value) &&
-                parceData[email.value].pass === password.value
-            ) {
-                refs.authorizationModal.classList.add('is-hidden');
-                enableBodyScroll(document.body);
-                save(USER_KEY, email.value);
-                userLogin = email.value;
-                allData();
-            } else alert('Invalid login or password');
-        } else save(AUTORIZED_USER_KEY, {});
+        if (
+            parceData.hasOwnProperty(email.value) &&
+            parceData[email.value].pass === password.value
+        ) {
+            refs.authorizationModal.classList.add('is-hidden');
+            enableBodyScroll(document.body);
+            save(USER_KEY, email.value);
+            userLogin = email.value;
+            allData();
+        } else alert('Invalid login or password');
     }
 };

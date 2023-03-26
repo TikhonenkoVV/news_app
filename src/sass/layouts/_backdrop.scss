@@ -8,6 +8,7 @@
     opacity: 1;
     background-color: rgba(0, 0, 0, 0.637);
     transition: opacity $baseTransition, visibility $baseTransition;
+    z-index: 100;
     // pointer-events: none;
 }
 
