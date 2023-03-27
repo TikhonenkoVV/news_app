@@ -1,4 +1,5 @@
 import { refs } from './refs';
+import { showOrHideBanner } from './weather-banner';
 
 let newsPerPage;
 window.onresize = setNumberOfPages();
@@ -41,6 +42,12 @@ export function createPagination(newsArray, funcForRenderingMarkup) {
             }
 
             funcForRenderingMarkup(array);
+
+            if (pageNumber == 1) {
+                refs.gridBox.classList.remove('banner-hidden');
+            } else {
+                refs.gridBox.classList.add('banner-hidden');
+            }
         }
     });
 }
@@ -150,8 +157,10 @@ function pagination(valuePage) {
 function handleButtonLeft(valuePage) {
     if (valuePage.curPage === 1) {
         refs.btnPrevPg.disabled = true;
+        refs.gridBox.classList.remove('banner-hidden');
     } else {
         refs.btnPrevPg.disabled = false;
+        refs.gridBox.classList.add('banner-hidden');
     }
 }
 
@@ -160,6 +169,11 @@ function handleButtonRight(valuePage) {
         refs.btnNextPg.disabled = true;
     } else {
         refs.btnNextPg.disabled = false;
+    }
+    if (valuePage.curPage === 1) {
+        refs.gridBox.classList.remove('banner-hidden');
+    } else {
+        refs.gridBox.classList.add('banner-hidden');
     }
 }
 

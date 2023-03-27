@@ -12,6 +12,7 @@ import {
     onAuthorizationSubmit,
     onAuthorizationCancel,
 } from './js/autorization';
+import { showOrHideBanner } from './js/weather-banner';
 
 handleScreenSizeChange();
 
@@ -33,4 +34,6 @@ refs.authorizationCancel.addEventListener('click', onAuthorizationCancel);
 refs.authorizationForm.addEventListener('submit', onAuthorizationSubmit);
 
 verifyUser();
+
+
 

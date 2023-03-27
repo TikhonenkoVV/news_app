@@ -23,4 +23,5 @@ export const refs = {
     pgContainer: document.querySelector('.pagination__container'),
     btnNextPg: document.querySelector('.pagination__next-page'),
     btnPrevPg: document.querySelector('.pagination__prev-page'),
+    gridBox: document.querySelector('.grid-box'),
 };

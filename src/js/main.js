@@ -15,7 +15,6 @@ export async function allData() {
         renderGallery(load('bite-search'));
         // need to call createPagination func and pass the object array from local storage as argument;
         createPagination(load('bite-search'), renderGallery);
-        
     } catch (error) {
         console.log(error);
     }
