@@ -36,5 +36,15 @@ refs.authorizationForm.addEventListener('submit', onAuthorizationSubmit);
 
 verifyUser();
 
+// const currentPath = window.location.pathname;
+// console.log(currentPath);
+
+// if (currentPath !== '/index.html') {
+//     console.log(currentPath);
+//     refs.categoriesBtns.removeEventListener('click', onClickBtns);
+//     refs.categoriesDropdown.removeEventListener('click', onClickBtnsDropdown);
+// }
+
+allData();
 
 
