@@ -1,15 +1,20 @@
 import { fetchCategoryArticles } from './fetch';
 import { refs } from './refs';
 
-refs.categoryButton.addEventListener('click', event => {
-    event.preventDefault();
-    refs.openIcon.classList.toggle('hidden');
-    refs.closeIcon.classList.toggle('hidden');
-    refs.categoriesDropdown.classList.toggle('hidden');
-});
+if (refs.categoryButton) {
+    refs.categoryButton.addEventListener('click', event => {
+        event.preventDefault();
+        refs.openIcon.classList.toggle('hidden');
+        refs.closeIcon.classList.toggle('hidden');
+        refs.categoriesDropdown.classList.toggle('hidden');
+    });
+}
 
 document.body.addEventListener('click', event => {
     // event.preventDefault();
+    if (!refs.categoriesDropdown) {
+        return;
+    }
     const isClickInside = refs.categoriesDropdown.contains(event.target);
     const isClickOnButton = refs.categoryButton.contains(event.target);
     if (!isClickInside && !isClickOnButton) {
@@ -76,6 +81,9 @@ const createBtnsMarkupDesktop = results => {
 let timeout;
 
 export const handleScreenSizeChange = async () => {
+    if (!refs.categoriesBtns) {
+        return;
+    }
     const screenWidth = window.innerWidth;
     if (screenWidth < 768) {
         // mobile
