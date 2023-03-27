@@ -29,9 +29,7 @@ async function onBannerLoad() {
     initializeComponents(weatherData);
 }
 
-async function initializeComponents(weatherData) {
-    await isHtmlElementReady('.weather__wripper');
-
+function initializeComponents(weatherData) {
     const weatherWeekButton = document.querySelector('[data-weather-button]');
     weatherWeekButton.addEventListener('click', () =>
         showWeekWeather(weatherData)
