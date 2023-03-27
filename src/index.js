@@ -6,9 +6,9 @@ import { refs } from './js/refs';
 import { onToglerClick } from './js/togler';
 import { onTabsClick } from './js/on-tabs-click';
 import { onClickBtns, onClickBtnsDropdown } from './js/categories-filter';
-import * as weatherBanner from './js/weather-banner';
 import { allData } from './js/main';
 import { handleScreenSizeChange } from './js/categories';
+import * as weatherBanner from './js/weather-banner';
 
 refs.mobileToggler.addEventListener('click', onToglerClick);
 refs.togler.addEventListener('click', onToglerClick);
@@ -21,5 +21,4 @@ if (refs.categoriesBtns && refs.categoriesDropdown) {
     refs.categoriesBtns.addEventListener('click', onClickBtns);
     refs.categoriesDropdown.addEventListener('click', onClickBtnsDropdown);
 }
-
 allData();
