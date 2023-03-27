@@ -38,6 +38,7 @@ export class WeatherService {
             icon: this.getIconUrl(weather.data.weather[0].icon),
             date: new Date(weather.data.dt * 1000),
             description: weather.data.weather[0].description,
+            stationId: weather.data.id,
         };
     }
 

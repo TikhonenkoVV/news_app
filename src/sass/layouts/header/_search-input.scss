@@ -17,14 +17,17 @@
         width: 40px;
         position: relative;
     }
-    &:focus-within .header__input-search {
-        width: 173px;
-        margin: 0;
-        border: 1px solid #111321;
-        opacity: 1;
-        pointer-events: auto;
-        transition: all 0.3s ease;
+    @include for-size(mobile-only) {
+        &:focus-within .header__input-search {
+            width: 173px;
+            margin: 0;
+            border: 1px solid #111321;
+            opacity: 1;
+            pointer-events: auto;
+            transition: all 0.3s ease;
+        }
     }
+
     @include for-size(tablet) {
         .header__input-search {
             width: 213px;

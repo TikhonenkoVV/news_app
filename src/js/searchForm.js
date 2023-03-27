@@ -2,7 +2,6 @@ import { Notify } from 'notiflix';
 import { fetchSearchArticles } from './fetch';
 import { renderSearchedNews } from './templates/templates';
 import { normalize } from './normalize';
-import { renderGallery } from './main';
 import { load } from './storage';
 import { createPagination } from './pagination';
 
@@ -14,6 +13,11 @@ ref.form.addEventListener('submit', handleSubmit);
 
 async function handleSubmit(e) {
     e.preventDefault();
+    if (
+        e.currentTarget.querySelector('.header__input-search').clientWidth < 49
+    ) {
+        return;
+    }
     const query = e.target.searchQuery.value.trim();
     if (!query) {
         Notify.warning('Enter some query');
@@ -30,8 +34,8 @@ async function handleSubmit(e) {
 
         normalize(docs);
 
-        renderSearchedNews(load('bite-search'));
-        createPagination(load('bite-search'), renderSearchedNews)
+        renderSearchedNews(load('bite-search'), true);
+        createPagination(load('bite-search'), renderSearchedNews);
     } catch (err) {
         console.log(err);
     }

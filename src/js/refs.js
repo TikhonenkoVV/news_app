@@ -16,7 +16,6 @@ export const refs = {
     favoritesListBtn: document.getElementById('#favoritesList'),
     categoriesBtns: document.querySelector('.home__category'),
     categoriesDropdown: document.querySelector('.home__dropdown-menu'),
-
     categoryButton: document.querySelector('.home__category-button'),
     openIcon: document.querySelector('.home__category-button-icon--open'),
     closeIcon: document.querySelector('.home__category-button-icon--close'),
@@ -25,4 +24,5 @@ export const refs = {
     btnNextPg: document.querySelector('.pagination__next-page'),
     btnPrevPg: document.querySelector('.pagination__prev-page'),
     boxItems: document.querySelector('.news'),
+    gridBox: document.querySelector('.grid-box'),
 };

@@ -44,7 +44,7 @@ export const onClickBtns = async e => {
                 };
             }
         );
-        renderGallery(users);
+        renderGallery(users, true);
         createPagination(users, renderGallery);
     } catch (error) {
         console.log(error);
@@ -93,7 +93,7 @@ export const onClickBtnsDropdown = async e => {
                 };
             }
         );
-        renderGallery(users);
+        renderGallery(users, true);
         createPagination(users, renderGallery);
     } catch (error) {
         console.log(error);
@@ -107,26 +107,31 @@ export const onClickBtnsDropdown = async e => {
     }
 };
 
-export function renderGallery(users) {
+export function renderGallery(users, ifFirstPage) {
     const gallaryMarkup = users
         .map(
             (
                 { imgUrl, title, section, abstract, published_date, url },
                 index
             ) => {
-                if (window.matchMedia('(min-width: 1280px)').matches) {
-                    if (index > 7) {
-                        return;
-                    }
-                } else if (window.matchMedia('(min-width: 768px)').matches) {
-                    if (index > 6) {
-                        return;
-                    }
-                } else {
-                    if (index > 3) {
-                        return;
+                if (ifFirstPage) {
+                    if (window.matchMedia('(min-width: 1280px)').matches) {
+                        if (index > 7) {
+                            return;
+                        }
+                    } else if (
+                        window.matchMedia('(min-width: 768px)').matches
+                    ) {
+                        if (index > 6) {
+                            return;
+                        }
+                    } else {
+                        if (index > 3) {
+                            return;
+                        }
                     }
                 }
+
                 return `<div class="news__item">
             <p class="news__section">${section}</p>
             <div class="news__img">
