@@ -1,6 +1,6 @@
 import { refs } from './refs';
 import { load } from './storage';
-
+import { addDataReadNews } from './read/add-data-read-more';
 import { fetchPopularArticles } from './fetch';
 import { normalize } from './normalize';
 import { createPagination } from './pagination';
@@ -46,7 +46,7 @@ export function renderGallery(users) {
             <p class="news__section">${section}</p>
             <div class="news__img">
               <img src="${imgUrl}" alt="${title}" loading="lazy"/>
-              <button type="button" class="news__btn">Add to favorite
+              <button id="${url}" type="button" class="news__btn">Add to favorite
               <svg class="news__btn-icon" width="20" height="20">
                 <use href="#icon-heart-border"></use>
                 </svg></button></div>
@@ -64,3 +64,4 @@ export function renderGallery(users) {
 
     refs.newsContainer.innerHTML = gallaryMarkup;
 }
+refs.newsContainer.addEventListener('click', addDataReadNews);
