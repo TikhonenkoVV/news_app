@@ -1,5 +1,6 @@
 import { WeatherService } from './weather-service';
 import { WEATHER_API_KEY } from './key';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 const NY_LAT = 40.73061;
 const NY_LON = -73.935242;
@@ -91,11 +92,13 @@ async function showWeekWeather(weatherData) {
     const widgetHeader = document.querySelector('.widget-left-menu__header');
     widgetHeader.textContent = weatherData.city;
     refs.weatherBackdrop.classList.remove('is-hidden');
+    disableBodyScroll(document.body);
     window.addEventListener('keydown', onEscKeyPress);
 }
 
 function closeWeekWeather() {
     refs.weatherBackdrop.classList.add('is-hidden');
+    enableBodyScroll(document.body);
     window.removeEventListener('keydown', onEscKeyPress);
 }
 
