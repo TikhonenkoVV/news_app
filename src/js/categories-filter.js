@@ -108,9 +108,6 @@ export const onClickBtnsDropdown = async e => {
 };
 
 export function renderGallery(users) {
-    if (users.length === 0) {
-        return;
-    }
     const gallaryMarkup = users
         .map(
             (
