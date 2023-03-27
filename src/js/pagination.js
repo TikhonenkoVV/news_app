@@ -41,12 +41,12 @@ export function createPagination(newsArray, funcForRenderingMarkup) {
                 array = newsArray.slice(start, end);
             }
 
-            funcForRenderingMarkup(array);
-
             if (pageNumber == 1) {
                 refs.gridBox.classList.remove('banner-hidden');
+                funcForRenderingMarkup(array, true);
             } else {
                 refs.gridBox.classList.add('banner-hidden');
+                funcForRenderingMarkup(array, false);
             }
         }
     });

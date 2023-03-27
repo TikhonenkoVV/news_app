@@ -12,7 +12,7 @@ export async function allData() {
 
         normalize(results);
 
-        renderGallery(load('bite-search'));
+        renderGallery(load('bite-search'), true);
         // need to call createPagination func and pass the object array from local storage as argument;
         createPagination(load('bite-search'), renderGallery);
     } catch (error) {
@@ -20,24 +20,28 @@ export async function allData() {
     }
 }
 
-export function renderGallery(users) {
+export function renderGallery(users, ifFirstPage) {
     const gallaryMarkup = users
         .map(
             (
                 { imgUrl, title, section, abstract, published_date, url },
                 index
             ) => {
-                if (window.matchMedia('(min-width: 1280px)').matches) {
-                    if (index > 7) {
-                        return;
-                    }
-                } else if (window.matchMedia('(min-width: 768px)').matches) {
-                    if (index > 6) {
-                        return;
-                    }
-                } else {
-                    if (index > 3) {
-                        return;
+                if (ifFirstPage) {
+                    if (window.matchMedia('(min-width: 1280px)').matches) {
+                        if (index > 7) {
+                            return;
+                        }
+                    } else if (
+                        window.matchMedia('(min-width: 768px)').matches
+                    ) {
+                        if (index > 6) {
+                            return;
+                        }
+                    } else {
+                        if (index > 3) {
+                            return;
+                        }
                     }
                 }
 
