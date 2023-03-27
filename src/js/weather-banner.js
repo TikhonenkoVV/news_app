@@ -28,15 +28,25 @@ async function onBannerLoad() {
     initializeComponents(weatherData);
 }
 
-function initializeComponents(weatherData) {
-    setTimeout(() => {
-        const weatherWeekButton = document.querySelector(
-            '[data-weather-button]'
-        );
-        weatherWeekButton.addEventListener('click', () =>
-            showWeekWeather(weatherData)
-        );
-    }, 1000);
+async function isBannerReady() {
+    return new Promise(resolve => {
+        const intervalId = setInterval(() => {
+            let wrapper = document.querySelector('.weather__wripper');
+            if (wrapper != null) {
+                clearInterval(intervalId);
+                resolve(true);
+            }
+        }, 300);
+    });
+}
+
+async function initializeComponents(weatherData) {
+    await isBannerReady();
+
+    const weatherWeekButton = document.querySelector('[data-weather-button]');
+    weatherWeekButton.addEventListener('click', () =>
+        showWeekWeather(weatherData)
+    );
     refs.weatherBackdropCloseButton.addEventListener('click', closeWeekWeather);
 }
 
@@ -62,36 +72,33 @@ function getCoordinates() {
     });
 }
 
-function showWeekWeather(weatherData) {
+async function showWeekWeather(weatherData) {
+    if (!hasWidget()) {
+        window.myWidgetParam
+            ? window.myWidgetParam
+            : (window.myWidgetParam = []);
+        window.myWidgetParam.push({
+            id: 11,
+            cityid: weatherData.stationId,
+            appid: WEATHER_API_KEY,
+            units: 'metric',
+            containerid: 'openweathermap-widget-11',
+        });
+        (function () {
+            var script = document.createElement('script');
+            script.async = true;
+            //script.charset = 'utf-8';
+            script.src =
+                '//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(script, s);
+        })();
+    }
+    await isWidgetLoaded();
+    const widgetHeader = document.querySelector('.widget-left-menu__header');
+    widgetHeader.textContent = weatherData.city;
     refs.weatherBackdrop.classList.remove('is-hidden');
     window.addEventListener('keydown', onEscKeyPress);
-
-    if (isWidgetLoaded()) {
-        return;
-    }
-    window.myWidgetParam ? window.myWidgetParam : (window.myWidgetParam = []);
-    window.myWidgetParam.push({
-        id: 11,
-        cityid: weatherData.stationId,
-        appid: WEATHER_API_KEY,
-        units: 'metric',
-        containerid: 'openweathermap-widget-11',
-    });
-    (function () {
-        var script = document.createElement('script');
-        script.async = true;
-        //script.charset = 'utf-8';
-        script.src =
-            '//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(script, s);
-    })();
-    setTimeout(() => {
-        const widgetHeader = document.querySelector(
-            '.widget-left-menu__header'
-        );
-        widgetHeader.textContent = weatherData.city;
-    }, 500);
 }
 
 function closeWeekWeather() {
@@ -106,7 +113,20 @@ function onEscKeyPress(e) {
     }
 }
 
-function isWidgetLoaded() {
+async function isWidgetLoaded() {
+    return new Promise(resolve => {
+        const intervalId = setInterval(() => {
+            let container = document.querySelector(
+                '#container-openweathermap-widget-11'
+            );
+            if (container != null) {
+                clearInterval(intervalId);
+                resolve(true);
+            }
+        }, 300);
+    });
+}
+function hasWidget() {
     const container = document.querySelector(
         '#container-openweathermap-widget-11'
     );
@@ -115,8 +135,6 @@ function isWidgetLoaded() {
 }
 
 function renderBanner({ temp, weather, city, icon, date, description }) {
-    // console.log(temp, weather, city, icon, date, description);
-    // console.log(getCurrentDate(date));
     if (!refs.weatherBanner) {
         return;
     }
@@ -164,8 +182,3 @@ function getCurrentDate(date) {
     const currentDay = date.getDate();
     return `${dayOfWeek}<br>${currentDay} ${currentMonth} ${currentYear}`;
 }
-
-// window.onload = function () {
-//     const weatherWeekButton = document.querySelector('[data-weather-button]');
-//     weatherWeekButton.addEventListener('click', showWeekWeather);
-// };
