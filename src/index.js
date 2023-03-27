@@ -1,8 +1,7 @@
 import './js/mobile-menu';
-import { handleScreenSizeChange } from './js/categories';
 import './js/searchForm';
 import { refs } from './js/refs';
-import { onToglerClick, checkCurrentTheme } from './js/togler';
+import { onToglerClick } from './js/togler';
 import { refs } from './js/refs';
 import { onToglerClick } from './js/togler';
 import { onTabsClick } from './js/on-tabs-click';
@@ -12,21 +11,24 @@ import {
     onAuthorizationSubmit,
     onAuthorizationCancel,
 } from './js/autorization';
+import { handleScreenSizeChange } from './js/categories';
 
-handleScreenSizeChange();
+// const currentUrl = window.location.href;
 
+// console.log(currentUrl);
+
+refs.mobileToggler.addEventListener('click', onToglerClick);
 refs.togler.addEventListener('click', onToglerClick);
 refs.tabs.addEventListener('click', onTabsClick);
+
+handleScreenSizeChange();
 
 refs.categoriesBtns.addEventListener('click', onClickBtns);
 refs.categoriesDropdown.addEventListener('click', onClickBtnsDropdown);
 
 import * as weatherBanner from './js/weather-banner';
 
-checkCurrentTheme();
-refs.mobileToggler.addEventListener('click', onToglerClick);
-refs.togler.addEventListener('click', onToglerClick);
-refs.tabs.addEventListener('click', onTabsClick);
+import { allData } from './js/main';
 
 refs.authorizationCancel.addEventListener('click', onAuthorizationCancel);
 
@@ -34,3 +36,13 @@ refs.authorizationForm.addEventListener('submit', onAuthorizationSubmit);
 
 verifyUser();
 
+// const currentPath = window.location.pathname;
+// console.log(currentPath);
+
+// if (currentPath !== '/index.html') {
+//     console.log(currentPath);
+//     refs.categoriesBtns.removeEventListener('click', onClickBtns);
+//     refs.categoriesDropdown.removeEventListener('click', onClickBtnsDropdown);
+// }
+
+allData();
