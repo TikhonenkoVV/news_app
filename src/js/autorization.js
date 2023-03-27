@@ -1,7 +1,6 @@
 import { refs } from './refs';
 import { load, save } from './storage';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import { renderGallery } from './main';
 
 import { allData } from './main';
 
@@ -16,7 +15,7 @@ export const verifyUser = () => {
         disableBodyScroll(document.body);
     } else {
         refs.authorizationModal.classList.add('is-hidden');
-        allData();
+        // allData();
     }
     if (!load(AUTORIZED_USER_KEY)) {
         save(AUTORIZED_USER_KEY, { test: { pass: '' } });

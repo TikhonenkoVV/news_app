@@ -1,29 +1,34 @@
 import { fetchCategoryArticles } from './fetch';
+import { refs } from './refs';
 
-const categoriesBtns = document.querySelector('.home__category');
-const categoriesDropdown = document.querySelector('.home__dropdown-menu');
-
-const categoryButton = document.querySelector('.home__category-button');
-const openIcon = document.querySelector('.home__category-button-icon--open');
-const closeIcon = document.querySelector('.home__category-button-icon--close');
-
-categoryButton.addEventListener('click', () => {
-    openIcon.classList.toggle('hidden');
-    closeIcon.classList.toggle('hidden');
-    categoriesDropdown.classList.toggle('hidden');
+refs.categoryButton.addEventListener('click', event => {
+    event.preventDefault();
+    refs.openIcon.classList.toggle('hidden');
+    refs.closeIcon.classList.toggle('hidden');
+    refs.categoriesDropdown.classList.toggle('hidden');
 });
 
-const cachedResults = {};
+document.body.addEventListener('click', event => {
+    // event.preventDefault();
+    const isClickInside = refs.categoriesDropdown.contains(event.target);
+    const isClickOnButton = refs.categoryButton.contains(event.target);
+    if (!isClickInside && !isClickOnButton) {
+        refs.categoriesDropdown.classList.add('hidden');
+        refs.openIcon.classList.remove('hidden');
+        refs.closeIcon.classList.add('hidden');
+    }
+});
 
 const createBtnsMarkupMobile = results => {
-    categoriesBtns.innerHTML = '';
-
-    const dropdownMarkup = results
+    return results
         .map(({ display_name }) => {
-            return `<button class="home__dropdown-item" type="button">${display_name}</button>`;
+            return `<a href="" class="home__dropdown-menu--item"><button class="home__dropdown-item" type="button">${display_name}</button></a>`;
         })
         .join('');
-    categoriesDropdown.insertAdjacentHTML('beforeend', dropdownMarkup);
+};
+
+const renderMarkupMobile = results => {
+    refs.categoriesDropdown.innerHTML = createBtnsMarkupMobile(results);
 };
 
 const createBtnsMarkupTablet = results => {
@@ -39,12 +44,12 @@ const createBtnsMarkupTablet = results => {
     const dropdownMarkup = results
         .slice(4)
         .map(({ display_name }) => {
-            return `<button class="home__dropdown-item" type="button">${display_name}</button>`;
+            return `<a href="" class="home__dropdown-menu--item"><button class="home__dropdown-item" type="button">${display_name}</button></a>`;
         })
         .join('');
 
-    categoriesBtns.innerHTML = buttonsMarkup;
-    categoriesDropdown.insertAdjacentHTML('beforeend', dropdownMarkup);
+    refs.categoriesBtns.innerHTML = buttonsMarkup;
+    refs.categoriesDropdown.innerHTML = dropdownMarkup;
 };
 
 const createBtnsMarkupDesktop = results => {
@@ -60,43 +65,43 @@ const createBtnsMarkupDesktop = results => {
     const dropdownMarkup = results
         .slice(6) // обмежуємо результат всіма категоріями, що залишилися
         .map(({ display_name }) => {
-            return `<button class="home__dropdown-item" type="button">${display_name}</button>`;
+            return `<a href="" class="home__dropdown-menu--item"><button class="home__dropdown-item" type="button">${display_name}</button></a>`;
         })
         .join('');
 
-    categoriesBtns.innerHTML = buttonsMarkup;
-    categoriesDropdown.insertAdjacentHTML('beforeend', dropdownMarkup);
+    refs.categoriesBtns.innerHTML = buttonsMarkup;
+    refs.categoriesDropdown.innerHTML = dropdownMarkup;
 };
 
-const renderMarkup = () => {
-    if (window.innerWidth >= 1280) {
-        if (cachedResults.desktop) {
-            createBtnsMarkupDesktop(cachedResults.desktop);
-        } else {
-            fetchCategoryArticles().then(({ results }) => {
-                createBtnsMarkupDesktop(results);
-                cachedResults.desktop = results;
-            });
-        }
-    } else if (window.innerWidth >= 768 && window.innerWidth < 1280) {
-        if (cachedResults.tablet) {
-            createBtnsMarkupTablet(cachedResults.tablet);
-        } else {
-            fetchCategoryArticles().then(({ results }) => {
-                createBtnsMarkupTablet(results);
-                cachedResults.tablet = results;
-            });
-        }
+let timeout;
+
+export const handleScreenSizeChange = async () => {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 768) {
+        // mobile
+        refs.categoriesBtns.innerHTML = '';
+        await fetchCategoryArticles().then(({ results }) => {
+            renderMarkupMobile(results);
+        });
+    } else if (screenWidth < 1280) {
+        // tablet
+        refs.categoriesBtns.innerHTML = '';
+        await fetchCategoryArticles().then(({ results }) => {
+            createBtnsMarkupTablet(results);
+        });
     } else {
-        if (cachedResults.mobile) {
-            createBtnsMarkupMobile(cachedResults.mobile);
-        } else {
-            fetchCategoryArticles().then(({ results }) => {
-                createBtnsMarkupMobile(results);
-                cachedResults.mobile = results;
-            });
-        }
+        // desktop
+        refs.categoriesBtns.innerHTML = '';
+        await fetchCategoryArticles().then(({ results }) => {
+            createBtnsMarkupDesktop(results);
+        });
     }
 };
 
-window.addEventListener('load', renderMarkup);
+window.addEventListener('resize', () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(handleScreenSizeChange, 500);
+});
+
+// викликаємо при завантаженні сторінки
+handleScreenSizeChange();

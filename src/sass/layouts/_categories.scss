@@ -4,23 +4,33 @@
 }
 
 .home__category {
-    margin-top: 28px;
-    margin-bottom: 60px;
+    margin-top: 24px;
+    margin-bottom: 40px;
     display: flex;
+
+    @include for-size(tablet) {
+        margin-top: 28px;
+        margin-bottom: 48px;
+    }
+    
+    @include for-size(desktop) {
+        margin-bottom: 60px;
+    }
+
 }
 
 .home__category-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 44px;
 
 
     font-weight: 400;
     font-size: 12px;
     line-height: 1.33;
     text-align: center;
-    padding: 7.5px 24px;
+    padding: 7px 14px;
     letter-spacing: 0.01em;
 
     color: var(--colorTextCategoryBtn);
@@ -29,6 +39,11 @@
     border-radius: 20px;
     cursor: pointer;
     transition: background-color 250ms ease-in-out, color 250ms ease-in-out, fill 250ms ease-in-out;
+
+        @include for-size(tablet) {
+                gap: 10px;
+                padding: 7.5px 24.5px;
+            }
 
         &:not(:last-child) {
             margin-right: 16px;
@@ -73,43 +88,61 @@
 
     @include for-size(tablet) {
         top: 0;
-        left: 58.2%;
+        left: 58.5%;
     }
 
     @include for-size(desktop) {
-        left: 52.3%;
+        left: 52.8%;
     }
 
     .home__dropdown-menu {
         max-height: 380px;
-        max-width: 168px;  
+        max-width: 148px;  
         background-color: var(--colorCategoriesBackgroundSelect);
         border-radius: 20px;
         padding: 8px;
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         gap: 12px;
         overflow-y: auto;
+
+        @include for-size(tablet) {
+            max-width: 168px;
+        }
+
+        &::-webkit-scrollbar {
+            width: 0px;
+            background-color: transparent;
+        }
+}
+}
+
+.home__dropdown-menu{
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar{
+        width: 0 !important;
+        height: 0;
+        display: none !important;
+        background: transparent;
     }
 }
 
-.home__dropdown-menu::-webkit-scrollbar{
-    width: 0;
-    height: 0;
-    scrollbar-width: 0;
-    scrollbar-color: var(--colorCategoriesBackgroundSelect);
-}
 
 .home__category-button-icon{
     fill: $colorAccent;
     transition: fill 250ms ease-in-out
 }
 
-.home__category-button-icon--open {
-}
+// .home__category-button-icon--open {
+// }
 
-.home__category-button-icon--close {
-}
+// .home__category-button-icon--close {
+// }
 
 .hidden {
     display: none !important;
