@@ -1,6 +1,7 @@
 import { refs } from './refs';
 import axios from 'axios';
 import Notiflix from 'notiflix';
+import { createPagination } from './pagination';
 
 const BASE_URL = 'https://api.nytimes.com/svc';
 const API_KEY = 'e3QVyAs0wF8oNwOW75RSlccT9UsAdwt7';
@@ -44,6 +45,7 @@ export const onClickBtns = async e => {
             }
         );
         renderGallery(users);
+        createPagination(users, renderGallery);
     } catch (error) {
         console.log(error);
         if (error.response && error.response.status === 404) {
@@ -92,6 +94,7 @@ export const onClickBtnsDropdown = async e => {
             }
         );
         renderGallery(users);
+        createPagination(users, renderGallery);
     } catch (error) {
         console.log(error);
         if (error.response && error.response.status === 404) {

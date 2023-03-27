@@ -4,6 +4,7 @@ import { renderSearchedNews } from './templates/templates';
 import { normalize } from './normalize';
 import { renderGallery } from './main';
 import { load } from './storage';
+import { createPagination } from './pagination';
 
 const ref = {
     form: document.querySelector('.search-form'),
@@ -30,6 +31,7 @@ async function handleSubmit(e) {
         normalize(docs);
 
         renderSearchedNews(load('bite-search'));
+        createPagination(load('bite-search'), renderSearchedNews)
     } catch (err) {
         console.log(err);
     }
