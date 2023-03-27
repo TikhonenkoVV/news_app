@@ -4,6 +4,7 @@ import { addDataReadNews } from './read/add-data-read-more';
 import { fetchPopularArticles } from './fetch';
 import { normalize } from './normalize';
 import { createPagination } from './pagination';
+const throttle = require('lodash.throttle');
 
 export async function allData() {
     try {
@@ -13,8 +14,12 @@ export async function allData() {
         normalize(results);
 
         renderGallery(load('bite-search'), true);
-        // need to call createPagination func and pass the object array from local storage as argument;
         createPagination(load('bite-search'), renderGallery);
+
+        window.addEventListener('resize', throttle(((e) => {
+            renderGallery(load('bite-search'), true);
+            createPagination(load('bite-search'), renderGallery);
+        }), 1000));
     } catch (error) {
         console.log(error);
     }
