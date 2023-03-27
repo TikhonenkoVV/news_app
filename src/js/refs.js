@@ -13,6 +13,7 @@ export const refs = {
     ),
     confirmPass: document.querySelector('.authorization__field--confirm'),
     newsContainer: document.querySelector('.news'),
+    favoritesListBtn: document.getElementById('#favoritesList'),
     categoriesBtns: document.querySelector('.home__category'),
     categoriesDropdown: document.querySelector('.home__dropdown-menu'),
 
