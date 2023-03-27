@@ -2,8 +2,6 @@ import { refs } from './refs';
 import { load, save } from './storage';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
-import { allData } from './main';
-
 const USER_KEY = 'bite-user-autorize';
 const AUTORIZED_USER_KEY = 'autorized';
 export let userLogin;
@@ -15,7 +13,6 @@ export const verifyUser = () => {
         disableBodyScroll(document.body);
     } else {
         refs.authorizationModal.classList.add('is-hidden');
-        // allData();
     }
     if (!load(AUTORIZED_USER_KEY)) {
         save(AUTORIZED_USER_KEY, { test: { pass: '' } });
@@ -60,7 +57,6 @@ export const onAuthorizationSubmit = e => {
         autorizedUser[email.value] = { pass: password.value };
         save(AUTORIZED_USER_KEY, autorizedUser);
         save(USER_KEY, email.value);
-        allData();
     } else {
         if (
             parceData.hasOwnProperty(email.value) &&
@@ -70,7 +66,6 @@ export const onAuthorizationSubmit = e => {
             enableBodyScroll(document.body);
             save(USER_KEY, email.value);
             userLogin = email.value;
-            allData();
         } else alert('Invalid login or password');
     }
 };
