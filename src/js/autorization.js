@@ -15,7 +15,7 @@ export const verifyUser = () => {
         disableBodyScroll(document.body);
     } else {
         refs.authorizationModal.classList.add('is-hidden');
-        allData();
+        // allData();
     }
     if (!load(AUTORIZED_USER_KEY)) {
         save(AUTORIZED_USER_KEY, { test: { pass: '' } });

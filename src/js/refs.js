@@ -13,6 +13,7 @@ export const refs = {
     ),
     confirmPass: document.querySelector('.authorization__field--confirm'),
     newsContainer: document.querySelector('.news'),
+    favoritesListBtn: document.getElementById('#favoritesList'),
     categoriesBtns: document.querySelector('.home__category'),
     categoriesDropdown: document.querySelector('.home__dropdown-menu'),
 
@@ -23,5 +24,6 @@ export const refs = {
     pgContainer: document.querySelector('.pagination__container'),
     btnNextPg: document.querySelector('.pagination__next-page'),
     btnPrevPg: document.querySelector('.pagination__prev-page'),
+    boxItems: document.querySelector('.news'),
     gridBox: document.querySelector('.grid-box'),
 };
