@@ -35,6 +35,7 @@ export function checkCurrentTheme() {
     const currentLocation = window.location.pathname;
     const navLinks = document.querySelectorAll('.site-nav__link');
     const mobileLinks = document.querySelectorAll('.mobile-menu__item');
+    console.log(currentLocation.includes('read'));
     if (currentLocation.includes('favorite')) {
         toggleNavigationMenuClasses(navLinks, mobileLinks, 'favorite');
     } else if (currentLocation.includes('read')) {
