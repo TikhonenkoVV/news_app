@@ -4,6 +4,7 @@ import { addDataReadNews } from './read/add-data-read-more';
 import { fetchPopularArticles } from './fetch';
 import { normalize } from './normalize';
 import { createPagination } from './pagination';
+import { updateFavoriteFunc } from './autorization';
 
 export async function allData() {
     try {
@@ -64,6 +65,7 @@ export function renderGallery(users, ifFirstPage) {
             }
         )
         .join('');
+
 
     refs.newsContainer.innerHTML = gallaryMarkup;
 }

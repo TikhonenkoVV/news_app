@@ -3,10 +3,11 @@ import './searchForm';
 import { refs } from './refs';
 import { onToglerClick } from './togler';
 import { onTabsClick } from './on-tabs-click';
-import { verifyUser } from './autorization';
+import { verifyUser, checkAuth } from './autorization';
 import { onAuthorizationSubmit, onAuthorizationCancel } from './autorization';
 
-verifyUser();
+checkAuth();
+verifyUser()
 
 refs.togler.addEventListener('click', onToglerClick);
 refs.tabs.addEventListener('click', onTabsClick);

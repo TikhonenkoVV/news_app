@@ -1,6 +1,7 @@
 import './js/searchForm';
 import './js/mobile-menu';
 import { refs } from './js/refs';
+import { checkAuth } from './js/autorization';
 import { onToglerClick, checkCurrentTheme } from './js/togler';
 import { refs } from './js/refs';
 import { onToglerClick } from './js/togler';
