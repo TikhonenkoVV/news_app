@@ -1,14 +1,13 @@
-import { renderGallery } from './main';
 import { refs } from './refs';
 
 let newsPerPage;
 window.onresize = setNumberOfPages();
 
-export function createPagination(newsArray) {
+export function createPagination(newsArray, funcForRenderingMarkup) {
     const valuePage = {
         curPage: 1,
         numLinksTwoSide: 1,
-        totalPages: Math.ceil(newsArray.length / newsPerPage),
+        totalPages: Math.ceil((newsArray.length + 1) / (newsPerPage + 1)),
     };
 
     pagination(valuePage);
@@ -41,8 +40,7 @@ export function createPagination(newsArray) {
                 array = newsArray.slice(start, end);
             }
 
-            console.log(array);
-            renderGallery(array);
+            funcForRenderingMarkup(array);
         }
     });
 }
