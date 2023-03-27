@@ -1,10 +1,15 @@
 import { WeatherService } from './weather-service';
+import { WEATHER_API_KEY } from './key';
 
 const NY_LAT = 40.73061;
 const NY_LON = -73.935242;
 
 const refs = {
     weatherBanner: document.querySelector('[data-weather-banner]'),
+    weatherBackdrop: document.querySelector('[data-weather-modal]'),
+    weatherBackdropCloseButton: document.querySelector(
+        '[data-weather-modal-close]'
+    ),
 };
 
 onBannerLoad();
@@ -20,6 +25,17 @@ async function onBannerLoad() {
         return;
     }
     renderBanner(weatherData);
+    initializeComponents(weatherData);
+}
+
+async function initializeComponents(weatherData) {
+    await isHtmlElementReady('.weather__wripper');
+
+    const weatherWeekButton = document.querySelector('[data-weather-button]');
+    weatherWeekButton.addEventListener('click', () =>
+        showWeekWeather(weatherData)
+    );
+    refs.weatherBackdropCloseButton.addEventListener('click', closeWeekWeather);
 }
 
 function getCoordinates() {
@@ -44,9 +60,73 @@ function getCoordinates() {
     });
 }
 
+async function showWeekWeather(weatherData) {
+    const ready = hasWidget();
+
+    if (!ready) {
+        window.myWidgetParam
+            ? window.myWidgetParam
+            : (window.myWidgetParam = []);
+        window.myWidgetParam.push({
+            id: 11,
+            cityid: weatherData.stationId,
+            appid: WEATHER_API_KEY,
+            units: 'metric',
+            containerid: 'openweathermap-widget-11',
+        });
+        (function () {
+            var script = document.createElement('script');
+            script.async = true;
+            //script.charset = 'utf-8';
+            script.src =
+                '//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(script, s);
+        })();
+    }
+
+    if (!ready) {
+        await isHtmlElementReady('#container-openweathermap-widget-11');
+    }
+    const widgetHeader = document.querySelector('.widget-left-menu__header');
+    widgetHeader.textContent = weatherData.city;
+    refs.weatherBackdrop.classList.remove('is-hidden');
+    window.addEventListener('keydown', onEscKeyPress);
+}
+
+function closeWeekWeather() {
+    refs.weatherBackdrop.classList.add('is-hidden');
+    window.removeEventListener('keydown', onEscKeyPress);
+}
+
+function onEscKeyPress(e) {
+    const ESC_KEY_CODE = 'Escape';
+    if (e.code === ESC_KEY_CODE) {
+        closeWeekWeather();
+    }
+}
+
+async function isHtmlElementReady(selector) {
+    return new Promise(resolve => {
+        const intervalId = setInterval(() => {
+            let element = document.querySelector(selector);
+            if (element != null) {
+                clearInterval(intervalId);
+                resolve(true);
+            }
+        }, 300);
+    });
+}
+
+function hasWidget() {
+    const container = document.querySelector(
+        '#container-openweathermap-widget-11'
+    );
+
+    return container != null;
+}
+
 function renderBanner({ temp, weather, city, icon, date, description }) {
-    // console.log(temp, weather, city, icon, date, description);
-    // console.log(getCurrentDate(date));
     if (!refs.weatherBanner) {
         return;
     }
@@ -68,7 +148,8 @@ function renderBanner({ temp, weather, city, icon, date, description }) {
             </div>
         </div>
         <img class="weather__image" src="${icon}" alt="${description}" width="128" height="128"/>
-        <p class="weather__date">${getCurrentDate(date)}</p>`;
+        <p class="weather__date">${getCurrentDate(date)}</p>
+        <button type="button" class="weather__button" data-weather-button>weather for week</button>`;
 }
 
 function getCurrentDate(date) {
