@@ -2,7 +2,6 @@ import { Notify } from 'notiflix';
 import { fetchSearchArticles } from './fetch';
 import { renderSearchedNews } from './templates/templates';
 import { normalize } from './normalize';
-import { renderGallery } from './main';
 import { load } from './storage';
 import { createPagination } from './pagination';
 
