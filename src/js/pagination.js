@@ -1,5 +1,5 @@
 import { refs } from './refs';
-import { showOrHideBanner } from './weather-banner';
+// import { showOrHideBanner } from './weather-banner';
 
 let newsPerPage;
 window.onresize = setNumberOfPages();
