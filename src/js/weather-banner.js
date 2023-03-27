@@ -28,20 +28,8 @@ async function onBannerLoad() {
     initializeComponents(weatherData);
 }
 
-async function isBannerReady() {
-    return new Promise(resolve => {
-        const intervalId = setInterval(() => {
-            let wrapper = document.querySelector('.weather__wripper');
-            if (wrapper != null) {
-                clearInterval(intervalId);
-                resolve(true);
-            }
-        }, 300);
-    });
-}
-
 async function initializeComponents(weatherData) {
-    await isBannerReady();
+    await isHtmlElementReady('.weather__wripper');
 
     const weatherWeekButton = document.querySelector('[data-weather-button]');
     weatherWeekButton.addEventListener('click', () =>
@@ -73,7 +61,9 @@ function getCoordinates() {
 }
 
 async function showWeekWeather(weatherData) {
-    if (!hasWidget()) {
+    const ready = hasWidget();
+
+    if (!ready) {
         window.myWidgetParam
             ? window.myWidgetParam
             : (window.myWidgetParam = []);
@@ -94,7 +84,10 @@ async function showWeekWeather(weatherData) {
             s.parentNode.insertBefore(script, s);
         })();
     }
-    await isWidgetLoaded();
+
+    if (!ready) {
+        await isHtmlElementReady('#container-openweathermap-widget-11');
+    }
     const widgetHeader = document.querySelector('.widget-left-menu__header');
     widgetHeader.textContent = weatherData.city;
     refs.weatherBackdrop.classList.remove('is-hidden');
@@ -113,19 +106,18 @@ function onEscKeyPress(e) {
     }
 }
 
-async function isWidgetLoaded() {
+async function isHtmlElementReady(selector) {
     return new Promise(resolve => {
         const intervalId = setInterval(() => {
-            let container = document.querySelector(
-                '#container-openweathermap-widget-11'
-            );
-            if (container != null) {
+            let element = document.querySelector(selector);
+            if (element != null) {
                 clearInterval(intervalId);
                 resolve(true);
             }
         }, 300);
     });
 }
+
 function hasWidget() {
     const container = document.querySelector(
         '#container-openweathermap-widget-11'
