@@ -30,7 +30,7 @@ async function handleSubmit(e) {
 
         normalize(docs);
 
-        renderSearchedNews(load('bite-search'));
+        renderSearchedNews(load('bite-search'), true);
         createPagination(load('bite-search'), renderSearchedNews)
     } catch (err) {
         console.log(err);

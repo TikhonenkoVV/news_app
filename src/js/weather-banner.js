@@ -93,3 +93,4 @@ function getCurrentDate(date) {
     const currentDay = date.getDate();
     return `${dayOfWeek}<br>${currentDay} ${currentMonth} ${currentYear}`;
 }
+

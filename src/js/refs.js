@@ -25,4 +25,5 @@ export const refs = {
     btnNextPg: document.querySelector('.pagination__next-page'),
     btnPrevPg: document.querySelector('.pagination__prev-page'),
     boxItems: document.querySelector('.news'),
+    gridBox: document.querySelector('.grid-box'),
 };
