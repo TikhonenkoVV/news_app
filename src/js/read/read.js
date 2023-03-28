@@ -6,9 +6,8 @@ import { fetchArrayWithDBReedNews } from '../autorization';
 
 
 const array = sortReadNewsData();
+renderGalleryReadOnDays(array);
 
 // тут замість array потрібно підставити результат функції fetchArrayWithDBReedNews()
-
-renderGalleryReadOnDays(array);
 
 refs.boxItems.addEventListener('click', openCloseNews);
