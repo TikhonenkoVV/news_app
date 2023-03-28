@@ -10,17 +10,15 @@ export const addRemoveDataFavorite = e => {
 
     let newArr = [];
     if (userGallery) newArr.push(...userGallery);
-    const savedLocalFavorite = localStorage.getItem('user-gallery')
-    const results = JSON.parse(savedLocalFavorite);
 
-    if (results) {
-        const array = results.map(result => {
-           if (result.url !== url) return result;
-           result.favorite = !result.favorite;
-           return result;
+    if (userGallery) {
+        const array = userGallery.map(obj => {
+           if (obj.url !== url) return obj;
+           obj.favorite = !obj.favorite;
+           return obj;
         });
         localStorage.setItem("user-gallery", JSON.stringify(array)); 
-        const index = results.findIndex(result => url === result.url);
+        const index = userGallery.findIndex(obj => url === obj.url);
         if (index !== -1) return;
     };
 

@@ -20,14 +20,13 @@ export const addDataReadNews = e => {
 
     let newArr = [];
     if (userGallery) newArr.push(...userGallery);
-    const savedLocalReads = localStorage.getItem('user-gallery')
-    const results = JSON.parse(savedLocalReads);
-    if (results) {
-        // const filterResults = results.filter(result => result.readMore !== '');
-        const index = results.findIndex(result => url === result.url);
+
+    if (userGallery) {
+        // const filteruserGallery = userGallery.filter(obj => obj.readMore !== '');
+        const index = userGallery.findIndex(obj => url === obj.url);
         if (index !== -1) {
-        results[index].readMore = formattedDate;
-        localStorage.setItem('user-gallery', JSON.stringify(results));
+        userGallery[index].readMore = formattedDate;
+        localStorage.setItem('user-gallery', JSON.stringify(userGallery));
          return;
         }
     };
