@@ -23,7 +23,7 @@ export const refs = {
     pgContainer: document.querySelector('.pagination__container'),
     btnNextPg: document.querySelector('.pagination__next-page'),
     btnPrevPg: document.querySelector('.pagination__prev-page'),
-    boxItems: document.querySelector('.news'),
+    boxItems: document.querySelector('.read'),
     gridBox: document.querySelector('.grid-box'),
     form: document.querySelector('.search-form'),
 };
