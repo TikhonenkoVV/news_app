@@ -4,15 +4,11 @@ import { renderSearchedNews } from './templates/templates';
 import { normalize } from './normalize';
 import { load } from './storage';
 import { createPagination } from './pagination';
-const throttle = require('lodash.throttle');
+// const throttle = require('lodash.throttle');
+import throttle from 'lodash.throttle';
+import { hideMainContent, showMainContent } from './news-not-found';
 
-const ref = {
-    form: document.querySelector('.search-form'),
-};
-
-ref.form.addEventListener('submit', handleSubmit);
-
-async function handleSubmit(e) {
+export const handleSubmit = async e => {
     e.preventDefault();
     if (
         e.currentTarget.querySelector('.header__input-search').clientWidth < 49
@@ -29,13 +25,16 @@ async function handleSubmit(e) {
             response: { docs },
         } = await fetchSearchArticles(1, query);
         if (!docs.length) {
-            Notify.failure('No news founded');
+            hideMainContent();
+            // Notify.failure('No news founded');
             return;
         }
+        showMainContent();
 
         normalize(docs);
 
         renderSearchedNews(load('bite-search'), true);
+
         createPagination(load('bite-search'), renderSearchedNews);
         window.addEventListener(
             'resize',
@@ -47,4 +46,4 @@ async function handleSubmit(e) {
     } catch (err) {
         console.log(err);
     }
-}
+};
