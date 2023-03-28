@@ -23,8 +23,11 @@ export const refs = {
     pgContainer: document.querySelector('.pagination__container'),
     btnNextPg: document.querySelector('.pagination__next-page'),
     btnPrevPg: document.querySelector('.pagination__prev-page'),
-    boxItems: document.querySelector('.news'),
+    boxItems: document.querySelector('.read'),
     gridBox: document.querySelector('.grid-box'),
     form: document.querySelector('.search-form'),
     dateInput: document.querySelector('#datetime-picker'),
+    newsSection: document.querySelector('.news-section'),
+    newsNotFoundSection: document.querySelector('.not-found-section'),
+    seachQuery: document.querySelector('.header__input-search'),
 };
