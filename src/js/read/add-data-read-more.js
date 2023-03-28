@@ -23,19 +23,18 @@ export const addDataReadNews = e => {
     let newArr = [];
     if (userGallery) newArr.push(...userGallery);
 
-    updateReedFunc(userGallery)
-
+    updateReedFunc(userGallery);
 
     if (userGallery) {
         const index = userGallery.findIndex(obj => url === obj.url);
         if (index !== -1) {
-        userGallery[index].readMore = formattedDate;
-        localStorage.setItem('user-gallery', JSON.stringify(userGallery));
-         return;
+            userGallery[index].readMore = formattedDate;
+            localStorage.setItem('user-gallery', JSON.stringify(userGallery));
+            return;
         }
-    };
+    }
     // updateReedFunc(newArr)
-    console.log(userGallery)
+    console.log(userGallery);
 
     const savedLocalNews = localStorage.getItem('bite-search');
     JSON.parse(savedLocalNews).map(fetchNew => {
