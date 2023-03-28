@@ -3,9 +3,6 @@ import { auth, firebaseApp } from '../auth';
 
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getFirestore, getDoc} from "firebase/firestore"; 
-export const renderGalleryReadOnDays = async sortReadNewsData => {
-    // const arr = await fetchArrayWithDBReedNews()
-    // console.log(arr)
 
 let db = ''
 let currentUser = {}
