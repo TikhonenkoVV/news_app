@@ -8,7 +8,8 @@ import { createPagination } from './pagination';
 import throttle from 'lodash.throttle';
 import { hideMainContent, showMainContent } from './news-not-found';
 import { refs } from './refs';
-import { selectedDate } from './calendar';
+import { selectedDate } from './calendar'; 
+import { showBanner } from './weather-banner';
 
 export const handleSubmit = async e => {
     e.preventDefault();
@@ -34,8 +35,8 @@ export const handleSubmit = async e => {
         showMainContent();
 
         normalize(docs);
-
         renderSearchedNews(load('bite-search'), true);
+        showBanner();
         createPagination(load('bite-search'), renderSearchedNews);
         disableButtons();
         addLoader();
@@ -80,9 +81,9 @@ function disableButtons() {
     const paginationButtons = document.querySelectorAll('li[data-page]');
     const btnNextPg = document.querySelector('.pagination__next-page');
     if (btnNextPg && paginationButtons) {
-        for (button of paginationButtons) {
+        paginationButtons.forEach(button => {
             button.classList.add('disabled');
-        }
+        });
         btnNextPg.setAttribute('disabled', true);
     }
 }
@@ -90,10 +91,11 @@ function disableButtons() {
 function enableButtons() {
     const paginationButtons = document.querySelectorAll('li[data-page]');
     const btnNextPg = document.querySelector('.pagination__next-page');
+
     if (btnNextPg && paginationButtons) {
-        for (button of paginationButtons) {
+        paginationButtons.forEach(button => {
             button.classList.remove('disabled');
-        }
+        });
         btnNextPg.removeAttribute('disabled');
     }
 }
@@ -101,8 +103,9 @@ function enableButtons() {
 function addLoader() {
     const loaderBox = document.createElement('div');
     const wrapper = document.querySelector('.pagination__wrapper');
-    loaderBox.classList.add('pagination__loader')
-    loaderBox.innerHTML = '<p>All news are loading, please wait few seconds...</p>';
+    loaderBox.classList.add('pagination__loader');
+    loaderBox.innerHTML =
+        '<p>All news are loading, please wait few seconds...</p>';
     wrapper.prepend(loaderBox);
 }
 
