@@ -15,7 +15,6 @@ export const addDataReadNews = e => {
         }/${date.getFullYear()}`;
     };
     const formattedDate = todayDate();
-    console.log(formattedDate);
     addOverLay(e);
     let userGallery = load('user-gallery');
     userGallery = load('user-gallery');
