@@ -7,6 +7,7 @@ import { createPagination } from './pagination';
 // const throttle = require('lodash.throttle');
 import throttle from 'lodash.throttle';
 import { hideMainContent, showMainContent } from './news-not-found';
+import { refs } from './refs';
 
 export const handleSubmit = async e => {
     e.preventDefault();
@@ -34,36 +35,39 @@ export const handleSubmit = async e => {
         normalize(docs);
 
         renderSearchedNews(load('bite-search'), true);
+        createPagination(load('bite-search'), renderSearchedNews);
+        disableButtons();
+        addLoader();
+
         let results = [];
         results.push(...load('bite-search'));
-        disableButtons();
 
         for (let i = 1; i <= 8; i += 1) {
             try {
                 const {
                     response: { docs },
                 } = await fetchSearchArticles(i, query);
-                normalize(docs);
-                results.push(...load('bite-search'));
                 if (!docs.length) {
                     return;
                 }
+                normalize(docs);
+                results.push(...load('bite-search'));
             } catch (err) {
                 console.log(err);
             }
             await new Promise(res => setTimeout(res, 500));
             createPagination(results, renderSearchedNews);
             disableButtons();
-            if (i === 8) {
-                enableButtons();
-            }
         }
+
+        enableButtons();
+        removeLoader();
 
         window.addEventListener(
             'resize',
             throttle(e => {
-                renderGallery(load('bite-search'), true);
-                createPagination(load('bite-search'), renderGallery);
+                renderSearchedNews(load('bite-search'), true);
+                createPagination(results, renderSearchedNews);
             }, 1000)
         );
     } catch (err) {
@@ -74,17 +78,34 @@ export const handleSubmit = async e => {
 function disableButtons() {
     const paginationButtons = document.querySelectorAll('li[data-page]');
     const btnNextPg = document.querySelector('.pagination__next-page');
-    for (button of paginationButtons) {
-        button.classList.add('disabled');
+    if (btnNextPg && paginationButtons) {
+        for (button of paginationButtons) {
+            button.classList.add('disabled');
+        }
+        btnNextPg.setAttribute('disabled', true);
     }
-    btnNextPg.setAttribute('disabled', true);
-};
+}
 
 function enableButtons() {
     const paginationButtons = document.querySelectorAll('li[data-page]');
     const btnNextPg = document.querySelector('.pagination__next-page');
-    for (button of paginationButtons) {
-        button.classList.remove('disabled');
+    if (btnNextPg && paginationButtons) {
+        for (button of paginationButtons) {
+            button.classList.remove('disabled');
+        }
+        btnNextPg.removeAttribute('disabled');
     }
-    btnNextPg.removeAttribute('disabled');
-};
+}
+
+function addLoader() {
+    const loaderBox = document.createElement('div');
+    const wrapper = document.querySelector('.pagination__wrapper');
+    loaderBox.classList.add('pagination__loader')
+    loaderBox.innerHTML = '<p>All news are loading, please wait few seconds...</p>';
+    wrapper.prepend(loaderBox);
+}
+
+function removeLoader() {
+    const loader = document.querySelector('.pagination__loader');
+    loader.classList.add('visually-hidden');
+}

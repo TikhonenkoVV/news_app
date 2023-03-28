@@ -2,13 +2,19 @@ import { refs } from './refs';
 let newsPerPage;
 
 export function createPagination(newsArray, funcForRenderingMarkup) {
-    setNumberOfPages();
+    setNumberOfNewsperPage();
 
     const valuePage = {
         curPage: 1,
         numLinksTwoSide: 1,
         totalPages: Math.ceil((newsArray.length + 1) / (newsPerPage + 1)),
     };
+
+    if(valuePage.totalPages <= 1) {
+        console.log('1 page');
+        refs.pgContainer.innerHTML = '';
+        return;
+    }
 
     pagination(valuePage);
 
@@ -195,7 +201,7 @@ function renderPage(index, active = '') {
 </li>`;
 }
 
-function setNumberOfPages() {
+function setNumberOfNewsperPage() {
     if (window.matchMedia('(min-width: 1280px)').matches) {
         newsPerPage = 8;
     } else if (window.matchMedia('(min-width: 768px)').matches) {
