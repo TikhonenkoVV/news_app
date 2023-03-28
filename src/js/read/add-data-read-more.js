@@ -1,11 +1,13 @@
 import { addRemoveDataFavorite } from './addremove-data-favorite';
 import { load, save } from '../storage';
+import { addOverLay } from '../main';
 
 export const addDataReadNews = e => {
     addRemoveDataFavorite(e);
     if (!e.target.classList.contains('info__link')) {
         return;
     }
+    addOverLay(e);
     let userGallery = load('user-gallery');
     userGallery = load('user-gallery');
 
