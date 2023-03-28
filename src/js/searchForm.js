@@ -9,6 +9,7 @@ import throttle from 'lodash.throttle';
 import { hideMainContent, showMainContent } from './news-not-found';
 import { refs } from './refs';
 import { selectedDate } from './calendar';
+import { onBannerLoad } from './weather-banner';
 
 export const handleSubmit = async e => {
     e.preventDefault();
@@ -34,7 +35,7 @@ export const handleSubmit = async e => {
         showMainContent();
 
         normalize(docs);
-
+        onBannerLoad();
         renderSearchedNews(load('bite-search'), true);
         createPagination(load('bite-search'), renderSearchedNews);
         disableButtons();

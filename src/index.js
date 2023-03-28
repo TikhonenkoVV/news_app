@@ -8,7 +8,6 @@ import { allData } from './js/main';
 import { handleScreenSizeChange } from './js/categories';
 import { handleSubmit } from './js/searchForm';
 import { checkAuth, updateReedFunc } from './js/autorization';
-import * as weatherBanner from './js/weather-banner';
 
 refs.mobileToggler.addEventListener('click', onToglerClick);
 refs.togler.addEventListener('click', onToglerClick);

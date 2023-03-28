@@ -4,6 +4,7 @@ import { addDataReadNews } from './read/add-data-read-more';
 import { fetchPopularArticles } from './fetch';
 import { normalize } from './normalize';
 import { createPagination } from './pagination';
+import { onBannerLoad } from './weather-banner';
 const throttle = require('lodash.throttle');
 
 export async function allData() {
@@ -13,6 +14,7 @@ export async function allData() {
 
         normalize(results);
 
+        onBannerLoad();
         renderGallery(load('bite-search'), true);
         createPagination(load('bite-search'), renderGallery);
 
