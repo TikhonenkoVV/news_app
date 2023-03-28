@@ -31,6 +31,8 @@ export async function allData() {
 }
 
 export function renderGallery(users, ifFirstPage) {
+    let userGallery = load('user-gallery');
+
     const gallaryMarkup = users
         .map(
             (
@@ -54,6 +56,72 @@ export function renderGallery(users, ifFirstPage) {
                         }
                     }
                 }
+                let allAvailable = null;
+                if (userGallery) {
+                    allAvailable = userGallery.find(fruit => fruit.url === url);
+                }
+
+                if (allAvailable) {
+                    console.log(`allAvailable`, allAvailable);
+
+                    if (allAvailable.readMore && allAvailable.favorite) {
+                        console.log(`readMore & favorite`);
+                        return `<div class="news__item">
+            <p class="news__section">${section}</p>
+            <div class="news__img">
+              <img src="${imgUrl}" alt="${title}" loading="lazy"/>
+              <button id="${url}" type="button" class="news__btn">Remove from favorite<svg class="news__btn-icon" width="20" height="20">
+              <use href="#icon-heart-fill"></use></svg></button>
+                <p class="overlay">Already read<svg class="already" width="20" height="20">
+                <use href="#icon-already-read"></use>
+                </svg></p></div><div class="info">
+              <p class="info__title">${title}</p>
+              <p class="info__abstract">${abstract}</p>
+              <p class="info__published-date">${published_date}</p>
+              <a href="${url}" target="_blank"
+                rel="noopener noreferrer nofollow"
+                 class="info__link">Read more</a></div></div>`;
+                    }
+
+                    if (allAvailable.favorite) {
+                        console.log(`favorite`);
+                        return `<div class="news__item">
+            <p class="news__section">${section}</p>
+            <div class="news__img">
+              <img src="${imgUrl}" alt="${title}" loading="lazy"/>
+              <button id="${url}" type="button" class="news__btn">Remove from favorite<svg class="news__btn-icon" width="20" height="20">
+              <use href="#icon-heart-fill"></use></svg></button>
+                <p class="overlay visually-hidden">Already read<svg class="already" width="20" height="20">
+                <use href="#icon-already-read"></use>
+                </svg></p></div><div class="info">
+              <p class="info__title">${title}</p>
+              <p class="info__abstract">${abstract}</p>
+              <p class="info__published-date">${published_date}</p>
+              <a href="${url}" target="_blank"
+                rel="noopener noreferrer nofollow"
+                 class="info__link">Read more</a></div></div>`;
+                    }
+
+                    if (allAvailable.readMore) {
+                        console.log(`readMore`);
+                        return `<div class="news__item">
+            <p class="news__section">${section}</p>
+            <div class="news__img">
+              <img src="${imgUrl}" alt="${title}" loading="lazy"/>
+              <button id="${url}" type="button" class="news__btn">Add to favorite<svg class="news__btn-icon" width="20" height="20">
+                <use href="#icon-heart-border"></use>
+                </svg></button>
+                <p class="overlay">Already read<svg class="already" width="20" height="20">
+                <use href="#icon-already-read"></use>
+                </svg></p></div><div class="info">
+              <p class="info__title">${title}</p>
+              <p class="info__abstract">${abstract}</p>
+              <p class="info__published-date">${published_date}</p>
+              <a href="${url}" target="_blank"
+                rel="noopener noreferrer nofollow"
+                 class="info__link">Read more</a></div></div>`;
+                    }
+                }
 
                 return `<div class="news__item">
             <p class="news__section">${section}</p>
@@ -65,15 +133,13 @@ export function renderGallery(users, ifFirstPage) {
                 </svg></button>
                 <p class="overlay visually-hidden">Already read<svg class="already" width="20" height="20">
                 <use href="#icon-already-read"></use>
-                </svg></p></div>
-            <div class="info">
+                </svg></p></div><div class="info">
               <p class="info__title">${title}</p>
               <p class="info__abstract">${abstract}</p>
               <p class="info__published-date">${published_date}</p>
               <a href="${url}" target="_blank"
                 rel="noopener noreferrer nofollow"
-                 class="info__link">Read more</a>
-            </div></div>`;
+                 class="info__link">Read more</a></div></div>`;
             }
         )
         .join('');
@@ -83,7 +149,12 @@ export function renderGallery(users, ifFirstPage) {
 refs.newsContainer.addEventListener('click', addDataReadNews);
 
 export function addOverLay(e) {
-    let elements =
-        e.target.parentNode.previousSibling.previousSibling.lastElementChild;
+    let elements = e.target.parentNode.previousSibling.lastElementChild;
+    console.log(`parentNode`, elements);
+    // console.log(
+    //     `parentNode2`,
+    //     e.target.parentNode.previousSibling.lastElementChild
+    // );
     elements.classList.remove('visually-hidden');
+    // elements.classList.contains(cls);
 }
