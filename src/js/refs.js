@@ -31,4 +31,6 @@ export const refs = {
     newsSection: document.querySelector('.news-section'),
     newsNotFoundSection: document.querySelector('.not-found-section'),
     seachQuery: document.querySelector('.header__input-search'),
+    arrowUp: document.querySelector('.up'),
+    arrowDown: document.querySelector('.down'),
 };

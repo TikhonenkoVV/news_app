@@ -23,6 +23,12 @@ const options = {
         const currentDate = new Date().getTime();
         const selectedDate = selectedDates[0].getTime();
         const ms = selectedDate - currentDate;
+        refs.arrowDown.classList.toggle('visually-hidden');
+        refs.arrowUp.classList.toggle('visually-hidden');
+    },
+    onOpen() {
+        refs.arrowDown.classList.toggle('visually-hidden');
+        refs.arrowUp.classList.toggle('visually-hidden');
     },
 };
 
