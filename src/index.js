@@ -7,6 +7,7 @@ import { onClickBtns, onClickBtnsDropdown } from './js/categories-filter';
 import { allData } from './js/main';
 import { handleScreenSizeChange } from './js/categories';
 import { handleSubmit } from './js/searchForm';
+import { checkAuth } from './js/autorization';
 import * as weatherBanner from './js/weather-banner';
 
 import flatpickr from 'flatpickr';
@@ -47,3 +48,4 @@ if (refs.categoriesBtns && refs.categoriesDropdown) {
     refs.categoriesDropdown.addEventListener('click', onClickBtnsDropdown);
 }
 allData();
+checkAuth()
