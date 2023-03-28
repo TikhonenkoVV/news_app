@@ -11,3 +11,4 @@ export const addDataFavorite = e => {
 });
 localStorage.setItem("bite-search", JSON.stringify(results));
 };
+

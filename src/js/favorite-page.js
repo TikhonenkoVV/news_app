@@ -6,7 +6,7 @@ import { onTabsClick } from './on-tabs-click';
 import { verifyUser } from './autorization';
 import { onAuthorizationSubmit, onAuthorizationCancel } from './autorization';
 import { load } from './storage';
-import { renderGallery } from './main';
+
 verifyUser();
 
 refs.togler.addEventListener('click', onToglerClick);
@@ -22,7 +22,6 @@ console.log(load('bite-search'));
   renderFavoritesCardsInLibrary(load('bite-search'), false );
 }
 
-
 favoriteRender();
 // функція яка видаляє якщо фолс
 
@@ -37,11 +36,8 @@ function onFavoriteBtnRemoveClick() {
       }
     }
     localStorage.setItem('results', JSON.stringify(results));
-    if (
-      
-      refs.favoritesListBtn.checked
-    ) {
-        renderDataFavorite();
+   {
+        // renderDataFavorite();
     }
   }
 // функція що рендерить 
@@ -99,3 +95,4 @@ function renderFavoritesCardsInLibrary (results, ifFirstPage) {
 
     refs.favoritesContainer.innerHTML = favoritesList;
 }
+
