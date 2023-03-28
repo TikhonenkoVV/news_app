@@ -104,6 +104,7 @@ export const onAuthorizationSubmit = event => {
     }
 };
 
+
 export const checkAuth = () => {
     auth.onAuthStateChanged(user => {
         console.log('AuthUser ===', user)
@@ -168,47 +169,45 @@ export const loginFunc = () => {
 }
 
 export const fetchArrayWithPopularNews = async () => {
-    //console.log('fetchArrayDB')
+    console.log('fetchArrayDBPopular')
     const docRef = doc(db, currentUser, "popularNews");
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-        //console.log("popularNews:", docSnap.data().allNews);
+        console.log("popularNews:", docSnap.data().allNews);
     } else {
-        //console.log("No such document!");
+        console.log("No such document popularNews!");
     }
 }
 
 export const fetchArrayWithDBFavoriteNews = async () => {
-  // console.log('fetchArrayDB')
+  console.log('fetchArrayDBFavorite')
   const docRef = doc(db, currentUser, "favoriteNews");
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
-      // console.log("favoriteNews:", docSnap.data().favoriteNews);
+      console.log("favoriteNews:", docSnap.data().favoriteNews);
   } else {
-      //console.log("No such document!");
+      console.log("No such document favoriteNews!");
   }
 }
 
 export const fetchArrayWithDBReedNews = async () => {
-  // console.log('fetchArrayDB')
+  console.log('fetchArrayDBReed')
   const docRef = doc(db, currentUser, "reedNews");
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
-      // console.log("reedNews:", docSnap.data().reedNews);
+      console.log("reedNews:", docSnap.data().reedNews);
+      return docSnap.data().reedNews
   } else {
-      //console.log("No such document!");
+      console.log("No such document reedNews!");
   }
 }
-
-
-
 
 export const updateFavoriteFunc = async (array) => {
   const docData = {
     favoriteNews: array, // === сюди підставляємо масив кожного разу при апдейті...
   };
   await setDoc(doc(db, currentUser, 'favoriteNews'), docData);
- // console.log('updateFavoriteFunc === "OK"')
+  console.log('updateFavoriteFunc === "OK"')
 };
 
 export const updateReedFunc = async (array) => {
@@ -216,13 +215,14 @@ export const updateReedFunc = async (array) => {
     reedNews: array, // === сюди підставляємо масив кожного разу при апдейті...
   };
   await setDoc(doc(db, currentUser, 'reedNews'), docData);
-  //console.log('updateReedFunc === "OK"')
+  console.log('updateReedFunc === "OK"')
 };
 
 export const updatePopularNewsFunc = async (array) => {
+  const arr = array
   const docData = {
-    allNews: array, // === сюди підставляємо масив кожного разу при апдейті...
+    popularNews: arr, // === сюди підставляємо масив кожного разу при апдейті...
   };
   await setDoc(doc(db, currentUser, 'popularNews'), docData);
-  //console.log('updatePopularNewsFunc === "OK"')
+  console.log('updatePopularNewsFunc === "OK"')
 };

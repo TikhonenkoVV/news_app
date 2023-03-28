@@ -1,6 +1,7 @@
 import { addRemoveDataFavorite } from './addremove-data-favorite';
 import { load, save } from '../storage';
 import { addOverLay } from '../main';
+import { updateReedFunc } from '../autorization';
 
 export const addDataReadNews = e => {
     addRemoveDataFavorite(e);
@@ -15,13 +16,13 @@ export const addDataReadNews = e => {
         }/${date.getFullYear()}`;
     };
     const formattedDate = todayDate();
-    console.log(formattedDate);
     addOverLay(e);
     let userGallery = load('user-gallery');
     userGallery = load('user-gallery');
 
     let newArr = [];
     if (userGallery) newArr.push(...userGallery);
+
 
     if (userGallery) {
         // const filteruserGallery = userGallery.filter(obj => obj.readMore !== '');
@@ -32,6 +33,7 @@ export const addDataReadNews = e => {
          return;
         }
     };
+    // updateReedFunc(newArr)
 
     const savedLocalNews = localStorage.getItem('bite-search');
     JSON.parse(savedLocalNews).map(fetchNew => {
