@@ -25,6 +25,7 @@ export const refs = {
     btnPrevPg: document.querySelector('.pagination__prev-page'),
     boxItems: document.querySelector('.read'),
     gridBox: document.querySelector('.grid-box'),
+    favoritesContainer: document.querySelector('.favorites'),
     form: document.querySelector('.search-form'),
     dateInput: document.querySelector('#datetime-picker'),
     newsSection: document.querySelector('.news-section'),

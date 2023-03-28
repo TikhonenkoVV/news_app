@@ -52,7 +52,7 @@
     body.dark & {
         background-color: var(--colorTextLight);
         border: 1px solid var(--toglerMinorColor);
-        color: var(--colorTextDark);
+        color: var(--colorTextDarkGray);
 
         &:hover,
         &:focus {
@@ -157,7 +157,7 @@
     pointer-events: none;
 
     body.dark & {
-        color: var(--colorTextDark);
+        color: var(--colorTextDarkGray);
     }
 }
 
