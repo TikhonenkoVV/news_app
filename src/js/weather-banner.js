@@ -13,7 +13,9 @@ const refs = {
     ),
 };
 
-export async function onBannerLoad() {
+onBannerLoad();
+
+async function onBannerLoad() {
     const { latitude, longitude } = await getCoordinates();
     let weatherData = {};
     const weatherService = new WeatherService(latitude, longitude);
@@ -23,8 +25,6 @@ export async function onBannerLoad() {
         console.log(error);
         return;
     }
-    const gridBox = document.querySelector('.grid-box');
-    gridBox.classList.remove('banner-hidden');
     renderBanner(weatherData);
     initializeComponents(weatherData);
 }
