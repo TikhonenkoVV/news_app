@@ -96,7 +96,7 @@ function enableButtons() {
         paginationButtons.forEach(button => {
             button.classList.remove('disabled');
         });
-        btnNextPg.removeAttribute('disabled', true);
+        btnNextPg.removeAttribute('disabled');
     }
 }
 
