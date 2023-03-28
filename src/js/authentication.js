@@ -52,6 +52,7 @@ export const registerFunc = () => {
     });
 }
 
+
 function clearValueFunction() {
     refs.email_value.value = ''
     refs.password_value.value = ''
