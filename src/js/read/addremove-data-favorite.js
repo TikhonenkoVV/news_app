@@ -33,4 +33,4 @@ export const addRemoveDataFavorite = e => {
         localStorage.setItem("user-gallery", JSON.stringify(newArr));
 });
 };
-e.target.innerHTML = `Remove from favorite<svg class="news__btn-icon" width="20" height="20"><use href="#icon-heart-fill"></use></svg>`;
+// e.target.innerHTML = `Remove from favorite<svg class="news__btn-icon" width="20" height="20"><use href="#icon-heart-fill"></use></svg>`;
