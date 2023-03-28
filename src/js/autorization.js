@@ -108,7 +108,7 @@ let currentUser = {}
 
 export const checkAuth = () => {
     auth.onAuthStateChanged(user => {
-        //console.log(user)
+        console.log(user)
         currentUser = user.email
         db = getFirestore(firebaseApp);
         fetchArrayWithPopularNews()
