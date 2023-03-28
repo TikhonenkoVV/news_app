@@ -110,9 +110,9 @@ export const checkAuth = () => {
         console.log(`Авторизований user === ${user.email}`)
         currentUser = user.email
         db = getFirestore(firebaseApp);
-        fetchArrayWithPopularNews()
-        fetchArrayWithDBFavoriteNews()
-        fetchArrayWithDBReedNews()
+        // fetchArrayWithPopularNews()
+        // fetchArrayWithDBFavoriteNews()
+        // fetchArrayWithDBReedNews()
       })
       //ok
 }
