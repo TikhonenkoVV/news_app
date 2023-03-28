@@ -1,10 +1,9 @@
 import { refs } from './refs';
-import { showOrHideBanner } from './weather-banner';
-
 let newsPerPage;
-window.onresize = setNumberOfPages();
 
 export function createPagination(newsArray, funcForRenderingMarkup) {
+    setNumberOfPages();
+
     const valuePage = {
         curPage: 1,
         numLinksTwoSide: 1,
@@ -197,11 +196,11 @@ function renderPage(index, active = '') {
 }
 
 function setNumberOfPages() {
-    if (window.innerWidth < 768) {
-        newsPerPage = 4;
-    } else if (window.innerWidth >= 768 && window.innerWidth < 1280) {
+    if (window.matchMedia('(min-width: 1280px)').matches) {
+        newsPerPage = 8;
+    } else if (window.matchMedia('(min-width: 768px)').matches) {
         newsPerPage = 7;
     } else {
-        newsPerPage = 8;
+        newsPerPage = 4;
     }
 }

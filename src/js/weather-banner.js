@@ -1,4 +1,4 @@
-import { WeatherService } from './weather-service';
+import { WeatherService } from './weather-service.js';
 import { WEATHER_API_KEY } from './key';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
@@ -175,4 +175,3 @@ function getCurrentDate(date) {
     const currentDay = date.getDate();
     return `${dayOfWeek}<br>${currentDay} ${currentMonth} ${currentYear}`;
 }
-

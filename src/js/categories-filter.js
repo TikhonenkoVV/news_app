@@ -2,6 +2,8 @@ import { refs } from './refs';
 import axios from 'axios';
 import Notiflix from 'notiflix';
 import { createPagination } from './pagination';
+const throttle = require('lodash.throttle');
+
 
 const BASE_URL = 'https://api.nytimes.com/svc';
 const API_KEY = 'e3QVyAs0wF8oNwOW75RSlccT9UsAdwt7';
@@ -46,6 +48,10 @@ export const onClickBtns = async e => {
         );
         renderGallery(users, true);
         createPagination(users, renderGallery);
+        window.addEventListener('resize', throttle(((e) => {
+            renderGallery(load('bite-search'), true);
+            createPagination(load('bite-search'), renderGallery);
+        }), 1000));
     } catch (error) {
         console.log(error);
         if (error.response && error.response.status === 404) {
@@ -95,7 +101,11 @@ export const onClickBtnsDropdown = async e => {
         );
         renderGallery(users, true);
         createPagination(users, renderGallery);
-    } catch (error) {
+        window.addEventListener('resize', throttle(((e) => {
+            renderGallery(load('bite-search'), true);
+            createPagination(load('bite-search'), renderGallery);
+        }), 1000));
+        } catch (error) {
         console.log(error);
         if (error.response && error.response.status === 404) {
             Notiflix.Notify.warning('No news found for selected category.');

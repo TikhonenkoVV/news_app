@@ -1,3 +1,13 @@
+.news-section {
+    padding-top: 40px;
+    @include for-size(tablet) {
+        padding-top: 48px;
+    }
+    @include for-size(desktop) {
+        padding-top: 60px;
+    }
+}
+
 .grid-box {
     position: relative;
     @media screen and (max-width: 768px) {
@@ -40,12 +50,6 @@
     }
 
     @media screen and (min-width: 768px) {
-        // display: flex;
-        // flex-direction: column;
-        // gap: 20px;
-        // align-items: center;
-        // justify-content: center;
-        // position: relative;
         height: 675px;
     }
 }

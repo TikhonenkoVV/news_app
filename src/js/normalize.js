@@ -1,4 +1,4 @@
-import { userLogin } from './autorization';
+// import { userLogin } from './autorization';
 import { save } from './storage';
 import { BASE_IMG_URL } from './utils/constants';
 import noPoster from '../images/no_poster.jpg';
