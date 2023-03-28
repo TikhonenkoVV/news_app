@@ -24,6 +24,8 @@ export const addDataReadNews = e => {
     let newArr = [];
     if (userGallery) newArr.push(...userGallery);
 
+    updateReedFunc(userGallery)
+
 
     if (userGallery) {
         // const filteruserGallery = userGallery.filter(obj => obj.readMore !== '');
@@ -35,6 +37,7 @@ export const addDataReadNews = e => {
         }
     };
     // updateReedFunc(newArr)
+    console.log(userGallery)
 
     const savedLocalNews = localStorage.getItem('bite-search');
     JSON.parse(savedLocalNews).map(fetchNew => {

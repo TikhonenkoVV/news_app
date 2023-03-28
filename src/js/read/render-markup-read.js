@@ -1,6 +1,11 @@
 import { refs } from "../refs";
+import { fetchArrayWithDBReedNews } from "../autorization";
 
-export const renderGalleryReadOnDays = sortReadNewsData => {
+export const renderGalleryReadOnDays = async sortReadNewsData => {
+
+    // const arr = await fetchArrayWithDBReedNews()
+    // console.log(arr)
+
     let markup = '';
     const gallaryMarkup = sortReadNewsData.map(arr => {
         const date = arr[0].readMore;

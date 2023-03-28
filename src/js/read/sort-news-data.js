@@ -1,3 +1,5 @@
+import { updateReedFunc } from '../autorization';
+
 export const sortReadNewsData = () => {
     const savedLocalNews = localStorage.getItem('user-gallery');
     const filterArray = JSON.parse(savedLocalNews).filter(({ readMore }) => readMore !== '');
@@ -12,5 +14,6 @@ export const sortReadNewsData = () => {
         return acc;
       }, new Map());
       const result = Array.from(groupedByKey.values());
+
     return result;
 };
