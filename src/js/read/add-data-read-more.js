@@ -1,10 +1,16 @@
-import { addRemoveDataFavorite } from "./addremove-data-favorite";
+import { addRemoveDataFavorite } from './addremove-data-favorite';
+import { load, save } from '../storage';
 
 export const addDataReadNews = e => {
     addRemoveDataFavorite(e);
     if (!e.target.classList.contains('info__link')) {
         return;
-      }
+    }
+    let userGallery = load('user-gallery');
+    userGallery = load('user-gallery');
+
+    let newArr = [];
+    if (userGallery) newArr.push(...userGallery);
     const savedLocalNews = localStorage.getItem('bite-search');
     const results = JSON.parse(savedLocalNews).map(fetchNew => {
         const url = e.target.href;
@@ -14,10 +20,9 @@ export const addDataReadNews = e => {
                 date.getMonth() + 1
             }/${date.getFullYear()}`;
             fetchNew.readMore = formattedDate;
-            console.log(fetchNew);
-            return fetchNew;
+            newArr.push(fetchNew);
+            console.log();
+            localStorage.setItem('user-gallery', JSON.stringify(newArr));
         }
-    return fetchNew;
     });
-    localStorage.setItem("bite-search", JSON.stringify(results));
 };

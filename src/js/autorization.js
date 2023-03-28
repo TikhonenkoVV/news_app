@@ -38,7 +38,7 @@ export const onAuthorizationSubmit = event => {
     const btnValue = event.target.elements.submitBtn.textContent.trim()
     const emailValue = event.target.elements.email.value.trim()
     const passValue = event.target.elements.password.value.trim()
-    // const passConfValue = event.target.elements.password_comf.value.trim()
+    // const passConfValue = event.target.elements.confirm.value.trim()
     if (btnValue === 'Register') {
         createUserWithEmailAndPassword(auth, emailValue, passValue)
         .then((userCredential) => {

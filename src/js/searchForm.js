@@ -4,14 +4,10 @@ import { renderSearchedNews } from './templates/templates';
 import { normalize } from './normalize';
 import { load } from './storage';
 import { createPagination } from './pagination';
+// const throttle = require('lodash.throttle');
+import throttle from 'lodash.throttle';
 
-const ref = {
-    form: document.querySelector('.search-form'),
-};
-
-ref.form.addEventListener('submit', handleSubmit);
-
-async function handleSubmit(e) {
+export const handleSubmit = async e => {
     e.preventDefault();
     if (
         e.currentTarget.querySelector('.header__input-search').clientWidth < 49
@@ -35,8 +31,16 @@ async function handleSubmit(e) {
         normalize(docs);
 
         renderSearchedNews(load('bite-search'), true);
+
         createPagination(load('bite-search'), renderSearchedNews);
+        window.addEventListener(
+            'resize',
+            throttle(e => {
+                renderGallery(load('bite-search'), true);
+                createPagination(load('bite-search'), renderGallery);
+            }, 1000)
+        );
     } catch (err) {
         console.log(err);
     }
-}
+};
