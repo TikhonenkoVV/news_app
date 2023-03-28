@@ -13,5 +13,6 @@ refs.authorizationCancel.addEventListener('click', onAuthorizationCancel);
 refs.authorizationForm.addEventListener('submit', onAuthorizationSubmit);
 
 checkAuth()
+
 verifyUser();
 checkCurrentTheme();

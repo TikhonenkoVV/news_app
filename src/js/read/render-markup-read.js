@@ -34,6 +34,6 @@ export const renderGalleryReadOnDays = sortReadNewsData => {
     </div>`
     }).join('');
     markup = markupDtae + markupNews;
-    refs.container.insertAdjacentHTML('beforeend', markup);
+    refs.boxItems.insertAdjacentHTML('beforeend', markup);
 });
 };

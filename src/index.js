@@ -12,7 +12,7 @@ import * as weatherBanner from './js/weather-banner';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import './calendar.css';
-
+import { Notify } from 'notiflix';
 const options = {
     enableTime: false,
     time_24hr: true,

@@ -1,5 +1,5 @@
 export const sortReadNewsData = () => {
-    const savedLocalNews = localStorage.getItem('bite-search');
+    const savedLocalNews = localStorage.getItem('user-gallery');
     const filterArray = JSON.parse(savedLocalNews).filter(({ readMore }) => readMore !== '');
     const groupedByKey = filterArray.reduce((acc, obj) => {
         const key = obj.key;
