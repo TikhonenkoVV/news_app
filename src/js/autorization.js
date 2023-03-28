@@ -56,7 +56,6 @@ export const onAuthorizationSubmit = event => {
 
           emailValue = ''
           passValue = ''
-          
           // ...
         })
         .catch((error) => {
