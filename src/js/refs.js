@@ -27,4 +27,7 @@ export const refs = {
     gridBox: document.querySelector('.grid-box'),
     form: document.querySelector('.search-form'),
     dateInput: document.querySelector('#datetime-picker'),
+    newsSection: document.querySelector('.news-section'),
+    newsNotFoundSection: document.querySelector('.not-found-section'),
+    seachQuery: document.querySelector('.header__input-search'),
 };

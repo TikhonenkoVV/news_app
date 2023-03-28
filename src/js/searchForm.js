@@ -6,6 +6,7 @@ import { load } from './storage';
 import { createPagination } from './pagination';
 // const throttle = require('lodash.throttle');
 import throttle from 'lodash.throttle';
+import { hideMainContent, showMainContent } from './news-not-found';
 
 export const handleSubmit = async e => {
     e.preventDefault();
@@ -24,9 +25,11 @@ export const handleSubmit = async e => {
             response: { docs },
         } = await fetchSearchArticles(1, query);
         if (!docs.length) {
-            Notify.failure('No news founded');
+            hideMainContent();
+            // Notify.failure('No news founded');
             return;
         }
+        showMainContent();
 
         normalize(docs);
 
