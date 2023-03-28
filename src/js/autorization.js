@@ -10,7 +10,6 @@ import { allData, add } from './main';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithCustomToken, onAuthStateChanged } from "firebase/auth";
 import { collection, doc, setDoc, query, getDocs, onSnapshot, addDoc, orderBy, limit, Timestamp, getFirestore, serverTimestamp, updateDoc, arrayUnion, where, Firestore, collectionGroup, getDoc} from "firebase/firestore"; 
 
-
 const USER_KEY = 'bite-user-autorize';
 const AUTORIZED_USER_KEY = 'autorized';
 export let userLogin;
@@ -190,17 +189,17 @@ export const fetchArrayWithDBFavoriteNews = async () => {
   }
 }
 
-export const fetchArrayWithDBReedNews = async () => {
-  console.log('fetchArrayDBReed')
-  const docRef = doc(db, currentUser, "reedNews");
-  const docSnap = await getDoc(docRef);
-  if (docSnap.exists()) {
-      console.log("reedNews:", docSnap.data().reedNews);
-      return docSnap.data().reedNews
-  } else {
-      console.log("No such document reedNews!");
-  }
-}
+// export const fetchArrayWithDBReedNews = async () => {
+//   console.log('fetchArrayDBReed')
+//   const docRef = doc(db, currentUser, "reedNews");
+//   const docSnap = await getDoc(docRef);
+//   if (docSnap.exists()) {
+//       console.log("reedNews:", docSnap.data().reedNews);
+//       return docSnap.data().reedNews
+//   } else {
+//       console.log("No such document reedNews!");
+//   }
+// }
 
 export const updateFavoriteFunc = async (array) => {
   const docData = {
