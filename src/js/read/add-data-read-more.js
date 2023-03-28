@@ -29,10 +29,9 @@ export const addDataReadNews = e => {
     userGallery = load('user-gallery');
 
     let newArr = [];
-    if (userGallery) newArr.push(...userGallery);
+    // if (userGallery) newArr.push(...userGallery);
 
     // updateReedFunc(newArr)
-
 
     if (userGallery) {
         const index = userGallery.findIndex(obj => url === obj.url);
@@ -43,7 +42,7 @@ export const addDataReadNews = e => {
         }
     };
     // updateReedFunc(newArr)
-    console.log(userGallery)
+    // console.log(userGallery)
     //////
     auth.onAuthStateChanged(user => {
         console.log(`Авторизований user === ${user.email}`)
@@ -58,21 +57,30 @@ export const addDataReadNews = e => {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
             let galery = await docSnap.data().reedNews
-            console.log(galery)
+            // console.log(galery)
             newArr.push(...galery)
             console.log(newArr)
+            const savedLocalNews = localStorage.getItem('bite-search');
+            JSON.parse(savedLocalNews).map(fetchNew => {
+                if (url === fetchNew.url) {
+                    fetchNew.readMore = formattedDate;
+                    newArr.push(fetchNew);
+                    updateReedFunc(newArr)
+                    // localStorage.setItem('user-gallery', JSON.stringify(newArr));
+                }
+            });
         } else {
             console.log("No such document reedNews!");
         }
       }
 
-    const savedLocalNews = localStorage.getItem('bite-search');
-    JSON.parse(savedLocalNews).map(fetchNew => {
-        if (url === fetchNew.url) {
-            fetchNew.readMore = formattedDate;
-            newArr.push(fetchNew);
-            updateReedFunc(newArr)
-            localStorage.setItem('user-gallery', JSON.stringify(newArr));
-        }
-    });
+    // const savedLocalNews = localStorage.getItem('bite-search');
+    // JSON.parse(savedLocalNews).map(fetchNew => {
+    //     if (url === fetchNew.url) {
+    //         fetchNew.readMore = formattedDate;
+    //         newArr.push(fetchNew);
+    //         updateReedFunc(newArr)
+    //         localStorage.setItem('user-gallery', JSON.stringify(newArr));
+    //     }
+    // });
 };
