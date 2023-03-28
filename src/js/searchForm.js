@@ -23,7 +23,7 @@ export const handleSubmit = async e => {
     try {
         const {
             response: { docs },
-        } = await fetchSearchArticles(1, query);
+        } = await fetchSearchArticles(0, query);
         if (!docs.length) {
             hideMainContent();
             // Notify.failure('No news founded');
@@ -32,10 +32,29 @@ export const handleSubmit = async e => {
         showMainContent();
 
         normalize(docs);
-
+        
         renderSearchedNews(load('bite-search'), true);
+        
+        let results = [];
+        results.push(...load('bite-search'));
+        for (let i = 1; i <= 8; i += 1) {
+            try {
+                const {
+                    response: { docs },
+                } = await fetchSearchArticles(i, query);
+                normalize(docs);
+                results.push(...load('bite-search'));
+                if (!docs.length) {
+                    return;
+                }
+            } catch (err) {
+                console.log(err);
+            }
+            await new Promise(res => setTimeout(res, 500));
+            createPagination(results, renderSearchedNews);
+        }
+        
 
-        createPagination(load('bite-search'), renderSearchedNews);
         window.addEventListener(
             'resize',
             throttle(e => {
