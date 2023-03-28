@@ -68,11 +68,11 @@ function renderFavoritesCardsInLibrary (results, ifFirstPage) {
                 }
             }
 
-            return `<div class="news__item">
+            return `<div class="news__item favorite_item">
         <p class="news__section">${section}</p>
         <div class="news__img">
           <img src="${imgUrl}" alt="${title}" loading="lazy"/>
-          <button id="${url}" type="button" class="news__btn" id = "removeFavorites" >Remove from favorite
+          <button id="${url}" type="button" class="news__btn" >Remove from favorite
           <svg class="news__btn-icon" width="20" height="20">
             <use href="#icon-heart-border"></use>
             </svg></button></div>
@@ -90,7 +90,22 @@ function renderFavoritesCardsInLibrary (results, ifFirstPage) {
       
 
     refs.favoritesContainer.innerHTML = favoritesList;
+
+
 }
+
+// export function hiddenCard(e) {
+//   let elements = e.target.parentNode;
+//   elements.classList.add('visually-hidden');
+// }
+
+function removeItem() {
+  document.querySelector(".favorite_item").classList.add('visually-hidden');
+}
+
+const buttonRemove = document.querySelector('.favorites_btn');
+
+buttonRemove.addEventListener('click', removeItem)
 
 checkAuth()
 
