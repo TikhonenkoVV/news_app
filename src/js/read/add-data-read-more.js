@@ -23,6 +23,8 @@ export const addDataReadNews = e => {
     let newArr = [];
     if (userGallery) newArr.push(...userGallery);
 
+    updateReedFunc(userGallery)
+
 
     if (userGallery) {
         const index = userGallery.findIndex(obj => url === obj.url);
@@ -33,6 +35,7 @@ export const addDataReadNews = e => {
         }
     };
     // updateReedFunc(newArr)
+    console.log(userGallery)
 
     const savedLocalNews = localStorage.getItem('bite-search');
     JSON.parse(savedLocalNews).map(fetchNew => {
