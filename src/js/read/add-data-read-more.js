@@ -11,9 +11,9 @@ export const addDataReadNews = e => {
     const url = e.target.href;
     const todayDate = () => {
         const date = new Date();
-        return `${date.getDate()}/${
-            date.getMonth() + 1
-        }/${date.getFullYear()}`;
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        return `${day}/${month}/${date.getFullYear()}`;
     };
     const formattedDate = todayDate();
     addOverLay(e);
@@ -25,7 +25,6 @@ export const addDataReadNews = e => {
 
 
     if (userGallery) {
-        // const filteruserGallery = userGallery.filter(obj => obj.readMore !== '');
         const index = userGallery.findIndex(obj => url === obj.url);
         if (index !== -1) {
         userGallery[index].readMore = formattedDate;
