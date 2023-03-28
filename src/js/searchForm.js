@@ -80,9 +80,9 @@ function disableButtons() {
     const paginationButtons = document.querySelectorAll('li[data-page]');
     const btnNextPg = document.querySelector('.pagination__next-page');
     if (btnNextPg && paginationButtons) {
-        for (button of paginationButtons) {
+        paginationButtons.forEach(button => {
             button.classList.add('disabled');
-        }
+        });
         btnNextPg.setAttribute('disabled', true);
     }
 }
@@ -90,19 +90,21 @@ function disableButtons() {
 function enableButtons() {
     const paginationButtons = document.querySelectorAll('li[data-page]');
     const btnNextPg = document.querySelector('.pagination__next-page');
+
     if (btnNextPg && paginationButtons) {
-        for (button of paginationButtons) {
+        paginationButtons.forEach(button => {
             button.classList.remove('disabled');
-        }
-        btnNextPg.removeAttribute('disabled');
+        });
+        btnNextPg.removeAttribute('disabled', true);
     }
 }
 
 function addLoader() {
     const loaderBox = document.createElement('div');
     const wrapper = document.querySelector('.pagination__wrapper');
-    loaderBox.classList.add('pagination__loader')
-    loaderBox.innerHTML = '<p>All news are loading, please wait few seconds...</p>';
+    loaderBox.classList.add('pagination__loader');
+    loaderBox.innerHTML =
+        '<p>All news are loading, please wait few seconds...</p>';
     wrapper.prepend(loaderBox);
 }
 
