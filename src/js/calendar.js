@@ -22,7 +22,6 @@ const options = {
         } else {
             selectedDate = null;
         }
-        updateDates();
     },
     onOpen() {
         refs.arrowDown.classList.toggle('visually-hidden');
