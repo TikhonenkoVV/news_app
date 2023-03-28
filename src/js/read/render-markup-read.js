@@ -2,7 +2,6 @@ import { refs } from "../refs";
 import { fetchArrayWithDBReedNews } from "../autorization";
 
 export const renderGalleryReadOnDays = async sortReadNewsData => {
-
     // const arr = await fetchArrayWithDBReedNews()
     // console.log(arr)
 
@@ -19,7 +18,7 @@ export const renderGalleryReadOnDays = async sortReadNewsData => {
         </button>
     </div>`
     const markupNews = arr.map(({imgUrl, title, section, abstract, published_date, url}) => {return `
-    <div class="news__item-read hover">
+    <div class="news__item-read">
         <p class="news__section">${section}</p>
         <div class="news__img">
             <img src="${imgUrl}" alt="${title}" loading="lazy"/>
