@@ -174,4 +174,9 @@ function getCurrentDate(date) {
     const currentYear = date.getFullYear();
     const currentDay = date.getDate();
     return `${dayOfWeek}<br>${currentDay} ${currentMonth} ${currentYear}`;
-}
+};
+
+export function showBanner() {
+    const gridBox = document.querySelector('.grid-box');
+    gridBox.classList.remove('banner-hidden');
+};

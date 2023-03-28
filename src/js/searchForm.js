@@ -8,7 +8,8 @@ import { createPagination } from './pagination';
 import throttle from 'lodash.throttle';
 import { hideMainContent, showMainContent } from './news-not-found';
 import { refs } from './refs';
-import { selectedDate } from './calendar';
+import { selectedDate } from './calendar'; 
+import { showBanner } from './weather-banner';
 
 export const handleSubmit = async e => {
     e.preventDefault();
@@ -35,6 +36,7 @@ export const handleSubmit = async e => {
 
         normalize(docs);
         renderSearchedNews(load('bite-search'), true);
+        showBanner();
         createPagination(load('bite-search'), renderSearchedNews);
         disableButtons();
         addLoader();
