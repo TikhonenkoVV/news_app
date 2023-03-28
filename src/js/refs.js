@@ -26,4 +26,5 @@ export const refs = {
     boxItems: document.querySelector('.news'),
     gridBox: document.querySelector('.grid-box'),
     form: document.querySelector('.search-form'),
+    dateInput: document.querySelector('#datetime-picker'),
 };

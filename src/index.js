@@ -9,6 +9,31 @@ import { handleScreenSizeChange } from './js/categories';
 import { handleSubmit } from './js/searchForm';
 import * as weatherBanner from './js/weather-banner';
 
+import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.min.css';
+import './calendar.css';
+
+const options = {
+    enableTime: false,
+    time_24hr: true,
+    defaultDate: new Date(),
+    maxDate: new Date(),
+    minuteIncrement: 1,
+    onClose(selectedDates) {
+        const currentDate = new Date().getTime();
+        const selectedDate = selectedDates[0].getTime();
+        const ms = selectedDate - currentDate;
+        if (selectedDate > currentDate) {
+            refs.startButton.disabled = false;
+        } else {
+            Notify.failure('Please choose a date in the future');
+            refs.startButton.disabled = true;
+        }
+    },
+};
+
+flatpickr('#datetime-picker', options);
+
 refs.mobileToggler.addEventListener('click', onToglerClick);
 refs.togler.addEventListener('click', onToglerClick);
 refs.tabs.addEventListener('click', onTabsClick);

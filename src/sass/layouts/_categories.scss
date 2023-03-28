@@ -1,19 +1,19 @@
 .container__categories {
     position: relative;
+    display: flex;
+    gap: 14px;
+    padding-top: 24px;
+    @include for-size(tablet) {
+        padding-top: 28px;
+        gap: 16px;
+    }
 }
 
 .home__category {
-    margin-top: 24px;
-    margin-bottom: 40px;
     display: flex;
-
+    gap: 14px;
     @include for-size(tablet) {
-        margin-top: 28px;
-        margin-bottom: 48px;
-    }
-
-    @include for-size(desktop) {
-        margin-bottom: 60px;
+        gap: 16px;
     }
 }
 
@@ -21,7 +21,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 44px;
 
     font-weight: 400;
     font-size: 12px;
@@ -41,10 +40,6 @@
     @include for-size(tablet) {
         gap: 10px;
         padding: 7.5px 24.5px;
-    }
-
-    &:not(:last-child) {
-        margin-right: 16px;
     }
 
     &:hover,
@@ -135,6 +130,13 @@
     transition: fill 250ms ease-in-out;
 }
 
+.home__inpyt {
+    border: 1px solid var(--colorCategoriesBtnBorder);
+    border-radius: 20px;
+    min-width: 152px;
+    margin-left: auto;
+    display: flex;
+}
 // .home__category-button-icon--open {
 // }
 
