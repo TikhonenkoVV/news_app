@@ -3,7 +3,7 @@ import './searchForm';
 import { refs } from './refs';
 import { onToglerClick, checkCurrentTheme } from './togler';
 import { onTabsClick } from './on-tabs-click';
-import { verifyUser } from './autorization';
+import { verifyUser, checkAuth } from './autorization';
 import { onAuthorizationSubmit, onAuthorizationCancel } from './autorization';
 
 refs.mobileToggler.addEventListener('click', onToglerClick);
@@ -14,3 +14,4 @@ refs.authorizationForm.addEventListener('submit', onAuthorizationSubmit);
 
 verifyUser();
 checkCurrentTheme();
+checkAuth()
