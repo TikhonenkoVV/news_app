@@ -5,7 +5,8 @@ import { onToglerClick } from './togler';
 import { onTabsClick } from './on-tabs-click';
 import { verifyUser } from './autorization';
 import { onAuthorizationSubmit, onAuthorizationCancel } from './autorization';
-
+import { load } from './storage';
+import { renderGallery } from './main';
 verifyUser();
 
 refs.togler.addEventListener('click', onToglerClick);
@@ -16,13 +17,13 @@ refs.authorizationCancel.addEventListener('click', onAuthorizationCancel);
 
 refs.authorizationForm.addEventListener('submit', onAuthorizationSubmit);
 
-export function renderDataFavorite () {
-
-    if (fetchNew.favorite === true){
-  renderFavoritesCardsInLibrary(results, refs.favoritesContainer)
+function  favoriteRender () {
+console.log(load('bite-search'));
+  renderFavoritesCardsInLibrary(load('bite-search'), false );
 }
-};
 
+
+favoriteRender();
 // функція яка видаляє якщо фолс
 
 function onFavoriteBtnRemoveClick() {
@@ -46,13 +47,17 @@ function onFavoriteBtnRemoveClick() {
 // функція що рендерить 
 
 
+function renderFavoritesCardsInLibrary (results, ifFirstPage) {
 
-function renderFavoritesCardsInLibrary (results, container) {
     const favoritesList = results.map (
+      
         (
-            { imgUrl, title, section, abstract, published_date, url },
+            { imgUrl, title, section, abstract, published_date, url, favorite },
             index
-        ) => {
+        ) => { 
+          if( !favorite === true){
+            return;
+          }
             if (ifFirstPage) {
                 if (window.matchMedia('(min-width: 1280px)').matches) {
                     if (index > 7) {
@@ -90,6 +95,7 @@ function renderFavoritesCardsInLibrary (results, container) {
         }
     )
     .join('');
+      
 
-    container.innerHTML = favoritesList;
+    refs.favoritesContainer.innerHTML = favoritesList;
 }
