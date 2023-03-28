@@ -52,7 +52,10 @@ export function renderGallery(users, ifFirstPage) {
               <button id="${url}" type="button" class="news__btn">Add to favorite
               <svg class="news__btn-icon" width="20" height="20">
                 <use href="#icon-heart-border"></use>
-                </svg></button></div>
+                </svg></button>
+                <p class="overlay visually-hidden">Already read<svg class="already" width="20" height="20">
+                <use href="#icon-already-read"></use>
+                </svg></p></div>
             <div class="info">
               <p class="info__title">${title}</p>
               <p class="info__abstract">${abstract}</p>
@@ -68,3 +71,9 @@ export function renderGallery(users, ifFirstPage) {
     refs.newsContainer.innerHTML = gallaryMarkup;
 }
 refs.newsContainer.addEventListener('click', addDataReadNews);
+
+export function addOverLay(e) {
+    let elements =
+        e.target.parentNode.previousSibling.previousSibling.lastElementChild;
+    elements.classList.remove('visually-hidden');
+}
