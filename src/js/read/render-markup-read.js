@@ -13,8 +13,8 @@ export const renderGalleryReadOnDays = async sortReadNewsData => {
     <div class="news__item-date">
         <button class="data-read" type="button">
             <p class="data-read__text">${date}</p>
-            <svg class="data-read__icon" width="9" height="14">
-                <use xlink:href="./images/sprite.svg#icon-arrow-up"></use>
+            <svg class="data-read__icon" width="9" height="15">
+                <use xlink:href="#icon-arrow-up"></use>
             </svg>
         </button>
     </div>`
