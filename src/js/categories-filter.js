@@ -2,8 +2,8 @@ import { refs } from './refs';
 import axios from 'axios';
 import Notiflix from 'notiflix';
 import { createPagination } from './pagination';
+import { hideMainContent, showMainContent } from './news-not-found';
 const throttle = require('lodash.throttle');
-
 
 const BASE_URL = 'https://api.nytimes.com/svc';
 const API_KEY = 'e3QVyAs0wF8oNwOW75RSlccT9UsAdwt7';
@@ -48,19 +48,24 @@ export const onClickBtns = async e => {
         );
         renderGallery(users, true);
         createPagination(users, renderGallery);
-        window.addEventListener('resize', throttle(((e) => {
-            renderGallery(load('bite-search'), true);
-            createPagination(load('bite-search'), renderGallery);
-        }), 1000));
+        window.addEventListener(
+            'resize',
+            throttle(e => {
+                renderGallery(load('bite-search'), true);
+                createPagination(load('bite-search'), renderGallery);
+            }, 1000)
+        );
+        showMainContent();
     } catch (error) {
+        hideMainContent();
         console.log(error);
-        if (error.response && error.response.status === 404) {
-            Notiflix.Notify.warning('No news found for selected category.');
-        } else {
-            Notiflix.Notify.failure(
-                'Something went wrong. Please try again later.'
-            );
-        }
+        // if (error.response && error.response.status === 404) {
+        //     Notiflix.Notify.warning('No news found for selected category.');
+        // } else {
+        //     Notiflix.Notify.failure(
+        //         'Something went wrong. Please try again later.'
+        //     );
+        // }
     }
 };
 
@@ -101,19 +106,24 @@ export const onClickBtnsDropdown = async e => {
         );
         renderGallery(users, true);
         createPagination(users, renderGallery);
-        window.addEventListener('resize', throttle(((e) => {
-            renderGallery(load('bite-search'), true);
-            createPagination(load('bite-search'), renderGallery);
-        }), 1000));
-        } catch (error) {
+        window.addEventListener(
+            'resize',
+            throttle(e => {
+                renderGallery(load('bite-search'), true);
+                createPagination(load('bite-search'), renderGallery);
+            }, 1000)
+        );
+        showMainContent();
+    } catch (error) {
+        hideMainContent();
         console.log(error);
-        if (error.response && error.response.status === 404) {
-            Notiflix.Notify.warning('No news found for selected category.');
-        } else {
-            Notiflix.Notify.failure(
-                'Something went wrong. Please try again later.'
-            );
-        }
+        // if (error.response && error.response.status === 404) {
+        //     // Notiflix.Notify.warning('No news found for selected category.');
+        // } else {
+        //     Notiflix.Notify.failure(
+        //         'Something went wrong. Please try again later.'
+        //     );
+        // }
     }
 };
 
