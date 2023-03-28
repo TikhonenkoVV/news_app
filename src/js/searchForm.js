@@ -8,6 +8,7 @@ import { createPagination } from './pagination';
 import throttle from 'lodash.throttle';
 import { hideMainContent, showMainContent } from './news-not-found';
 import { refs } from './refs';
+import { selectedDate } from './calendar';
 
 export const handleSubmit = async e => {
     e.preventDefault();
@@ -24,7 +25,7 @@ export const handleSubmit = async e => {
     try {
         const {
             response: { docs },
-        } = await fetchSearchArticles(0, query);
+        } = await fetchSearchArticles(0, query, selectedDate);
         if (!docs.length) {
             hideMainContent();
             // Notify.failure('No news founded');
