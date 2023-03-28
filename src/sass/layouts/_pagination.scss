@@ -52,7 +52,7 @@
     body.dark & {
         background-color: var(--colorTextLight);
         border: 1px solid var(--toglerMinorColor);
-        color: var(--colorTextDark);
+        color: var(--colorTextDarkGray);
 
         &:hover,
         &:focus {
@@ -157,7 +157,7 @@
     pointer-events: none;
 
     body.dark & {
-        color: var(--colorTextDark);
+        color: var(--colorTextDarkGray);
     }
 }
 
@@ -181,11 +181,5 @@
     fill: currentColor;
     width: 18px;
     height: 18px;
-
-    @include for-size(tablet) {
-        & {
-            width: 24px;
-            height: 24px;
-        }
-    }
+    padding: 3px;
 }

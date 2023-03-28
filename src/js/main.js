@@ -16,10 +16,15 @@ export async function allData() {
         renderGallery(load('bite-search'), true);
         createPagination(load('bite-search'), renderGallery);
 
-        window.addEventListener('resize', throttle(((e) => {
-            renderGallery(load('bite-search'), true);
-            createPagination(load('bite-search'), renderGallery);
-        }), 1000));
+        window.addEventListener(
+            'resize',
+            throttle(e => {
+                renderGallery(load('bite-search'), true);
+                createPagination(load('bite-search'), renderGallery);
+            }, 1000)
+        );
+        const galleryHeight = refs.newsSection.clientHeight;
+        refs.newsContainer.style.height = `${galleryHeight}px`;
     } catch (error) {
         console.log(error);
     }

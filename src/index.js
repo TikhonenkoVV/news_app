@@ -7,6 +7,7 @@ import { onClickBtns, onClickBtnsDropdown } from './js/categories-filter';
 import { allData } from './js/main';
 import { handleScreenSizeChange } from './js/categories';
 import { handleSubmit } from './js/searchForm';
+import { checkAuth, updateReedFunc } from './js/autorization';
 import * as weatherBanner from './js/weather-banner';
 
 import flatpickr from 'flatpickr';
@@ -23,12 +24,12 @@ const options = {
         const currentDate = new Date().getTime();
         const selectedDate = selectedDates[0].getTime();
         const ms = selectedDate - currentDate;
-        if (selectedDate > currentDate) {
-            refs.startButton.disabled = false;
-        } else {
-            Notify.failure('Please choose a date in the future');
-            refs.startButton.disabled = true;
-        }
+        refs.arrowDown.classList.toggle('visually-hidden');
+        refs.arrowUp.classList.toggle('visually-hidden');
+    },
+    onOpen() {
+        refs.arrowDown.classList.toggle('visually-hidden');
+        refs.arrowUp.classList.toggle('visually-hidden');
     },
 };
 
@@ -47,3 +48,4 @@ if (refs.categoriesBtns && refs.categoriesDropdown) {
     refs.categoriesDropdown.addEventListener('click', onClickBtnsDropdown);
 }
 allData();
+checkAuth()
