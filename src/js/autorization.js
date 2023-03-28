@@ -15,6 +15,9 @@ const USER_KEY = 'bite-user-autorize';
 const AUTORIZED_USER_KEY = 'autorized';
 export let userLogin;
 
+let db = ''
+let currentUser = {}
+
 export const verifyUser = () => {
     const parceData = load(USER_KEY);
     if (!parceData) {
@@ -75,7 +78,7 @@ export const onAuthorizationSubmit = event => {
             const user = userCredential.user;
             currentUser = user.email
             console.log(`Пользователь ${user.email} успешно авторизирован`)
-            uid = user.uid
+            // uid = user.uid
             db = getFirestore(firebaseApp);
             usersRef = collection(db, "users");
             let autorized = JSON.stringify(true)
@@ -101,20 +104,17 @@ export const onAuthorizationSubmit = event => {
     }
 };
 
-
-let db = ''
-let currentUser = {}
-
-
 export const checkAuth = () => {
     auth.onAuthStateChanged(user => {
         console.log('AuthUser ===', user)
+        console.log(`Авторизований user === ${user.email}`)
         currentUser = user.email
         db = getFirestore(firebaseApp);
         fetchArrayWithPopularNews()
         fetchArrayWithDBFavoriteNews()
         fetchArrayWithDBReedNews()
       })
+      //ok
 }
 
 export const loginFunc = () => {
