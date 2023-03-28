@@ -1,5 +1,6 @@
 import { addRemoveDataFavorite } from './addremove-data-favorite';
 import { load, save } from '../storage';
+import { addOverLay } from '../main';
 
 export const addDataReadNews = e => {
     addRemoveDataFavorite(e);
@@ -15,6 +16,7 @@ export const addDataReadNews = e => {
     };
     const formattedDate = todayDate();
     console.log(formattedDate);
+    addOverLay(e);
     let userGallery = load('user-gallery');
     userGallery = load('user-gallery');
 

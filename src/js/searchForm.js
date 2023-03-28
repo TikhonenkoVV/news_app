@@ -4,7 +4,8 @@ import { renderSearchedNews } from './templates/templates';
 import { normalize } from './normalize';
 import { load } from './storage';
 import { createPagination } from './pagination';
-const throttle = require('lodash.throttle');
+// const throttle = require('lodash.throttle');
+import throttle from 'lodash.throttle';
 
 export const handleSubmit = async e => {
     e.preventDefault();

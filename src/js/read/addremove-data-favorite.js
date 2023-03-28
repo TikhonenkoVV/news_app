@@ -1,7 +1,7 @@
 import { load, save } from '../storage';
 
 export const addRemoveDataFavorite = e => {
-    if (e.target.nodeName !== "BUTTON") {
+    if (e.target.nodeName !== 'BUTTON') {
         return;
     }
     const url = e.target.id;
@@ -27,6 +27,9 @@ export const addRemoveDataFavorite = e => {
         if (url !== fetchNew.url) return;
         console.log(url);
         console.log(fetchNew.url);
+    const url = e.target.id;
+    const results = JSON.parse(savedLocalNews).map(fetchNew => {
+        if (url !== fetchNew.url) return fetchNew;
         if (fetchNew.favorite === true) {
             fetchNew.favorite = false;
         }
@@ -34,4 +37,10 @@ export const addRemoveDataFavorite = e => {
         newArr.push(fetchNew);
         localStorage.setItem("user-gallery", JSON.stringify(newArr));
 });
+};
+        e.target.innerHTML = `Remove from favorite<svg class="news__btn-icon" width="20" height="20"><use href="#icon-heart-fill"></use></svg>`;
+        console.log(e.target.textContent);
+        return fetchNew;
+    });
+    localStorage.setItem('bite-search', JSON.stringify(results));
 };

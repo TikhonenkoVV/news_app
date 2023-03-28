@@ -1,0 +1,45 @@
+.flatpickr-calendar {
+    border-radius: 20px;
+    padding: 27px 10px 24px;
+}
+
+.flatpickr-months {
+    position: relative;
+}
+
+.flatpickr-prev-month {
+    top: 27px;
+    left: 16px;
+}
+
+.flatpickr-days {
+    width: auto;
+}
+
+.dayContainer {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    width: auto;
+    min-width: auto;
+}
+
+.flatpickr-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    margin: 5px;
+}
+
+.flatpickr-day.selected {
+    background-color: #4440f6;
+}
+
+.flatpickr-calendar {
+    width: auto;
+}
+
+.flatpickr-current-month {
+    font-size: 16px;
+}
