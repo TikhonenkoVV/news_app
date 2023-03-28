@@ -72,7 +72,7 @@ function renderFavoritesCardsInLibrary (results, ifFirstPage) {
         <p class="news__section">${section}</p>
         <div class="news__img">
           <img src="${imgUrl}" alt="${title}" loading="lazy"/>
-          <button id="${url}" type="button" class="news__btn favorites_btn" onClick = 'removeItem()' >Remove from favorite
+          <button id="${url}" type="button" class="news__btn favorites_btn" onClick = "removeItem()" >Remove from favorite
           <svg class="news__btn-icon" width="20" height="20">
             <use href="#icon-heart-border"></use>
             </svg></button></div>
@@ -101,7 +101,7 @@ function renderFavoritesCardsInLibrary (results, ifFirstPage) {
 //   elements.classList.add('visually-hidden');
 // }
 
-function removeItem() {
+export function removeItem() {
  document.querySelector('.favorite_item').classList.add('visually-hidden');
 
 }
