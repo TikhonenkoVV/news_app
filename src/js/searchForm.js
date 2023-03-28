@@ -32,11 +32,12 @@ export const handleSubmit = async e => {
         showMainContent();
 
         normalize(docs);
-        
+
         renderSearchedNews(load('bite-search'), true);
-        
         let results = [];
         results.push(...load('bite-search'));
+        disableButtons();
+
         for (let i = 1; i <= 8; i += 1) {
             try {
                 const {
@@ -52,8 +53,11 @@ export const handleSubmit = async e => {
             }
             await new Promise(res => setTimeout(res, 500));
             createPagination(results, renderSearchedNews);
+            disableButtons();
+            if (i === 8) {
+                enableButtons();
+            }
         }
-        
 
         window.addEventListener(
             'resize',
@@ -65,4 +69,22 @@ export const handleSubmit = async e => {
     } catch (err) {
         console.log(err);
     }
+};
+
+function disableButtons() {
+    const paginationButtons = document.querySelectorAll('li[data-page]');
+    const btnNextPg = document.querySelector('.pagination__next-page');
+    for (button of paginationButtons) {
+        button.classList.add('disabled');
+    }
+    btnNextPg.setAttribute('disabled', true);
+};
+
+function enableButtons() {
+    const paginationButtons = document.querySelectorAll('li[data-page]');
+    const btnNextPg = document.querySelector('.pagination__next-page');
+    for (button of paginationButtons) {
+        button.classList.remove('disabled');
+    }
+    btnNextPg.removeAttribute('disabled');
 };
