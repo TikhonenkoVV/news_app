@@ -23,12 +23,6 @@ const options = {
         const currentDate = new Date().getTime();
         const selectedDate = selectedDates[0].getTime();
         const ms = selectedDate - currentDate;
-        if (selectedDate > currentDate) {
-            refs.startButton.disabled = false;
-        } else {
-            Notify.failure('Please choose a date in the future');
-            refs.startButton.disabled = true;
-        }
     },
 };
 
