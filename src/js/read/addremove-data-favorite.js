@@ -16,10 +16,12 @@ export const addRemoveDataFavorite = e => {
             if (obj.url !== url) return obj;
             if (obj.favorite === true) {
                 e.target.innerHTML = `Add to favorite<svg class="news__btn-icon" width="20" height="20"><use href="#icon-heart-border"></use></svg>`;
-                }
+                console.log(e.target.textContent);
+            }
             if (obj.favorite === false) {
                 e.target.innerHTML = `Remove from favorite<svg class="news__btn-icon" width="20" height="20"><use href="#icon-heart-fill"></use></svg>`;
-                }
+                console.log(e.target.textContent);
+            }
             obj.favorite = !obj.favorite;
             return obj;
         });
@@ -35,9 +37,11 @@ export const addRemoveDataFavorite = e => {
         if (fetchNew.favorite === true) {
             fetchNew.favorite = false;
             e.target.innerHTML = `Add to favorite<svg class="news__btn-icon" width="20" height="20"><use href="#icon-heart-border"></use></svg>`;
+            console.log(e.target.textContent);
         }
         fetchNew.favorite = true;
         e.target.innerHTML = `Remove from favorite<svg class="news__btn-icon" width="20" height="20"><use href="#icon-heart-fill"></use></svg>`;
+        console.log(e.target.textContent);
         newArr.push(fetchNew);
         localStorage.setItem('user-gallery', JSON.stringify(newArr));
     });

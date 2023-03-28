@@ -1,12 +1,41 @@
 import { refs } from "../refs";
-import { fetchArrayWithDBReedNews } from "../autorization";
+import { auth, firebaseApp } from '../auth';
 
+import { onAuthStateChanged } from "firebase/auth";
+import { doc, getFirestore, getDoc} from "firebase/firestore"; 
 export const renderGalleryReadOnDays = async sortReadNewsData => {
     // const arr = await fetchArrayWithDBReedNews()
     // console.log(arr)
 
-    let markup = '';
-    const gallaryMarkup = sortReadNewsData.map(arr => {
+let db = ''
+let currentUser = {}
+
+export const renderGalleryReadOnDays = () => {
+    auth.onAuthStateChanged(user => {
+        console.log(`Авторизований user === ${user.email}`)
+        currentUser = user.email
+        db = getFirestore(firebaseApp);
+        fetchArrayWithDBReedNews()
+      })
+    const fetchArrayWithDBReedNews = async () => {
+      console.log('fetchArrayDBReed')
+      const docRef = doc(db, currentUser, "reedNews");
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+          let galery = await docSnap.data().reedNews
+          let arr = galery.reduce((acc, obj) => { //====
+            const key = obj.key;
+            const collection = acc.get(key);
+            if (!collection) {
+              acc.set(key, [obj]);
+            } else {
+              collection.push(obj);
+            }
+            return acc;
+          }, new Map());
+           const result = Array.from(arr.values());
+          let markup = '';
+    const gallaryMarkup = result.map(arr => {
         const date = arr[0].readMore;
         const markupDtae = `
     <div class="news__item-date">
@@ -39,5 +68,9 @@ export const renderGalleryReadOnDays = async sortReadNewsData => {
     }).join('');
     markup = markupDtae + markupNews;
     refs.boxItems.insertAdjacentHTML('beforeend', markup);
-});
+    });
+      } else {
+          console.log("No such document reedNews!");
+      }
+    }
 };

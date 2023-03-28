@@ -3,6 +3,14 @@ import { load, save } from '../storage';
 import { addOverLay } from '../main';
 import { updateReedFunc } from '../autorization';
 
+import { auth, firebaseApp } from '../auth';
+
+import { onAuthStateChanged } from "firebase/auth";
+import { doc, getFirestore, getDoc} from "firebase/firestore"; 
+
+let db = ''
+let currentUser = {}
+
 export const addDataReadNews = e => {
     addRemoveDataFavorite(e);
     if (!e.target.classList.contains('info__link')) {
@@ -23,6 +31,8 @@ export const addDataReadNews = e => {
     let newArr = [];
     if (userGallery) newArr.push(...userGallery);
 
+    // updateReedFunc(newArr)
+
     updateReedFunc(userGallery);
 
     if (userGallery) {
@@ -34,6 +44,28 @@ export const addDataReadNews = e => {
         }
     }
     // updateReedFunc(newArr)
+    console.log(userGallery)
+    //////
+    auth.onAuthStateChanged(user => {
+        console.log(`Авторизований user === ${user.email}`)
+        currentUser = user.email
+        db = getFirestore(firebaseApp);
+        fetchArrayWithDBReedNews()
+      })
+
+      const fetchArrayWithDBReedNews = async () => {
+        console.log('fetchArrayDBReed')
+        const docRef = doc(db, currentUser, "reedNews");
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            let galery = await docSnap.data().reedNews
+            console.log(galery)
+            newArr.push(...galery)
+            console.log(newArr)
+        } else {
+            console.log("No such document reedNews!");
+        }
+      }
     console.log(userGallery);
 
     const savedLocalNews = localStorage.getItem('bite-search');
@@ -41,6 +73,7 @@ export const addDataReadNews = e => {
         if (url === fetchNew.url) {
             fetchNew.readMore = formattedDate;
             newArr.push(fetchNew);
+            updateReedFunc(newArr)
             localStorage.setItem('user-gallery', JSON.stringify(newArr));
         }
     });

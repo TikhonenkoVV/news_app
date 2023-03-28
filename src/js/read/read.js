@@ -5,6 +5,11 @@ import { refs } from "../refs";
 import { fetchArrayWithDBReedNews } from '../autorization';
 
 
+// const array = sortReadNewsData();
+
+renderGalleryReadOnDays();
+
+refs.boxItems.addEventListener('click', openCloseNews);
 const array = sortReadNewsData();
 renderGalleryReadOnDays(array);
 
