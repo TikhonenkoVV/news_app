@@ -219,8 +219,8 @@ function setNumberOfNewsperPage() {
 }
 
 function fixScreenHeight() {
+    refs.newsContainer.style.height = '';
     if (window.matchMedia('(min-width: 768px)').matches) {
-        refs.newsContainer.style.height = '';
         const galleryHeight = refs.newsContainer.clientHeight;
         refs.newsContainer.style.height = `${galleryHeight}px`;
     }
