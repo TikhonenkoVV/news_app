@@ -3,7 +3,7 @@ import './searchForm';
 import { refs } from './refs';
 import { onToglerClick, checkCurrentTheme } from './togler';
 import { onTabsClick } from './on-tabs-click';
-import { verifyUser, checkAuth } from './autorization';
+import { checkAuth } from './autorization';
 import { onAuthorizationSubmit, onAuthorizationCancel } from './autorization';
 import { load } from './storage';
 
@@ -127,7 +127,6 @@ function renderFavoritesCardsInLibrary(results) {
 
 checkAuth();
 
-verifyUser();
 checkCurrentTheme();
 
 refs.favoritesContainer.addEventListener('click', onFavoriteBtnRemoveClick);

@@ -7,12 +7,7 @@ import { onClickBtns, onClickBtnsDropdown } from './js/categories-filter';
 import { allData } from './js/main';
 import { handleScreenSizeChange } from './js/categories';
 import { handleSubmit } from './js/searchForm';
-import {
-    checkAuth,
-    updateReedFunc,
-    logoutFunction,
-    verifyUser,
-} from './js/autorization';
+import { checkAuth, updateReedFunc, logoutFunction } from './js/autorization';
 import * as weatherBanner from './js/weather-banner';
 
 refs.mobileToggler.addEventListener('click', onToglerClick);
@@ -30,5 +25,3 @@ if (refs.categoriesBtns && refs.categoriesDropdown) {
     refs.categoriesDropdown.addEventListener('click', onClickBtnsDropdown);
 }
 allData();
-verifyUser();
-// checkAuth();
