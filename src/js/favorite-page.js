@@ -13,68 +13,66 @@ refs.tabs.addEventListener('click', onTabsClick);
 refs.authorizationCancel.addEventListener('click', onAuthorizationCancel);
 refs.authorizationForm.addEventListener('submit', onAuthorizationSubmit);
 
-function  favoriteRender () {
-console.log(load('bite-search'));
-  renderFavoritesCardsInLibrary(load('bite-search'), false );
+function favoriteRender() {
+    console.log(load('user-gallery'));
+    renderFavoritesCardsInLibrary(load('user-gallery'), true);
 }
 
 favoriteRender();
-// функція яка видаляє якщо фолс
 
-function onFavoriteBtnRemoveClick() {
-    const savedLocalNews = localStorage.getItem('bite-search');
-      const url = e.target.id;
-      const results = JSON.parse(savedLocalNews);
-    for (const object of results) {
-      if (object.id === Number(id)) {
-        results.splice(results.indexOf(object), 1);
-        break;
-      }
+function onFavoriteBtnRemoveClick(e) {
+    if (e.target.nodeName !== 'BUTTON') {
+        return;
     }
-    localStorage.setItem('results', JSON.stringify(results));
-   {
-        // renderDataFavorite();
-    }
-  }
-// функція що рендерить 
-
-
-function renderFavoritesCardsInLibrary (results, ifFirstPage) {
-
-    const favoritesList = results.map (
-      
-        (
-            { imgUrl, title, section, abstract, published_date, url, favorite },
-            index
-        ) => { 
-          if( !favorite === true){
-            return;
-          }
-            if (ifFirstPage) {
+    const savedLocalNews = localStorage.getItem('user-gallery');
+    const results = JSON.parse(savedLocalNews);
+    const url = e.target.id;
+    results.map(obj => {
+      if (obj.url !== url) return;
+      obj.favorite = false;
+    })
+    localStorage.setItem('user-gallery', JSON.stringify(results));
+    renderFavoritesCardsInLibrary(results);
+}
+// функція що рендерить
+function renderFavoritesCardsInLibrary(results) {
+    const favoritesList = results
+        .map(
+            (
+                {
+                    imgUrl,
+                    title,
+                    section,
+                    abstract,
+                    published_date,
+                    url,
+                    favorite,
+                },
+                index
+            ) => {
+                if (!favorite === true) {
+                    return;
+                }
                 if (window.matchMedia('(min-width: 1280px)').matches) {
+                    if (index > 8) {
+                        return;
+                    }
+                } else if (window.matchMedia('(min-width: 768px)').matches) {
                     if (index > 7) {
                         return;
                     }
-                } else if (
-                    window.matchMedia('(min-width: 768px)').matches
-                ) {
-                    if (index > 6) {
-                        return;
-                    }
                 } else {
-                    if (index > 3) {
+                    if (index > 4) {
                         return;
                     }
                 }
-            }
-
-            return `<div class="news__item favorite_item">
+                return `<div class="news__item-favorite">
         <p class="news__section">${section}</p>
         <div class="news__img">
           <img src="${imgUrl}" alt="${title}" loading="lazy"/>
           <button id="${url}" type="button" class="news__btn favorites_btn" onClick = "removeItem()" >Remove from favorite
           <svg class="news__btn-icon" width="20" height="20">
-            <use href="#icon-heart-border"></use>
+            <use href="#icon-heart-fill"></use>
             </svg></button></div>
         <div class="info">
           <p class="info__title">${title}</p>
@@ -84,33 +82,16 @@ function renderFavoritesCardsInLibrary (results, ifFirstPage) {
             rel="noopener noreferrer nofollow"
              class="info__link">Read more</a>
         </div></div>`;
-        }
-    )
-    .join('');
-      
+            }
+        )
+        .join('');
 
     refs.favoritesContainer.innerHTML = favoritesList;
-   
-
-    
-
 }
 
-// export function hiddenCard(e) {
-//   let elements = e.target.parentNode;
-//   elements.classList.add('visually-hidden');
-// }
-
-export function removeItem() {
- document.querySelector('.favorite_item').classList.add('visually-hidden');
-
-}
-
-// const buttonRemove = document.querySelector('.favorites_btn');
-
-// buttonRemove.hiddenCard('Click')
-
-checkAuth()
+checkAuth();
 
 verifyUser();
 checkCurrentTheme();
+
+refs.favoritesContainer.addEventListener('click', onFavoriteBtnRemoveClick);
