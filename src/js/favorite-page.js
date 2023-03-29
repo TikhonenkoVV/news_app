@@ -46,6 +46,8 @@ function onFavoriteBtnRemoveClick(e) {
 }
 // функція що рендерить
 function renderFavoritesCardsInLibrary(results) {
+    checkAuth();
+    const favoritesList = results
 
     // console.log(results)
 

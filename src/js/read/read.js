@@ -7,6 +7,7 @@ import { verifyUser, fetchArrayWithDBReedNews } from '../autorization';
 verifyUser();
 
 renderGalleryReadOnDays();
+checkAuth();
 
 refs.boxItems.addEventListener('click', addDataReadNews);
 const array = sortReadNewsData();
