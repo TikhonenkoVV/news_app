@@ -5,7 +5,6 @@ import { fetchPopularArticles } from './fetch';
 import { normalize } from './normalize';
 import { createPagination } from './pagination';
 const throttle = require('lodash.throttle');
-import { showBanner } from './weather-banner';
 
 export async function allData() {
     try {
@@ -15,7 +14,6 @@ export async function allData() {
         normalize(results);
 
         renderGallery(load('bite-search'), true);
-        showBanner();
         createPagination(load('bite-search'), renderGallery);
 
         window.addEventListener(

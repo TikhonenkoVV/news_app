@@ -4,7 +4,6 @@ import Notiflix from 'notiflix';
 import { createPagination } from './pagination';
 import { hideMainContent, showMainContent } from './news-not-found';
 const throttle = require('lodash.throttle');
-import { showBanner } from './weather-banner';
 
 const BASE_URL = 'https://api.nytimes.com/svc';
 const API_KEY = 'e3QVyAs0wF8oNwOW75RSlccT9UsAdwt7';
@@ -51,7 +50,6 @@ export const onClickBtns = async e => {
             }
         );
         renderGallery(users, true);
-        showBanner();
         createPagination(users, renderGallery);
         window.addEventListener(
             'resize',
@@ -113,7 +111,6 @@ export const onClickBtnsDropdown = async e => {
             }
         );
         renderGallery(users, true);
-        showBanner();
         createPagination(users, renderGallery);
         window.addEventListener(
             'resize',

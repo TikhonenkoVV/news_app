@@ -13,7 +13,6 @@ import {
     logoutFunction,
     verifyUser,
 } from './js/autorization';
-import * as weatherBanner from './js/weather-banner';
 
 refs.mobileToggler.addEventListener('click', onToglerClick);
 refs.togler.addEventListener('click', onToglerClick);

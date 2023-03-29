@@ -35,4 +35,5 @@ export const refs = {
     arrowUp: document.querySelector('.up'),
     arrowDown: document.querySelector('.down'),
     logout: document.querySelector('#logout'),
+    paginationWrapper: document.querySelector('.pagination__wrapper'),
 };

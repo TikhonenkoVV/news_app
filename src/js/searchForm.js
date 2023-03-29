@@ -8,8 +8,7 @@ import { createPagination } from './pagination';
 import throttle from 'lodash.throttle';
 import { hideMainContent, showMainContent } from './news-not-found';
 import { refs } from './refs';
-import { selectedDate } from './calendar'; 
-import { showBanner } from './weather-banner';
+import { selectedDate } from './calendar';
 
 export const handleSubmit = async e => {
     e.preventDefault();
@@ -36,7 +35,6 @@ export const handleSubmit = async e => {
 
         normalize(docs);
         renderSearchedNews(load('bite-search'), true);
-        showBanner();
         createPagination(load('bite-search'), renderSearchedNews);
         disableButtons();
         addLoader();
@@ -81,14 +79,14 @@ function disableButtons() {
     const paginationButtons = document.querySelectorAll('li[data-page]');
     const btnNextPg = document.querySelector('.pagination__next-page');
     const btnPrevPg = document.querySelector('.pagination__prev-page');
-    
+
     if (btnNextPg && paginationButtons) {
         paginationButtons.forEach(button => {
             button.classList.add('disabled');
         });
         btnNextPg.setAttribute('disabled', true);
         if (!btnPrevPg.hasAttribute('disabled'))
-        btnPrevPg.setAttribute('disabled', true);
+            btnPrevPg.setAttribute('disabled', true);
     }
 }
 
