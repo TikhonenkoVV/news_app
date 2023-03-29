@@ -80,11 +80,15 @@ export const handleSubmit = async e => {
 function disableButtons() {
     const paginationButtons = document.querySelectorAll('li[data-page]');
     const btnNextPg = document.querySelector('.pagination__next-page');
+    const btnPrevPg = document.querySelector('.pagination__prev-page');
+    
     if (btnNextPg && paginationButtons) {
         paginationButtons.forEach(button => {
             button.classList.add('disabled');
         });
         btnNextPg.setAttribute('disabled', true);
+        if (!btnPrevPg.hasAttribute('disabled'))
+        btnPrevPg.setAttribute('disabled', true);
     }
 }
 
