@@ -5,6 +5,11 @@
     margin-right: auto;
 
     @include for-size(tablet) {
+        margin-top: 48px;
+        padding-bottom: 100px;
+    }
+
+    @include for-size(desktop) {
         margin-top: 60px;
         padding-bottom: 150px;
     }

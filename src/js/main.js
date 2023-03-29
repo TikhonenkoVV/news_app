@@ -25,8 +25,6 @@ export async function allData() {
                 createPagination(load('bite-search'), renderGallery);
             }, 1000)
         );
-        const galleryHeight = refs.newsSection.clientHeight;
-        refs.newsContainer.style.height = `${galleryHeight}px`;
     } catch (error) {
         console.log(error);
     }
