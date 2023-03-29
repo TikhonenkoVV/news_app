@@ -10,11 +10,11 @@ import { load } from './storage';
 import { updateFavoriteFunc } from '../js/autorization';
 import { auth, firebaseApp } from '../js/auth';
 
-import { onAuthStateChanged } from "firebase/auth";
-import { doc, getFirestore, getDoc} from "firebase/firestore"; 
+import { onAuthStateChanged } from 'firebase/auth';
+import { doc, getFirestore, getDoc } from 'firebase/firestore';
 
-let db = ''
-let currentUser = {}
+let db = '';
+let currentUser = {};
 
 refs.mobileToggler.addEventListener('click', onToglerClick);
 refs.togler.addEventListener('click', onToglerClick);
@@ -35,68 +35,70 @@ function onFavoriteBtnRemoveClick(e) {
     }
     const savedLocalNews = localStorage.getItem('user-gallery');
     const results = JSON.parse(savedLocalNews);
-    updateFavoriteFunc(results)
+    updateFavoriteFunc(results);
     const url = e.target.id;
     results.map(obj => {
-      if (obj.url !== url) return;
-      obj.favorite = false;
-    })
+        if (obj.url !== url) return;
+        obj.favorite = false;
+    });
     localStorage.setItem('user-gallery', JSON.stringify(results));
     renderFavoritesCardsInLibrary(results);
 }
 // функція що рендерить
 function renderFavoritesCardsInLibrary(results) {
     checkAuth();
-    const favoritesList = results
+    const favoritesList = results;
 
     // console.log(results)
 
     auth.onAuthStateChanged(user => {
-        console.log(`Авторизований user === ${user.email}`)
-        currentUser = user.email
+        console.log(`Авторизований user === ${user.email}`);
+        currentUser = user.email;
         db = getFirestore(firebaseApp);
-        fetchArrayWithDBFavoriteNews()
-      })
+        fetchArrayWithDBFavoriteNews();
+    });
 
-      const fetchArrayWithDBFavoriteNews = async () => {
-        console.log('fetchArrayDBFavorite')
-        const docRef = doc(db, currentUser, "favoriteNews");
+    const fetchArrayWithDBFavoriteNews = async () => {
+        console.log('fetchArrayDBFavorite');
+        const docRef = doc(db, currentUser, 'favoriteNews');
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-            let galery = await docSnap.data().favoriteNews
-            console.log('galery fav', galery)
-            console.log('results fav', results)
+            let galery = await docSnap.data().favoriteNews;
+            console.log('galery fav', galery);
+            console.log('results fav', results);
             const favoritesList = galery
-        .map(
-            (
-                {
-                    imgUrl,
-                    title,
-                    section,
-                    abstract,
-                    published_date,
-                    url,
-                    favorite,
-                },
-                index
-            ) => {
-                if (!favorite === true) {
-                    return;
-                }
-                if (window.matchMedia('(min-width: 1280px)').matches) {
-                    if (index > 8) {
-                        return;
-                    }
-                } else if (window.matchMedia('(min-width: 768px)').matches) {
-                    if (index > 7) {
-                        return;
-                    }
-                } else {
-                    if (index > 4) {
-                        return;
-                    }
-                }
-                return `<div class="news__item-favorite">
+                .map(
+                    (
+                        {
+                            imgUrl,
+                            title,
+                            section,
+                            abstract,
+                            published_date,
+                            url,
+                            favorite,
+                        },
+                        index
+                    ) => {
+                        if (!favorite === true) {
+                            return;
+                        }
+                        if (window.matchMedia('(min-width: 1280px)').matches) {
+                            if (index > 8) {
+                                return;
+                            }
+                        } else if (
+                            window.matchMedia('(min-width: 768px)').matches
+                        ) {
+                            if (index > 7) {
+                                return;
+                            }
+                        } else {
+                            if (index > 4) {
+                                return;
+                            }
+                        }
+                        return `<div class="news__item-favorite">
         <p class="news__section">${section}</p>
         <div class="news__img">
           <img src="${imgUrl}" alt="${title}" loading="lazy"/>
@@ -112,16 +114,15 @@ function renderFavoritesCardsInLibrary(results) {
             rel="noopener noreferrer nofollow"
              class="info__link">Read more</a>
         </div></div>`;
-            }
-        )
-        .join('');
-    refs.favoritesContainer.innerHTML = favoritesList;
+                    }
+                )
+                .join('');
+            refs.favoritesContainer.innerHTML = favoritesList;
             // console.log("favoriteNews:", docSnap.data().favoriteNews);
         } else {
-            console.log("No such document favoriteNews!");
+            console.log('No such document favoriteNews!');
         }
-      }
-
+    };
 }
 
 checkAuth();

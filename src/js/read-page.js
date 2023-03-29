@@ -12,6 +12,7 @@ refs.tabs.addEventListener('click', onTabsClick);
 refs.authorizationCancel.addEventListener('click', onAuthorizationCancel);
 refs.authorizationForm.addEventListener('submit', onAuthorizationSubmit);
 
-checkAuth();
+verifyUser();
+// checkAuth();
 checkCurrentTheme();
-checkAuth()
+checkAuth();
