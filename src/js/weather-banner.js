@@ -13,7 +13,10 @@ const refs = {
     ),
 };
 
-onBannerLoad();
+setTimeout(() => {
+    onBannerLoad();
+    displayBanner();
+}, 300);
 
 async function onBannerLoad() {
     const { latitude, longitude } = await getCoordinates();
@@ -174,9 +177,9 @@ function getCurrentDate(date) {
     const currentYear = date.getFullYear();
     const currentDay = date.getDate();
     return `${dayOfWeek}<br>${currentDay} ${currentMonth} ${currentYear}`;
-};
+}
 
-export function showBanner() {
+function displayBanner() {
     const gridBox = document.querySelector('.grid-box');
     gridBox.classList.remove('banner-hidden');
-};
+}
