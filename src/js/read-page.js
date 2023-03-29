@@ -14,4 +14,4 @@ refs.authorizationForm.addEventListener('submit', onAuthorizationSubmit);
 
 checkAuth();
 checkCurrentTheme();
-// checkAuth()
+checkAuth()
