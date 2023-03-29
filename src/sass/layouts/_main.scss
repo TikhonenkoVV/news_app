@@ -97,7 +97,7 @@
     padding: 4px 8px;
 }
 .news__btn {
-    color: var(--colorTextDark);
+    color: $favBtnColor;
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 500;
@@ -110,9 +110,8 @@
     border: transparent solid 1px;
     border-radius: 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-        color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-        box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color $baseTransition, color $baseTransition,
+        box-shadow $baseTransition;
     cursor: pointer;
 
     position: absolute;
@@ -127,15 +126,25 @@
         right: 12px;
     }
 }
-.news__btn:hover {
+.news__btn:hover,
+.news__btn:focus {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     background-color: $colorAccent;
+    color: #fff;
 }
 
 .news__btn-icon {
     padding-left: 5px;
     display: flex;
+    fill: $colorAccent;
+    transition: fill $baseTransition;
 }
+
+.news__btn:hover .news__btn-icon,
+.news__btn:focus .news__btn-icon {
+    fill: #fff;
+}
+
 .info {
     display: flex;
     flex-direction: column;
