@@ -5,6 +5,8 @@ import { removeLoader } from './searchForm';
 export function createPagination(newsArray, funcForRenderingMarkup) {
     setNumberOfNewsperPage();
     refs.pgWrapper.classList.remove('visually-hidden');
+    refs.btnNextPg.classList.remove('visually-hidden');
+    refs.btnPrevPg.classList.remove('visually-hidden');
     refs.btnPrevPg.disabled = true;
 
     const valuePage = {
@@ -217,8 +219,8 @@ function setNumberOfNewsperPage() {
 }
 
 function fixScreenHeight() {
+    refs.newsContainer.style.height = '';
     if (window.matchMedia('(min-width: 768px)').matches) {
-        refs.newsContainer.style.height = '';
         const galleryHeight = refs.newsContainer.clientHeight;
         refs.newsContainer.style.height = `${galleryHeight}px`;
     }
