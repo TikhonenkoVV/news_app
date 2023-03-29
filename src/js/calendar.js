@@ -1,23 +1,33 @@
+import { refs } from './refs';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+import '../calendar.css';
+
+export let selectedDate = null;
 
 const options = {
-    enableTime: true,
+    enableTime: false,
     time_24hr: true,
-    defaultDate: new Date(),
-    maxDate: new Date().fp_incr(90),
+    //defaultDate: new Date(),
+    maxDate: new Date(),
     minuteIncrement: 1,
     onClose(selectedDates) {
-        const currentDate = new Date().getTime();
-        const selectedDate = selectedDates[0].getTime();
-        const ms = selectedDate - currentDate;
-        if (selectedDate > currentDate) {
-            refs.startButton.disabled = false;
+        // const currentDate = new Date().getTime();
+        // const selectedDate = selectedDates[0].getTime();
+        // const ms = selectedDate - currentDate;
+        refs.arrowDown.classList.toggle('visually-hidden');
+        refs.arrowUp.classList.toggle('visually-hidden');
+        if (selectedDates && selectedDates.length > 0) {
+            selectedDate = selectedDates[0];
         } else {
-            Notify.failure('Please choose a date in the future');
-            refs.startButton.disabled = true;
+            selectedDate = null;
         }
+    },
+    onOpen() {
+        refs.arrowDown.classList.toggle('visually-hidden');
+        refs.arrowUp.classList.toggle('visually-hidden');
     },
 };
 
-flatpickr('#datetime-picker', options);
+const dateTimePicker = flatpickr('#datetime-picker', options);
+//selectedDate = dateTimePicker.defaultDate;

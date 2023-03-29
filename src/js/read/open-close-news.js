@@ -1,7 +1,10 @@
 export const openCloseNews = (e) => {
-    const button = e.target.closest('.data-read');
-    if (button) {
-      const box = button.nextElementSibling;
-      box.classList.toggle('hidden');
+    if (e.target.classList.contains('data-read') || e.target.classList.contains('data-read__text') || e.target.classList.contains('data-read__icon') ) {
+      const readItems = document.querySelectorAll('.news__item-read');
+      const arrow = document.querySelector('.data-read__icon');
+      arrow.classList.toggle('rotate');
+      readItems.forEach((item) => {
+        item.classList.toggle('hide');
+      });
     }
-}
+  };
