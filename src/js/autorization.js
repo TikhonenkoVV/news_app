@@ -7,7 +7,7 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 import { refs } from './refs';
 import { allData, add } from './main';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithCustomToken, onAuthStateChanged } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithCustomToken, onAuthStateChanged, signOut } from "firebase/auth";
 import { collection, doc, setDoc, query, getDocs, onSnapshot, addDoc, orderBy, limit, Timestamp, getFirestore, serverTimestamp, updateDoc, arrayUnion, where, Firestore, collectionGroup, getDoc} from "firebase/firestore"; 
 
 const USER_KEY = 'bite-user-autorize';
@@ -17,17 +17,29 @@ export let userLogin;
 let db = ''
 let currentUser = {}
 
+
+
+export const logoutFunction = () => {
+  console.log('logoutFunction')
+  signOut(auth).then(() => {
+    alert('Ви вийшли зі свого профілю.')
+    localStorage.setItem('auth', false);
+  }).catch((error) => {
+    console.log('Помилка при виході зі свого профілю.')
+  });
+};
+
 export const verifyUser = () => {
     const parceData = load(USER_KEY);
-    if (!parceData) {
-        refs.authorizationModal.classList.remove('is-hidden');
-        disableBodyScroll(document.body);
-    } else {
-        refs.authorizationModal.classList.add('is-hidden');
-    }
-    if (!load(AUTORIZED_USER_KEY)) {
-        save(AUTORIZED_USER_KEY, { test: { pass: '' } });
-    }
+    // if (!parceData) {
+    //     refs.authorizationModal.classList.remove('is-hidden');
+    //     disableBodyScroll(document.body);
+    // } else {
+    //     refs.authorizationModal.classList.add('is-hidden');
+    // }
+    // if (!load(AUTORIZED_USER_KEY)) {
+    //     save(AUTORIZED_USER_KEY, { test: { pass: '' } });
+    // }
 };
 
 export const onAuthorizationCancel = () => {
@@ -58,6 +70,8 @@ export const onAuthorizationSubmit = event => {
 
           emailValue = ''
           passValue = ''
+
+          window.reload()
           // ...
         })
         .catch((error) => {
@@ -85,10 +99,13 @@ export const onAuthorizationSubmit = event => {
             let bite_user_autorize = JSON.stringify(true)
             localStorage.setItem('bite-user-autorize', bite_user_autorize)
             refs.authorizationModal.classList.add('is-hidden');
+            localStorage.setItem('auth', true);
             enableBodyScroll(document.body);
             allData()
             //fetchArray()
             fetchArrayWithPopularNews()
+            emailValue = ''
+            passValue = ''
             // ...
         })
         .catch((error) => {
@@ -99,6 +116,7 @@ export const onAuthorizationSubmit = event => {
             if (errorCode == 'auth/user-not-found') {
             alert('Email не знайдено. Потрібна реєстрація')
             }
+            localStorage.setItem('auth', false);
         });
     }
 };
@@ -106,15 +124,15 @@ export const onAuthorizationSubmit = event => {
 
 export const checkAuth = () => {
     auth.onAuthStateChanged(user => {
+      if (!user) { // якщо не Авторизований
+        refs.authorizationModal.classList.remove('is-hidden');
+        disableBodyScroll(document.body);
+      }
         console.log('AuthUser ===', user)
         console.log(`Авторизований user === ${user.email}`)
         currentUser = user.email
         db = getFirestore(firebaseApp);
-        // fetchArrayWithPopularNews()
-        // fetchArrayWithDBFavoriteNews()
-        // fetchArrayWithDBReedNews()
       })
-      //ok
 }
 
 export const loginFunc = () => {
@@ -150,6 +168,7 @@ export const loginFunc = () => {
     clearValueFunction()
     refs.authorizationModal.classList.add('is-hidden');
     enableBodyScroll(document.body);
+    localStorage.setItem('auth', true);
     allData()
     //fetchArray()
     fetchArrayWithPopularNews()
@@ -163,6 +182,7 @@ export const loginFunc = () => {
     if (errorCode == 'auth/user-not-found') {
       alert('Email не знайдено. Потрібна реєстрація')
     }
+    localStorage.setItem('auth', false);
     clearValueFunction()
   });
 }

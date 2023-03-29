@@ -34,4 +34,5 @@ export const refs = {
     seachQuery: document.querySelector('.header__input-search'),
     arrowUp: document.querySelector('.up'),
     arrowDown: document.querySelector('.down'),
+    logout: document.querySelector('#logout'),
 };
