@@ -84,6 +84,17 @@
     color: #fff;
     height: 40px;
 }
+
+.authorization__cancel {
+    flex-basis: calc((100% - 16px) / 2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    color: #fff;
+    // width: 100%;
+    background-color: $colorAccent;
+}
 // .modal__btn {
 //     @extend %btn-close;
 //     top: 8px;
