@@ -5,6 +5,7 @@ import { removeLoader } from './searchForm';
 export function createPagination(newsArray, funcForRenderingMarkup) {
     setNumberOfNewsperPage();
     refs.pgWrapper.classList.remove('visually-hidden');
+    refs.btnPrevPg.disabled = true;
 
     const valuePage = {
         curPage: 1,
@@ -219,7 +220,6 @@ function fixScreenHeight() {
     if (window.matchMedia('(min-width: 768px)').matches) {
         refs.newsContainer.style.height = '';
         const galleryHeight = refs.newsContainer.clientHeight;
-        console.log(galleryHeight);
         refs.newsContainer.style.height = `${galleryHeight}px`;
     }
 }
