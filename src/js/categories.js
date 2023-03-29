@@ -26,8 +26,8 @@ document.body.addEventListener('click', event => {
 
 const createBtnsMarkupMobile = results => {
     return results
-        .map(({ display_name }) => {
-            return `<a href="" class="home__dropdown-menu--item"><button class="home__dropdown-item" type="button">${display_name}</button></a>`;
+        .map(({ display_name, section }) => {
+            return `<a href="" class="home__dropdown-menu--item"><button class="home__dropdown-item" type="button" data-section="${section}">${display_name}</button></a>`;
         })
         .join('');
 };
@@ -39,8 +39,8 @@ const renderMarkupMobile = results => {
 const createBtnsMarkupTablet = results => {
     const buttonsMarkup = results
         .slice(0, 4)
-        .map(({ display_name }) => {
-            return `<button class="home__category-button" type="button">
+        .map(({ display_name, section }) => {
+            return `<button class="home__category-button" type="button" data-section="${section}">
                     ${display_name}
                 </button>`;
         })
@@ -48,8 +48,8 @@ const createBtnsMarkupTablet = results => {
 
     const dropdownMarkup = results
         .slice(4)
-        .map(({ display_name }) => {
-            return `<a href="" class="home__dropdown-menu--item"><button class="home__dropdown-item" type="button">${display_name}</button></a>`;
+        .map(({ display_name, section }) => {
+            return `<a href="" class="home__dropdown-menu--item"><button class="home__dropdown-item" type="button" data-section="${section}">${display_name}</button></a>`;
         })
         .join('');
 
@@ -60,8 +60,8 @@ const createBtnsMarkupTablet = results => {
 const createBtnsMarkupDesktop = results => {
     const buttonsMarkup = results
         .slice(0, 6) // обмежуємо результат лише першими 7 категоріями
-        .map(({ display_name }) => {
-            return `<button class="home__category-button" type="button">
+        .map(({ display_name, section }) => {
+            return `<button class="home__category-button" type="button" data-section="${section}">
                     ${display_name}
                 </button>`;
         })
@@ -69,8 +69,8 @@ const createBtnsMarkupDesktop = results => {
 
     const dropdownMarkup = results
         .slice(6) // обмежуємо результат всіма категоріями, що залишилися
-        .map(({ display_name }) => {
-            return `<a href="" class="home__dropdown-menu--item"><button class="home__dropdown-item" type="button">${display_name}</button></a>`;
+        .map(({ display_name, section }) => {
+            return `<a href="" class="home__dropdown-menu--item"><button class="home__dropdown-item" type="button" data-section="${section}">${display_name}</button></a>`;
         })
         .join('');
 

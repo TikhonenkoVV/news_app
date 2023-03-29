@@ -18,11 +18,11 @@ export const onClickBtns = async e => {
     if (e.target.nodeName !== 'BUTTON') {
         return;
     }
-    const category = e.target.textContent.trim();
+    const category = encodeURIComponent(e.target.dataset.section.trim());
     try {
         // виконуємо запит на бекенд з параметрами, відповідними до вибраної категорії
         const { data } = await axios.get(
-            `${BASE_URL}/topstories/v2/${category}.json?`,
+            `${BASE_URL}/news/v3/content/all/${category}.json`,
             {
                 params: {
                     'api-key': API_KEY,
@@ -34,7 +34,10 @@ export const onClickBtns = async e => {
             ({ published_date, section, abstract, multimedia, title, url }) => {
                 let favorite = '';
                 let readMore = '';
-                let imgUrl = multimedia[2].url;
+                let imgUrl =
+                    multimedia && multimedia.length > 2
+                        ? multimedia[2].url
+                        : '';
                 return {
                     favorite,
                     readMore,
@@ -76,12 +79,12 @@ export const onClickBtnsDropdown = async e => {
     if (e.target.nodeName !== 'BUTTON') {
         return;
     }
-    const category = e.target.textContent.trim();
+    const category = encodeURIComponent(e.target.dataset.section.trim());
 
     try {
         // виконуємо запит на бекенд з параметрами, відповідними до вибраної категорії
         const { data } = await axios.get(
-            `${BASE_URL}/topstories/v2/${category}.json?`,
+            `${BASE_URL}/news/v3/content/all/${category}.json`,
             {
                 params: {
                     'api-key': API_KEY,
@@ -93,7 +96,10 @@ export const onClickBtnsDropdown = async e => {
             ({ published_date, section, abstract, multimedia, title, url }) => {
                 let favorite = '';
                 let readMore = '';
-                let imgUrl = multimedia[1].url;
+                let imgUrl =
+                    multimedia && multimedia.length > 2
+                        ? multimedia[2].url
+                        : '';
                 return {
                     favorite,
                     readMore,
