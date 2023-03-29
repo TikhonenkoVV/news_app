@@ -18,6 +18,7 @@
 }
 
 .news {
+    min-height: 675px;
     grid-auto-rows: 675px;
     @media screen and (max-width: 768px) {
         display: flex;
