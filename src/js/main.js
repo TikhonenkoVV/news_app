@@ -62,7 +62,7 @@ export function renderGallery(users, ifFirstPage) {
                 }
 
                 if (allAvailable) {
-                    console.log(`allAvailable`, allAvailable);
+                    // console.log(`allAvailable`, allAvailable);
 
                     if (allAvailable.readMore && allAvailable.favorite) {
                         console.log(`readMore & favorite`);
@@ -84,7 +84,7 @@ export function renderGallery(users, ifFirstPage) {
                     }
 
                     if (allAvailable.favorite) {
-                        console.log(`favorite`);
+                        // console.log(`favorite`);
                         return `<div class="news__item">
             <p class="news__section">${section}</p>
             <div class="news__img">
