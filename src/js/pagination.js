@@ -5,6 +5,8 @@ import { removeLoader } from './searchForm';
 export function createPagination(newsArray, funcForRenderingMarkup) {
     setNumberOfNewsperPage();
     refs.pgWrapper.classList.remove('visually-hidden');
+    refs.btnNextPg.classList.remove('visually-hidden');
+    refs.btnPrevPg.classList.remove('visually-hidden');
     refs.btnPrevPg.disabled = true;
 
     const valuePage = {
