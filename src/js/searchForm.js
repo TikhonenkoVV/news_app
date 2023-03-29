@@ -109,7 +109,7 @@ function addLoader() {
     wrapper.prepend(loaderBox);
 }
 
-function removeLoader() {
+export function removeLoader() {
     const loader = document.querySelector('.pagination__loader');
     loader.classList.add('visually-hidden');
 }

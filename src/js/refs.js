@@ -20,6 +20,7 @@ export const refs = {
     openIcon: document.querySelector('.home__category-button-icon--open'),
     closeIcon: document.querySelector('.home__category-button-icon--close'),
     pg: document.getElementById('pagination'),
+    pgWrapper: document.querySelector('.pagination__wrapper'),
     pgContainer: document.querySelector('.pagination__container'),
     btnNextPg: document.querySelector('.pagination__next-page'),
     btnPrevPg: document.querySelector('.pagination__prev-page'),

@@ -1,5 +1,6 @@
 import { refs } from './refs';
 let newsPerPage;
+import { removeLoader } from './searchForm';
 
 export function createPagination(newsArray, funcForRenderingMarkup) {
     setNumberOfNewsperPage();
@@ -11,8 +12,8 @@ export function createPagination(newsArray, funcForRenderingMarkup) {
     };
 
     if(valuePage.totalPages <= 1) {
-        console.log('1 page');
-        refs.pgContainer.innerHTML = '';
+        refs.pgWrapper.classList.add('visually-hidden');
+        removeLoader();
         return;
     }
 
@@ -55,6 +56,8 @@ export function createPagination(newsArray, funcForRenderingMarkup) {
             }
         }
     });
+    
+    fixScreenHeight();
 }
 
 function pagination(valuePage) {
@@ -208,5 +211,14 @@ function setNumberOfNewsperPage() {
         newsPerPage = 7;
     } else {
         newsPerPage = 4;
+    }
+}
+
+function fixScreenHeight() {
+    if (window.matchMedia('(min-width: 768px)').matches) {
+        refs.newsContainer.style.height = '';
+        const galleryHeight = refs.newsContainer.clientHeight;
+        console.log(galleryHeight);
+        refs.newsContainer.style.height = `${galleryHeight}px`;
     }
 }
