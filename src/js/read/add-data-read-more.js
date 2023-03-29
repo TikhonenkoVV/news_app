@@ -2,7 +2,7 @@ import { addRemoveDataFavorite } from './addremove-data-favorite';
 import { load, save } from '../storage';
 import { addOverLay } from '../main';
 import { updateReedFunc } from '../autorization';
-
+import { openCloseNews } from './open-close-news';
 import { auth, firebaseApp } from '../auth';
 
 import { onAuthStateChanged } from "firebase/auth";
@@ -13,6 +13,7 @@ let currentUser = {}
 
 export const addDataReadNews = e => {
     addRemoveDataFavorite(e);
+    openCloseNews(e);
     if (!e.target.classList.contains('info__link')) {
         return;
     }
