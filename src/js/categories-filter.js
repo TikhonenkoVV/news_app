@@ -35,8 +35,8 @@ export const onClickBtns = async e => {
                 let favorite = '';
                 let readMore = '';
                 let imgUrl =
-                    multimedia && multimedia.length > 2
-                        ? multimedia[2].url
+                    multimedia && multimedia.length > 0
+                        ? multimedia[multimedia.length - 1].url
                         : '';
                 return {
                     favorite,
@@ -97,8 +97,8 @@ export const onClickBtnsDropdown = async e => {
                 let favorite = '';
                 let readMore = '';
                 let imgUrl =
-                    multimedia && multimedia.length > 2
-                        ? multimedia[2].url
+                    multimedia && multimedia.length > 0
+                        ? multimedia[multimedia.length - 1].url
                         : '';
                 return {
                     favorite,
