@@ -5,21 +5,24 @@
     width: 100%;
     border-bottom: 1px solid #929292;
     background-color: inherit;
-       @media screen and (max-width: 768px) {
-    margin-top: 40px;
-    margin-bottom: 28px;
-    gap: 6px;
+    @media screen and (max-width: 768px) {
+        margin-top: 40px;
+        margin-bottom: 28px;
+        gap: 6px;
     }
-        @media screen and (min-width: 768px) {
-    margin-top: 48px;
-    margin-bottom: 30px;
-    gap: 7px;
+    @media screen and (min-width: 768px) {
+        margin-top: 48px;
+        margin-bottom: 30px;
+        gap: 7px;
     }
-        @media screen and (min-width: 1280px) {
-    margin-top: 60px;
-    margin-bottom: 40px;
-    gap: 8px;
+    @media screen and (min-width: 1280px) {
+        margin-top: 60px;
+        margin-bottom: 40px;
+        gap: 8px;
     }
+    border-top: none;
+    border-left: none;
+    border-right: none;
 }
 .data-read__text {
     font-family: 'Poppins';
@@ -34,26 +37,25 @@
 }
 .data-read__icon {
     margin-bottom: 12px;
-    color: var(--colorTextDark);
+    fill: var(--colorTextDark);
 }
 
 .news__item-read {
     opacity: 1;
     visibility: visible;
     transition: all 0.3s ease-in-out;
-  }
-  
-  .news__item-read.hide {
+}
+
+.news__item-read.hide {
     opacity: 0;
     visibility: hidden;
     height: 0;
     transition: all 0.3s ease-in-out;
-  }
-  
-  .data-read__icon.rotate {
+}
+
+.data-read__icon.rotate {
     transform: rotate(180deg);
-  }
-  
+}
 
 .news__item-date {
     grid-column: 1 / -1;
