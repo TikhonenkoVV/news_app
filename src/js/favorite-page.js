@@ -7,6 +7,15 @@ import { verifyUser, checkAuth } from './autorization';
 import { onAuthorizationSubmit, onAuthorizationCancel } from './autorization';
 import { load } from './storage';
 
+import { updateFavoriteFunc } from '../js/autorization';
+import { auth, firebaseApp } from '../js/auth';
+
+import { onAuthStateChanged } from "firebase/auth";
+import { doc, getFirestore, getDoc} from "firebase/firestore"; 
+
+let db = ''
+let currentUser = {}
+
 refs.mobileToggler.addEventListener('click', onToglerClick);
 refs.togler.addEventListener('click', onToglerClick);
 refs.tabs.addEventListener('click', onTabsClick);
@@ -26,6 +35,7 @@ function onFavoriteBtnRemoveClick(e) {
     }
     const savedLocalNews = localStorage.getItem('user-gallery');
     const results = JSON.parse(savedLocalNews);
+    updateFavoriteFunc(results)
     const url = e.target.id;
     results.map(obj => {
       if (obj.url !== url) return;
@@ -36,7 +46,25 @@ function onFavoriteBtnRemoveClick(e) {
 }
 // функція що рендерить
 function renderFavoritesCardsInLibrary(results) {
-    const favoritesList = results
+
+    // console.log(results)
+
+    auth.onAuthStateChanged(user => {
+        console.log(`Авторизований user === ${user.email}`)
+        currentUser = user.email
+        db = getFirestore(firebaseApp);
+        fetchArrayWithDBFavoriteNews()
+      })
+
+      const fetchArrayWithDBFavoriteNews = async () => {
+        console.log('fetchArrayDBFavorite')
+        const docRef = doc(db, currentUser, "favoriteNews");
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            let galery = await docSnap.data().favoriteNews
+            console.log('galery fav', galery)
+            console.log('results fav', results)
+            const favoritesList = galery
         .map(
             (
                 {
@@ -85,8 +113,13 @@ function renderFavoritesCardsInLibrary(results) {
             }
         )
         .join('');
-
     refs.favoritesContainer.innerHTML = favoritesList;
+            // console.log("favoriteNews:", docSnap.data().favoriteNews);
+        } else {
+            console.log("No such document favoriteNews!");
+        }
+      }
+
 }
 
 checkAuth();
