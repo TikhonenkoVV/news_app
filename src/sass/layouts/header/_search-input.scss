@@ -1,0 +1,153 @@
+.search-input {
+    cursor: pointer;
+    border: none;
+    background: #686868;
+
+    @include for-size(tablet) {
+        display: none;
+    }
+}
+
+.search-container {
+    width: 50px;
+    @include for-size(mobile-only) {
+        margin: 0 auto;
+    }
+    @include for-size(tablet) {
+        width: 40px;
+        position: relative;
+    }
+    @include for-size(mobile-only) {
+        &:focus-within .header__input-search {
+            width: 173px;
+            margin: 0;
+            border: 1px solid #111321;
+            opacity: 1;
+            pointer-events: auto;
+            transition: all 0.3s ease;
+        }
+    }
+
+    @include for-size(tablet) {
+        .header__input-search {
+            width: 213px;
+            margin: 0;
+            border: 1px solid #111321;
+            opacity: 1;
+            pointer-events: auto;
+            transition: none;
+            position: inherit;
+        }
+    }
+    @include for-size(desktop) {
+        .header__input-search {
+            width: 288px;
+            margin: 0;
+            border: 1px solid #111321;
+            opacity: 1;
+            pointer-events: auto;
+            transition: none;
+        }
+    }
+
+    &:focus-within .search-button {
+        bottom: -5px;
+        right: 178px;
+        transition: all 0.3s ease;
+    }
+    @include for-size(tablet) {
+        .search-button {
+            bottom: -5px;
+            right: 178px;
+        }
+    }
+}
+
+.header__input-search {
+    position: absolute;
+    top: 3px;
+    right: 38px;
+    width: 0;
+    padding: 5px 0;
+    padding-left: 48px;
+    margin: 0;
+    box-sizing: border-box;
+    border: 1px solid var(--toglerMinorColor);
+    border-radius: 50px;
+    font-size: 12px;
+    // transition: all 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+
+    @include for-size(tablet) {
+        transition: none;
+        top: 0;
+        left: 0;
+    }
+
+    &:focus,
+    &:active {
+        outline: none;
+    }
+
+    &::placeholder {
+        font-size: 12px;
+        line-height: 1.75;
+        letter-spacing: 0.02em;
+    }
+}
+
+.search-button {
+    position: absolute;
+    top: 3px;
+    right: 38px;
+    cursor: pointer;
+    // transition: all 0.3s ease;
+    padding: 0;
+    z-index: 10;
+    border: none;
+    background: none;
+    @include for-size(tablet) {
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        transition: none;
+    }
+    @include for-size(desktop) {
+        transform: translate(50%, -50%);
+        width: 20px;
+        height: 20px;
+        top: 50%;
+        left: 0;
+    }
+}
+
+.search-icon {
+    fill: var(--colorTextDark);
+    width: 20px;
+    height: 20px;
+    @include for-size(desktop) {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.search {
+    position: relative;
+    display: flex;
+    gap: 14px;
+
+    @include for-size(tablet-only) {
+        width: 213px;
+    }
+    @include for-size(desktop) {
+        width: 288px;
+        gap: 14px;
+        display: flex;
+        position: relative;
+    }
+}

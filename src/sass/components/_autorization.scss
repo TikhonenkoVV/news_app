@@ -1,0 +1,116 @@
+#logout {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 6;
+}
+.authorization {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 320px;
+    height: 100%;
+    padding: 20px;
+    text-align: center;
+    background-color: var(--colorBackground);
+    transition: background-color $baseTransition, color $baseTransition;
+    transition: transform $baseTransition;
+    @include for-size(tablet) {
+        border-radius: 5px;
+        height: auto;
+    }
+}
+
+.authorization__title {
+    margin-bottom: 16px;
+}
+
+.authorization__caption {
+    margin-bottom: 16px;
+}
+
+.authorization__box {
+    display: flex;
+}
+
+.authorization__box button {
+    background: none;
+    flex-basis: 50%;
+    height: 40px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: 1px solid grey;
+}
+
+.authorization__box button.current {
+    color: $colorAccent;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+    border-right: 1px solid grey;
+    border-bottom: none;
+}
+
+.authorization__form {
+    padding: 10px;
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+    border-bottom: 1px solid grey;
+}
+
+.authorization__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.authorization__field input {
+    border-radius: 16px;
+    text-align: center;
+    padding: 5px 10px;
+}
+
+.authorization__checkbox {
+    display: block;
+    margin-bottom: 16px;
+}
+
+.authorization__button-box {
+    display: flex;
+    gap: 16px;
+}
+
+.authorization__button-box button {
+    flex-basis: calc((100% - 16px) / 2);
+    border: none;
+    border-radius: 4px;
+    background-color: $colorAccent;
+    color: #fff;
+    height: 40px;
+}
+
+.authorization__cancel {
+    flex-basis: calc((100% - 16px) / 2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    color: #fff;
+    // width: 100%;
+    background-color: $colorAccent;
+}
+// .modal__btn {
+//     @extend %btn-close;
+//     top: 8px;
+//     right: 8px;
+//     padding: 5px;
+//     width: 30px;
+//     height: 30px;
+//     border: 1px solid rgba(0, 0, 0, 0.1);
+//     border-radius: 50%;
+//     &:hover {
+//         fill: $designcolor;
+//     }
+// }

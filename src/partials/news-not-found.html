@@ -1,0 +1,36 @@
+<section class="not-found-section content-hidden">
+    <div class="container">
+        <div class="content-box">
+            <h2 class="content-box__title">
+                We haven’t found news from this category
+            </h2>
+            <picture class="content-box__img">
+                <source
+                    srcset="
+                        ./images/no_poster_mobile@1x.png 1x,
+                        ./images/no_poster_mobile@2x.png 2x
+                    "
+                    media="(max-width: 767px)"
+                />
+                <source
+                    srcset="
+                        ./images/no_poster_tab@1x.png 1x,
+                        ./images/no_poster_tab@2x.png 2x
+                    "
+                    media="(min-width: 768px) and (max-width: 1279px)"
+                />
+                <source
+                    srcset="
+                        ./images/no_poster_desktop@1x.png 1x,
+                        ./images/no_poster_desktop@2x.png 2x
+                    "
+                    media="(min-width: 1280px)"
+                />
+                <img
+                    src="./images/no_poster_tab@1x.png"
+                    alt="News not founded"
+                />
+            </picture>
+        </div>
+    </div>
+</section>

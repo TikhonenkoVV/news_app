@@ -1,0 +1,194 @@
+.container__categories {
+    position: relative;
+    display: flex;
+    gap: 14px;
+    padding-top: 24px;
+    @include for-size(tablet) {
+        padding-top: 28px;
+        gap: 16px;
+    }
+}
+
+.home__category {
+    display: flex;
+    gap: 14px;
+    @include for-size(tablet) {
+        gap: 16px;
+    }
+}
+
+.home__category-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.33;
+    text-align: center;
+    padding: 7px 14px;
+    letter-spacing: 0.01em;
+
+    color: var(--colorTextCategoryBtn);
+    background-color: var(--colorCategoriesBackgroundSelect);
+    border: 1px solid var(--colorCategoriesBtnBorder);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out,
+        fill 250ms ease-in-out;
+
+    @include for-size(tablet) {
+        gap: 10px;
+        padding: 7.5px 24.5px;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: var(--colorCategoriesBtnBorder);
+        color: $colorTextWhite;
+    }
+
+    &:hover .home__category-button-icon,
+    &:focus .home__category-button-icon {
+        fill: $colorTextWhite;
+    }
+}
+
+.home__dropdown-item {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.33;
+    text-align: center;
+    padding: 7.5px 24px;
+    letter-spacing: 0.01em;
+
+    color: var(--colorTextCategoryBtn);
+    border: none;
+    background-color: var(--colorCategoriesBackgroundSelect);
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        text-decoration-line: underline;
+    }
+}
+
+.home__category-dropdown {
+    position: relative;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    // z-index: 2;
+
+    // @include for-size(tablet) {
+    //     top: 0;
+    //     left: 58.5%;
+    // }
+
+    // @include for-size(desktop) {
+    //     left: 52.8%;
+    // }
+
+    .home__dropdown-menu {
+        position: absolute;
+        right: -30px;
+        top: 35px;
+        max-height: 380px;
+        max-width: 148px;
+        background-color: var(--colorCategoriesBackgroundSelect);
+        border-radius: 20px;
+        padding: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        overflow-y: auto;
+        z-index: 3;
+
+        @include for-size(tablet) {
+            max-width: 168px;
+        }
+
+        &::-webkit-scrollbar {
+            width: 0px;
+            background-color: transparent;
+        }
+    }
+}
+
+.home__dropdown-menu {
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        width: 0 !important;
+        height: 0;
+        display: none !important;
+        background: transparent;
+    }
+}
+
+.home__category-button-icon {
+    fill: $colorAccent;
+    transition: fill 250ms ease-in-out;
+}
+
+.home__picker-box {
+    position: relative;
+    display: flex;
+    margin-left: auto;
+}
+
+.home__cal-icon {
+    position: absolute;
+    top: 6px;
+    left: 12px;
+    fill: $colorAccent;
+    transition: fill $baseTransition;
+    pointer-events: none;
+}
+
+.home__arrow-icon {
+    position: absolute;
+    top: 9px;
+    right: 12px;
+    fill: $colorAccent;
+    transition: fill $baseTransition;
+    pointer-events: none;
+}
+
+.home__inpyt {
+    border: 1px solid var(--colorCategoriesBtnBorder);
+    border-radius: 20px;
+    min-width: 152px;
+    display: flex;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1;
+    color: #999aa0;
+    transition: background-color $baseTransition, color $baseTransition;
+    &:hover,
+    &:focus {
+        background-color: #4440f6;
+        color: #fff;
+    }
+    &:hover + .home__cal-icon,
+    &:focus + .home__cal-icon {
+        fill: #fff;
+    }
+    &:hover + .home__cal-icon + .home__arrow-icon,
+    &:focus + .home__cal-icon + .home__arrow-icon {
+        fill: #fff;
+    }
+}
+// .home__category-button-icon--open {
+// }
+
+// .home__category-button-icon--close {
+// }
+
+.hidden {
+    display: none !important;
+}

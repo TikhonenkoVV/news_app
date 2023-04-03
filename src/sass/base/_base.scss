@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: $fontFamilyMain;
+    font-size: 16px;
+    color: var(--colorTextDark);
+    background-color: var(--colorBackground);
+    transition: background-color $baseTransition, color $baseTransition;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: none;
+}
+
+button {
+    font-family: $fontFamilyMain;
+}

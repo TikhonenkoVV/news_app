@@ -1,0 +1,66 @@
+.theme {
+    @include for-size(tablet) {
+        display: flex;
+        gap: 8px;
+    }
+    @include for-size(desktop) {
+        gap: 12px;
+        display: flex;
+    }
+}
+
+.theme__caption {
+    display: none;
+    @include for-size(desktop) {
+        display: block;
+    }
+    transition: color $baseTransition;
+}
+
+.theme__caption--light {
+    color: var(--toglerIconSunColor);
+}
+
+.theme__caption--dark {
+    color: var(--toglerIconMoonColor);
+}
+
+.theme__icon {
+    @include for-size(desktop) {
+        display: none;
+    }
+}
+
+.theme__icon--sun {
+    fill: var(--toglerIconSunColor);
+}
+
+.theme__icon--moon {
+    fill: var(--toglerIconMoonColor);
+}
+
+.theme__togler {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 40px;
+    height: 20px;
+    border: 1px solid var(--toglerMainColor);
+    border-radius: 10px;
+    padding: 1px;
+    background-color: var(--toglerMinorColor);
+}
+.theme__lever {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 1px;
+    left: 1px;
+    border-radius: 50%;
+    background-color: var(--toglerMainColor);
+    transition: transform $baseTransition;
+}
+
+body.dark .theme__lever {
+    transform: translateX(20px);
+}

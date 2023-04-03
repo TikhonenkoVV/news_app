@@ -1,0 +1,169 @@
+<header class="page-header">
+    <div class="container page-header__container">
+        <nav class="main-nav">
+            <a class="logo" href="./index.html">News</a>
+            <ul class="site-nav">
+                <li class="site-nav__item">
+                    <a
+                        href="./index.html"
+                        class="site-nav__link site-nav__link--active"
+                        >Home</a
+                    >
+                </li>
+                <li class="site-nav__item" id="favoritesList">
+                    <a href="./favorite.html" class="site-nav__link"
+                        >Favorite</a
+                    >
+                </li>
+                <li class="site-nav__item">
+                    <a href="./read.html" class="site-nav__link">Read</a>
+                </li>
+            </ul>
+        </nav>
+        <form class="search-form">
+            <div class="search">
+                <div class="search-container">
+                    <button type="submit" class="search-button">
+                        <svg class="search-icon">
+                            <use href="./images/sprite.svg#icon-search"></use>
+                        </svg>
+                    </button>
+                    <input
+                        autocomplete="off"
+                        class="header__input-search"
+                        name="searchQuery"
+                        type="text"
+                        placeholder="Search  l"
+                    />
+                </div>
+                <button type="button" class="burger-menu js-open-menu">
+                    <svg width="24" height="24">
+                        <use
+                            class="burger-menu__svg"
+                            href="./images/sprite.svg#icon-menu"
+                        ></use>
+                    </svg>
+                </button>
+            </div>
+        </form>
+        <div class="header-box">
+            <button class="profile hide" type="button"></button>
+            <div class="theme">
+                <p class="theme__caption theme__caption--light">Light</p>
+                <svg
+                    class="theme__icon theme__icon--sun"
+                    width="21"
+                    height="21"
+                >
+                    <use xlink:href="./images/sprite.svg#icon-sun"></use>
+                </svg>
+                <div class="theme__togler">
+                    <div class="theme__lever"></div>
+                </div>
+                <svg
+                    class="theme__icon theme__icon--moon"
+                    width="21"
+                    height="21"
+                >
+                    <use xlink:href="./images/sprite.svg#icon-moon"></use>
+                </svg>
+                <p class="theme__caption theme__caption--dark">Dark</p>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- mobile menu -->
+<div class="mobile-menu js-menu-container">
+    <button class="mobile-menu__close-button js-close-menu">
+        <svg class="mobile-menu__close-svg" width="24" height="24">
+            <use href="./images/sprite.svg#icon-close"></use>
+        </svg>
+    </button>
+    <nav class="mobile-menu__nav">
+        <div class="mobile-menu__logo-box">
+            <a class="mobile-menu__logo" href="./index.html">News</a>
+        </div>
+        <ul class="mobile-menu__list">
+            <li class="mobile-menu__item mobile-menu__item--active">
+                <div class="mobile-menu__item-box">
+                    <svg
+                        class="mobile-menu__item-svg mobile-menu__item-svg--active"
+                        width="32"
+                        height="32"
+                    >
+                        <use href="./images/sprite.svg#icon-home"></use>
+                    </svg>
+                    <a
+                        href="./index.html"
+                        class="mobile-menu__link mobile-menu__link--active"
+                        >Home</a
+                    >
+                </div>
+                <div class="mobile-menu__item-next">
+                    <svg
+                        class="mobile-menu__item-next-svg--active"
+                        width="24"
+                        height="24"
+                    >
+                        <use href="./images/sprite.svg#icon-arrow-next"></use>
+                    </svg>
+                </div>
+            </li>
+            <li class="mobile-menu__item">
+                <div class="mobile-menu__item-box">
+                    <svg class="mobile-menu__item-svg" width="32" height="32">
+                        <use href="./images/sprite.svg#icon-favorite"></use>
+                    </svg>
+                    <a href="./favorite.html" class="mobile-menu__link"
+                        >Favorite</a
+                    >
+                </div>
+                <div class="mobile-menu__item-next">
+                    <svg
+                        class="mobile-menu__item-next-svg"
+                        width="24"
+                        height="24"
+                    >
+                        <use href="./images/sprite.svg#icon-arrow-next"></use>
+                    </svg>
+                </div>
+            </li>
+            <li class="mobile-menu__item">
+                <div class="mobile-menu__item-box">
+                    <svg class="mobile-menu__item-svg" width="32" height="32">
+                        <use href="./images/sprite.svg#icon-read"></use>
+                    </svg>
+                    <a href="./read.html" class="mobile-menu__link">Read</a>
+                </div>
+                <div class="mobile-menu__item-next">
+                    <svg
+                        class="mobile-menu__item-next-svg"
+                        width="24"
+                        height="24"
+                    >
+                        <use href="./images/sprite.svg#icon-arrow-next"></use>
+                    </svg>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="theme-mobile">
+        <svg
+            class="theme-mobile__icon theme-mobile__icon--sun"
+            width="21"
+            height="21"
+        >
+            <use xlink:href="./images/sprite.svg#icon-sun"></use>
+        </svg>
+        <div class="theme-mobile__togler">
+            <div class="theme-mobile__lever"></div>
+        </div>
+        <svg
+            class="theme-mobile__icon theme-mobile__icon--moon"
+            width="21"
+            height="21"
+        >
+            <use xlink:href="./images/sprite.svg#icon-moon"></use>
+        </svg>
+    </div>
+</div>

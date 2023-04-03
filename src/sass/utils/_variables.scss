@@ -1,0 +1,29 @@
+$fontFamilyMain: 'Manrope', sans-serif;
+$fontFamilyMinor: 'Poppins', sans-serif;
+$fontFamilyBanner: 'Roboto', sans-serif;
+
+$colorAccent: #4440f6;
+$colorFooterBackground: #7a7a7a;
+$colorTextWhite: #ffffff;
+$colorLocationBackground: rgba(254, 254, 255, 0.3);
+$favBtnColor: #111321;
+
+:root {
+    --colorBackground: #f4f4f4;
+    --colorTextDark: #111321;
+    --colorTextLight: #f4f4f4;
+    --toglerMainColor: #4440f6;
+    --toglerMinorColor: #fff;
+    --toglerIconSunColor: #4b48db;
+    --toglerIconMoonColor: #5f6775;
+    --colorCategoriesBackgroundSelect: #f8f8f8;
+    --colorCategoriesBtnBorder: #4440f7;
+    --colorTextCategoryBtn: #4b48db;
+}
+
+$stickerBackground: linear-gradient(
+    rgba(68, 64, 247, 0.7),
+    rgba(68, 64, 247, 0.7)
+);
+
+$baseTransition: 250ms cubic-bezier(0.4, 0, 0.2, 1);

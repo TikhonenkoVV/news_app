@@ -1,0 +1,257 @@
+.pagination__wrapper {
+    margin-top: 40px;
+    padding-bottom: 60px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include for-size(tablet) {
+        margin-top: 48px;
+        padding-bottom: 100px;
+    }
+
+    @include for-size(desktop) {
+        margin-top: 60px;
+        padding-bottom: 150px;
+    }
+}
+
+.pagination__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pagination__loader {
+    display: block;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    & p {
+        color: var(--colorFooterBackground);
+        font-size: 14px;
+    }
+}
+
+.pagination__prev-page,
+.pagination__next-page {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 28px;
+    border: 1px solid var(--toglerMainColor);
+    border-radius: 2px;
+    background-color: var(--colorBackground);
+    color: var(--colorTextDark);
+    font-family: $fontFamilyMain;
+    @include font(500, 14, 1.36, 0em);
+
+    @include for-size(tablet) {
+        width: 82px;
+        height: 31px;
+        font-size: 16px;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: var(--toglerMainColor);
+        color: var(--colorBackground);
+    }
+
+    &[disabled] {
+        background-color: lightgray;
+        color: darkgrey;
+        pointer-events: none;
+        border: none;
+
+        body.dark & {
+            background-color: lightgray;
+            color: darkgrey;
+            pointer-events: none;
+            border: none;
+        }
+    }
+
+    body.dark & {
+        background-color: var(--colorTextLight);
+        border: 1px solid var(--toglerMinorColor);
+        color: var(--colorTextDarkGray);
+
+        &:hover,
+        &:focus {
+            background-color: var(--toglerMinorColor);
+            color: var(--colorTextLight);
+        }
+    }
+}
+
+.pagination__prev-page {
+    margin-right: 10px;
+}
+
+#pagination {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.pagination___item {
+    width: 28px;
+    height: 28px;
+
+    @include for-size(tablet) {
+        & {
+            width: 33px;
+            height: 31px;
+        }
+    }
+
+    list-style: none;
+    cursor: pointer;
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid var(--toglerMainColor);
+    background-color: var(--colorBackground);
+    margin-right: 10px;
+
+    body.dark & {
+        background-color: var(--colorTextLight);
+        border: 1px solid var(--toglerMinorColor);
+
+        &:hover,
+        &:focus {
+            background-color: var(--toglerMinorColor);
+        }
+
+        &:hover a,
+        &:focus a {
+            color: var(--colorTextLight);
+        }
+    }
+
+    &:hover,
+    &:focus {
+        background-color: var(--toglerMainColor);
+    }
+
+    &:hover a,
+    &:focus a {
+        color: var(--colorBackground);
+    }
+
+    // &:first-child {
+    //     @include for-size(mobile-only) {
+    //         margin-right: 4px;
+    //     }
+    // }
+
+    &.disabled {
+        background-color: lightgray;
+        color: darkgrey;
+        pointer-events: none;
+        border: none;
+
+        body.dark & {
+            background-color: lightgray;
+            color: darkgrey;
+            pointer-events: none;
+            border: none;
+        }
+
+        & a {
+            color: darkgrey;
+
+            body.dark & {
+                color: darkgrey;
+            }
+        }
+    }
+}
+
+.pagination___item.active {
+    background-color: var(--toglerMainColor);
+
+    body.dark & {
+        background-color: var(--toglerMinorColor);
+        border: 1px solid var(--toglerMinorColor);
+    }
+
+
+    &.disabled {
+        background-color: lightgray;
+        color: darkgrey;
+        pointer-events: none;
+        border: none;
+
+        body.dark & {
+            background-color: lightgray;
+            color: darkgrey;
+            pointer-events: none;
+            border: none;
+        }
+
+        & a {
+            color: darkgrey;
+
+            body.dark & {
+                color: darkgrey;
+            }
+        }
+    }
+}
+
+.pagination___item.active a {
+    color: var(--colorBackground);
+
+    body.dark & {
+        color: var(--colorTextLight);
+    }
+}
+
+.pagination___link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--colorTextDark);
+    font-family: $fontFamilyMain;
+    @include font(500, 14, 1.36, 0em);
+
+    @include for-size(tablet) {
+        font-size: 16px;
+    }
+    pointer-events: none;
+
+    body.dark & {
+        color: var(--colorTextDarkGray);
+    }
+}
+
+.pagination___item--dots {
+    border: none;
+    width: 10px;
+    pointer-events: none;
+    text-align: center;
+
+    body.dark & {
+        background-color: transparent;
+        border: none;
+
+        & a {
+            color: var(--colorTextLight);
+        }
+    }
+}
+
+.pagination__icon {
+    fill: currentColor;
+    width: 18px;
+    height: 18px;
+    padding: 3px;
+}
