@@ -1,4 +1,3 @@
-import 'simplebar/dist/simplebar.css';
 import './js/searchForm';
 import './js/mobile-menu';
 import { refs } from './js/refs';

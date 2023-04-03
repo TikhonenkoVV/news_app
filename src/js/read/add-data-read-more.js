@@ -1,15 +1,12 @@
 import { addRemoveDataFavorite } from './addremove-data-favorite';
-import { load, save } from '../storage';
+import { load } from '../storage';
 import { addOverLay } from '../main';
 import { updateReedFunc } from '../autorization';
 import { openCloseNews } from './open-close-news';
 import { auth, firebaseApp } from '../auth';
 
-import { onAuthStateChanged } from "firebase/auth";
-import { doc, getFirestore, getDoc} from "firebase/firestore"; 
-
-let db = ''
-let currentUser = {}
+let db = '';
+let currentUser = {};
 
 export const addDataReadNews = e => {
     addRemoveDataFavorite(e);
@@ -30,9 +27,6 @@ export const addDataReadNews = e => {
     userGallery = load('user-gallery');
 
     let newArr = [];
-    // if (userGallery) newArr.push(...userGallery);
-
-    // updateReedFunc(newArr)
 
     updateReedFunc(userGallery);
 
@@ -44,38 +38,36 @@ export const addDataReadNews = e => {
             return;
         }
     }
-    // updateReedFunc(newArr)
-    // console.log(userGallery)
-    //////
-    auth.onAuthStateChanged(user => {
-        console.log(`Авторизований user === ${user.email}`)
-        currentUser = user.email
-        db = getFirestore(firebaseApp);
-        fetchArrayWithDBReedNews()
-      })
 
-      const fetchArrayWithDBReedNews = async () => {
-        console.log('fetchArrayDBReed')
-        const docRef = doc(db, currentUser, "reedNews");
+    auth.onAuthStateChanged(user => {
+        console.log(`Авторизований user === ${user.email}`);
+        currentUser = user.email;
+        db = getFirestore(firebaseApp);
+        fetchArrayWithDBReedNews();
+    });
+
+    const fetchArrayWithDBReedNews = async () => {
+        console.log('fetchArrayDBReed');
+        const docRef = doc(db, currentUser, 'reedNews');
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-            let galery = await docSnap.data().reedNews
+            let galery = await docSnap.data().reedNews;
             // console.log(galery)
-            newArr.push(...galery)
-            console.log(newArr)
+            newArr.push(...galery);
+            console.log(newArr);
             const savedLocalNews = localStorage.getItem('bite-search');
             JSON.parse(savedLocalNews).map(fetchNew => {
                 if (url === fetchNew.url) {
                     fetchNew.readMore = formattedDate;
                     newArr.push(fetchNew);
-                    updateReedFunc(newArr)
+                    updateReedFunc(newArr);
                     // localStorage.setItem('user-gallery', JSON.stringify(newArr));
                 }
             });
         } else {
-            console.log("No such document reedNews!");
+            console.log('No such document reedNews!');
         }
-      }
+    };
     console.log(userGallery);
 
     // const savedLocalNews = localStorage.getItem('bite-search');
