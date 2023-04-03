@@ -1,7 +1,0 @@
-footer {
-    height: 120px;
-    background-color: $colorFooterBackground;
-    @include for-size(tablet) {
-        height: 146px;
-    }
-}
