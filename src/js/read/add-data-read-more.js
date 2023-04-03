@@ -27,7 +27,7 @@ export const addDataReadNews = e => {
     userGallery = load('user-gallery');
 
     let newArr = [];
-
+    //
     updateReedFunc(userGallery);
 
     if (userGallery) {
