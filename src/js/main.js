@@ -144,7 +144,6 @@ export function renderGallery(users, ifFirstPage) {
 
     refs.newsContainer.innerHTML = gallaryMarkup;
 }
-refs.newsContainer.addEventListener('click', addDataReadNews);
 
 export function addOverLay(e) {
     let elements = e.target.parentNode.previousSibling.lastElementChild;

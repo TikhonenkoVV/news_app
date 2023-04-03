@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>News favorite</title>
         <link rel="stylesheet" href="./sass/index.scss" />
-        <script type="module" src="./js/favorite-page.js"></script>
+        <script type="module" src="./index.js"></script>
     </head>
     <body>
         <include src="./partials/header.html"></include>
@@ -25,7 +25,8 @@
             </svg>
         </main>
         <footer></footer>
-        <include src="./partials/authorization.html"></include>
-        <!-- <script type="module" src="index.js"></script> -->
+        <div class="backdrop is-hidden">
+            <include src="./partials/authorization.html"></include>
+        </div>
     </body>
 </html>

@@ -1,24 +1,6 @@
 import { load, save } from '../storage';
 
-import { updateFavoriteFunc } from '../autorization';
-import { openCloseNews } from './open-close-news';
-import { auth, firebaseApp } from '../auth';
-
-import { onAuthStateChanged } from "firebase/auth";
-import { doc, getFirestore, getDoc} from "firebase/firestore"; 
-
-let db = ''
-let currentUser = {}
-
 export const addRemoveDataFavorite = e => {
-
-    auth.onAuthStateChanged(user => {
-        console.log(`Авторизований user === ${user.email}`)
-        currentUser = user.email
-        db = getFirestore(firebaseApp);
-        console.log('favorite https...')
-        // fetchArrayWithDBReedNews()
-      })
     if (e.target.nodeName !== 'BUTTON') {
         return;
     }
@@ -28,7 +10,6 @@ export const addRemoveDataFavorite = e => {
 
     let newArr = [];
     if (userGallery) newArr.push(...userGallery);
-    updateFavoriteFunc(userGallery)
 
     if (userGallery) {
         const array = userGallery.map(obj => {
@@ -44,7 +25,6 @@ export const addRemoveDataFavorite = e => {
             obj.favorite = !obj.favorite;
             return obj;
         });
-        updateFavoriteFunc(array)
         localStorage.setItem('user-gallery', JSON.stringify(array));
         const index = userGallery.findIndex(obj => url === obj.url);
 

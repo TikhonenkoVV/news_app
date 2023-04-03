@@ -6,12 +6,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     padding-top: 24px;
     padding-bottom: 24px;
 
     @include for-size(tablet) {
         padding-top: 30px;
         padding-bottom: 30px;
+    }
+    @include for-size(tablet-only) {
+        gap: 4%;
     }
     @include for-size(desktop) {
         padding-top: 28px;
@@ -22,7 +26,14 @@
 .main-nav {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    @include for-size(tablet-only) {
+        gap: 7%;
+        flex-grow: 1;
+    }
+    @include for-size(desktop) {
+        justify-content: space-between;
+        gap: 102px;
+    }
 }
 .logo {
     color: var(--colorTextDark);
@@ -45,24 +56,25 @@
 
     @include for-size(tablet) {
         display: flex;
-        margin-left: 48px;
+        justify-content: space-between;
+        flex-grow: 1;
+        // margin-left: 48px;
     }
     @include for-size(desktop) {
-        display: flex;
-        margin-left: 102px;
+        gap: 69px;
     }
 }
 
 .site-nav__item {
     position: relative;
 
-    &:not(:last-child) {
-        margin-right: 44px;
+    // &:not(:last-child) {
+    //     margin-right: 44px;
 
-        @include for-size(tablet) {
-            margin-right: 44px;
-        }
-    }
+    //     @include for-size(tablet) {
+    //         margin-right: 44px;
+    //     }
+    // }
 }
 
 .site-nav__link {
@@ -98,5 +110,18 @@
     &:hover,
     &:focus {
         color: $colorAccent;
+    }
+}
+
+.header-box {
+    display: none;
+
+    @include for-size(tablet) {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    @include for-size(desktop) {
+        gap: 20px;
     }
 }

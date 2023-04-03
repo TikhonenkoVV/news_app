@@ -1,0 +1,15 @@
+.profile.hide {
+    display: none;
+}
+
+.profile {
+    width: 30px;
+    height: 30px;
+    background-image: url('../images/avatar.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}

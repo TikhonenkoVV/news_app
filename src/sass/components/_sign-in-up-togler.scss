@@ -1,0 +1,57 @@
+.autorize__togler {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60px;
+    height: 26px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border: 2px solid #b1b1b1;
+    border-radius: 13px;
+    background-color: #fff;
+    transition: border-color $baseTransition;
+}
+
+.autorize__lever {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 2px;
+    left: 2px;
+    border-radius: 50%;
+    background-color: #b1b1b1;
+    transition: background-color $baseTransition, transform $baseTransition;
+}
+
+.yes {
+    display: block;
+    color: #4440f6;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity $baseTransition;
+}
+.no {
+    display: block;
+    color: rgb(71, 71, 71);
+    font-size: 12px;
+    opacity: 1;
+    transition: opacity $baseTransition;
+}
+
+.autorize__chk-box:checked + .autorize__togler {
+    border-color: #4440f6;
+}
+
+.autorize__chk-box:checked + .autorize__togler .yes {
+    opacity: 1;
+}
+
+.autorize__chk-box:checked + .autorize__togler .no {
+    opacity: 0;
+}
+
+.autorize__chk-box:checked + .autorize__togler .autorize__lever {
+    background-color: #4440f6;
+    transform: translateX(34px);
+}

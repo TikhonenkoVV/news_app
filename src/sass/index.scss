@@ -5,7 +5,11 @@
 @import './base/base';
 @import './base/theme';
 @import './components/container';
+@import './layouts/backdrop';
+@import './components/sign-in-up-modal';
+@import './components/sign-in-up-togler';
 @import './layouts/header/header';
+@import './components/profile';
 @import './layouts/header/burger-btn';
 @import './layouts/header/search-input';
 @import './layouts/header/mobile-menu';
@@ -14,11 +18,9 @@
 @import './layouts/categories';
 @import './layouts/main.scss';
 @import './layouts/footer';
-@import './layouts/backdrop';
-@import './components/autorization';
 @import './components/weather';
 @import './utils/vh';
 @import './layouts/pagination';
 @import './layouts/news-not-found';
 @import './layouts/read/read';
-@import './layouts/favorite'
+@import './layouts/favorite';
